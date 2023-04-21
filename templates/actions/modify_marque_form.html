@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Modify Marque</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/roboto-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/floating-buttons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+        <div id="modify-form" class="hidden">
+        <form action="/modify_marque_form" method="POST">
+            <h2>Modifier une marque</h2>
+            <label for="id_marque">ID marque:</label>
+            <input type="text" id="id_marque" name="id_marque" required>
+
+            <label for="nom_marque">Nom marque:</label>
+            <input type="text" id="nom_marque" name="nom_marque" required>
+
+            <label for="description_marque">Description marque:</label>
+            <input type="text" id="description_marque" name="description_marque" required>
+
+            <div class="button-container">
+                <button type="submit" class="btn-primary">Modifier</button>
+                <button type="button" class="btn-secondary" id="cancel-modify">Annuler</button>
+            </div>
+        </form>
+    </div>
+
+    <!--
+    {% include '/actions/background-boxes.html' %}
+    {% include '/actions/floating-buttons.html' %}
+    {% include 'footer.html' %}
+    -->
+</body>
+
+</html>

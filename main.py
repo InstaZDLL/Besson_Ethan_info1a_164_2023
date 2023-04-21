@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, jsonify
 import os
 import mysql.connector
 
@@ -161,6 +161,32 @@ def marques():
     headers = [column[0] for column in cursor.description]
 
     return render_template('marques.html', data=data, headers=headers)
+
+
+# @app.route('/marque/<int:id>', methods=['GET'])
+# def get_marque(id):
+#     # create a cursor object to execute SQL queries
+#     cursor = cnx.cursor()
+#
+#     # execute the SQL query to retrieve the Marque with the given id
+#     query = "SELECT * FROM t_marque WHERE id_marque = %s"
+#     cursor.execute(query, (id,))
+#     result = cursor.fetchone()
+#
+#     if result is None:
+#         # if no Marque is found with the given id, return a 404 error
+#         return jsonify({"error": "Marque not found"}), 404
+#
+#     # create a dictionary to hold the Marque data
+#     marque_data = {
+#         "id_marque": result[0],
+#         "nom_marque": result[1],
+#         "description_marque": result[2],
+#         "derniere_actualisation": result[3].strftime('%Y-%m-%d %H:%M:%S')
+#     }
+#
+#     # return the Marque data as a JSON response
+#     return jsonify(marque_data)
 
 
 @app.route('/about')

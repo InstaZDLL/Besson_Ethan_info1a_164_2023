@@ -17,7 +17,7 @@
     <script src="/static/js/bootstrap.min.js"></script>
 
     <style>
-        table {
+       table {
         width: auto;
         table-layout: auto;
         border-collapse: collapse;
@@ -26,8 +26,12 @@
       table td {
         text-align: center;
       }
+      .hidden {
+            display: none;
+      }
     </style>
     <script>
+        // Delete
         document.addEventListener("DOMContentLoaded", function () {
         // select all of the .delete-btn elements
         let deleteBtns = document.querySelectorAll(".delete-btn");
@@ -72,7 +76,7 @@
         }
     });
 
-    // Test
+    // Add
     document.addEventListener("DOMContentLoaded", function () {
         // ... existing code
 
@@ -85,7 +89,6 @@
             });
         });
     });
-
     </script>
 
 </head>

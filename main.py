@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify
 import os
 import mysql.connector
+import subprocess
 
 app = Flask(__name__)
 app = Flask(__name__, static_url_path='/static')
@@ -187,6 +188,17 @@ def marques():
 #
 #     # return the Marque data as a JSON response
 #     return jsonify(marque_data)
+
+
+@app.route('/recycle', methods=['GET', 'POST'])
+def handle_recycle():
+    if request.method == 'POST':
+        # Run the script
+        subprocess.Popen(['python', '/database/mysql_dump_import.py'])
+        # Show a pop-up message
+        return render_template('/actions/popup.html')
+    else:
+        return render_template('/actions/floating-buttons.html')
 
 
 @app.route('/about')

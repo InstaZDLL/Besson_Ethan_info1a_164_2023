@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 	<title>Add Marque</title>
+    <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/roboto-font.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/floating-buttons.css') }}">
@@ -46,8 +47,6 @@
     </div>
 	<div class="portainer">
 		<form action="/add_marque" method="post">
-		  <label for="id_marque">id_marque:</label><br>
-		  <input type="text" id="id_marque" name="id_marque"><br><br>
 		  <label for="nom_marque">nom_marque:</label><br>
 		  <input type="text" id="nom_marque" name="nom_marque"><br><br>
 		  <label for="description_marque">description_marque:</label><br>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>My App - Marques</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/roboto-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/all-buttons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/floating-buttons.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+
+    <style>
+        table {
+        width: auto;
+        table-layout: auto;
+        border-collapse: collapse;
+        z-index: 1;
+      }
+      table td {
+        text-align: center;
+      }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        // select all of the .delete-btn elements
+        let deleteBtns = document.querySelectorAll(".delete-btn");
+        // attach the click event listener to each .delete-btn element
+        for (let i = 0; i < deleteBtns.length; i++) {
+            deleteBtns[i].addEventListener("click", function () {
+                if (confirm("Are you sure you want to delete this row?")) {
+                    // find the index of the id_marque column
+                    let headers = document.querySelectorAll("th");
+                    let idMarqueIndex;
+                    for (let i = 0; i < headers.length; i++) {
+                        if (headers[i].textContent === "id_marque") {
+                            idMarqueIndex = i;
+                            break;
+                        }
+                    }
+
+                    // grab the id of the row from the id_marque cell
+                    let row = this.closest("tr");
+                    let idMarqueCell = row.cells[idMarqueIndex];
+                    let id = idMarqueCell.textContent;
+
+                    // send a POST request to the /delete_row_marque route
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/delete_row_marque");
+                    xhr.setRequestHeader(
+                        "Content-Type",
+                        "application/x-www-form-urlencoded"
+                    );
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            // handle successful deletion
+                            location.reload();
+                        } else {
+                            // handle error
+                            alert("Error: " + xhr.status);
+                        }
+                    };
+                    xhr.send(encodeURI("id=" + id));
+                }
+            });
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // ... existing code
+
+        // add click event listener to the add button
+        let addBtn = document.getElementById("add-btn");
+        addBtn.addEventListener("click", function () {
+            // redirect to the add page
+            window.location.href = "/add_marque";
+        });
+    });
+
+    </script>
+
+</head>
+
+<body>
+    <ul class="horizontal">
+        <li><a href="/">Project Modulus 164</a></li>
+        <li><a href="/materiel">Matériel</a></li>
+        <li><a href="/personnes">Personnes</a></li>
+        <li><a class="active" href="/marques">Marques</a></li>
+        <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
+    </ul>
+    {% include '/actions/background-boxes.html' %}
+    <div class="rounded-box">
+        <div style="padding-left: 30px;">
+            <h1>Marques</h1>
+            <p>Ici sont listées toutes les marques des équipements en stock.</p>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                {% for header in headers %}
+                <th style="text-align: center">{{ header }}</th>
+                {% endfor %}
+                <th style="text-align: center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                {% for cell in row %}
+                <td style="text-align: center">{{ cell }}</td>
+                {% endfor %}
+                <td style="text-align: center">
+                    <button type="button" class="btn btn-primary add-btn" id="add-btn">Add</button>
+                    <button type="button" class="btn btn-secondary delete-btn">Delete</button>
+                    <button type="button" class="btn btn-tertiary modify-btn">Modify</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include '/actions/floating-buttons.html' %}
+    {% include 'footer.html' %}
+</body>
+
+</html>

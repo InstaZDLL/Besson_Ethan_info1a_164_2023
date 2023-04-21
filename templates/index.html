@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/html" xmlns:text-align="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>My App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/dm-sans-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/exo-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <ul class="horizontal">
+        <li><a class="active" href="/">Project Modulus 164</a></li>
+        <li><a href="/materiel">Matériel</a></li>
+        <li><a href="/personnes">Personnes</a></li>
+        <li><a href="/marques">Marques</a></li>
+        <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
+    </ul>
+
+    {% include '/actions/background-boxes.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="animate-charcter"> Page d'accueil du projet</h1>
+            </div>
+        </div>
+    </div>
+
+    <p>&nbsp;</p>
+    <div style="padding-left: 30px; max-width: 760px;">
+        <h3>Bienvenue dans mon application !</h3>
+        <div class="justified-text">
+            <style>
+                h3 {
+                    font-family: 'DM Sans', sans-serif;
+                    font-weight: 700;
+                    font-size: 34px;
+                    margin-bottom: 20px; /* Add this line */
+                }
+
+                p {
+                    font-family: 'DM Sans', sans-serif;
+                    font-size: 18px;
+                }
+            </style>
+            <p>Il s'agit d'une simple application web crée dans le cadre du projet Modulus 164. Le but de ce projet est de montrer nos compétences et notre compréhension du développement web. Cette application comporte plusieurs pages, dont "Matériel" et "Département". </p>
+            <p>N'hésitez pas à explorer et à naviguer dans les différentes sections pour en savoir plus sur le projet. Notre équipe a travaillé dur pour créer une interface conviviale, à la fois fonctionnelle et esthétique.</p>
+            <p>Nous espérons que vous prendrez autant de plaisir à utiliser cette application que nous en avons eu à la créer. Si vous avez des questions ou des commentaires, n'hésitez pas à nous contacter. Nous apprécions votre soutien et sommes impatients de vous entendre.</p>
+        </div>
+        <p>Merci d'avoir visité notre application !</p>
+    </div>
+    {% include 'footer.html' %}
+</body>
+
+</html>

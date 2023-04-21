@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Header Values Form</title>
+  <script src="/static/js/jquery-3.6.0.min.js"></script>
+  <script src="/static/js/search.js"></script>
+</head>
+<body>
+  <h1>Enter Header Values</h1>
+  <form onsubmit="sendQuery(); return false;">
+    <label for="search1">Search 1:</label>
+    <input type="text" id="search1" name="search1"><br>
+
+    <label for="search2">Search 2:</label>
+    <input type="text" id="search2" name="search2"><br>
+
+    <label for="search3">Search 3:</label>
+    <input type="text" id="search3" name="search3"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <div id="results"></div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>My App - Matériel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <ul class="horizontal">
+        <li><a href="/">Project Modulus 164</a></li>
+        <li><a class="active" href="/materiel">Matériel</a></li>
+        <li><a href="/personnes">Personnes</a></li>
+        <li><a href="/marques">Marques</a></li>
+        <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
+    </ul>
+    {% include '/actions/background-boxes.html' %}
+    <div class="rounded-box">
+        <div style="padding-left: 30px;">
+            <h1>Matériel</h1>
+            <p>Ici est listé tout le matériel en stock.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="filter-container">
+            <button class="filter-btn">Filtrer</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Model</th>
+                    <th>Serial Number</th>
+                    <th>Purchase Date</th>
+                    <th>Expiration Date</th>
+                    <th>Price</th>
+                    <th>Last Updated</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[7] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>

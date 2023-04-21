@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recherche Personne</title>
+	<script src="/static/js/jquery.min.3.5.1.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#search-form").submit(function(e){
+			e.preventDefault();
+			var prenom = $("#prenom").val();
+			var nom = $("#nom").val();
+			var mat = $("#materiel").val();
+
+			var data = {
+				"prenom": prenom,
+				"nom": nom,
+				"mat": mat
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "/search",
+				data: data,
+				success: function(result){
+					$("#search-results").html(result);
+				}
+			});
+		});
+	});
+	</script>
+</head>
+<body>
+	<h1>Recherche Personne</h1>
+	<form id="search-form" method="post">
+		<label for="prenom">Prénom:</label>
+		<input type="text" id="prenom" name="prenom"><br>
+
+		<label for="nom">Nom:</label>
+		<input type="text" id="nom" name="nom"><br>
+
+		<label for="materiel">Materiel:</label>
+		<select id="materiel" name="materiel">
+			<option value="">-- Sélectionner --</option>
+			{% for row in materiel_data %}
+			<option value="{{ row[0] }}">{{ row[1] }}</option>
+			{% endfor %}
+		</select><br>
+
+		<input type="submit" value="Rechercher">
+	</form>
+
+	<div id="search-results"></div>
+
+</body>
+</html>

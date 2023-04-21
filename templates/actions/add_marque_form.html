@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Marque</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/roboto-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/floating-buttons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+	<style>
+		.portainer {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 2;
+			width: auto;
+			margin: 0 auto;
+			margin-bottom: 70px;
+		}
+
+		form {
+			background-color: #f2f2f2;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		}
+	</style>
+</head>
+<body>
+	<ul class="horizontal">
+        <li><a href="/">Project Modulus 164</a></li>
+        <li><a href="/materiel">Matériel</a></li>
+        <li><a href="/personnes">Personnes</a></li>
+        <li><a class="active" href="/marques">Marques</a></li>
+        <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
+    </ul>
+	<div class="rounded-box">
+        <div style="padding-left: 30px;">
+            <h1>Add Marque</h1>
+            <p>Page d'ajout de données.</p>
+        </div>
+    </div>
+	<div class="portainer">
+		<form action="/add_marque" method="post">
+		  <label for="id_marque">id_marque:</label><br>
+		  <input type="text" id="id_marque" name="id_marque"><br><br>
+		  <label for="nom_marque">nom_marque:</label><br>
+		  <input type="text" id="nom_marque" name="nom_marque"><br><br>
+		  <label for="description_marque">description_marque:</label><br>
+		  <input type="text" id="description_marque" name="description_marque"><br><br>
+		  <input type="submit" value="Finish">
+		</form>
+	</div>
+	{% include '/actions/background-boxes.html' %}
+	{% include '/actions/floating-buttons.html' %}
+    {% include 'footer.html' %}
+</body>
+</html>

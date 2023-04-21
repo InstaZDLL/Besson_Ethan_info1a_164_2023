@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, flash, redirect, url_for
 import os
 import mysql.connector
 
@@ -18,7 +18,7 @@ name_file_dump_sql_bd = os.environ.get('NAME_FILE_DUMP_SQL_BD')
 adresse_srv_flask = os.environ.get('ADRESSE_SRV_FLASK')
 debug_flask = os.environ.get('DEBUG_FLASK') == 'true'
 port_flask = int(os.environ.get('PORT_FLASK'))
-secret_key_flask = os.environ.get('SECRET_KEY_FLASK')
+app.secret_key = os.environ.get('SECRET_KEY_FLASK')
 
 # Connexion à la base de données MySQL
 try:
@@ -109,14 +109,46 @@ def delete_row_marque():
 
 @app.route('/add_marque_form')
 def add_marque_form():
-    header = "SELECT t_marque.id_marque, t_marque.nom_marque, description_marque FROM t_marque WHERE t_marque.id_marque;"
-    return render_template('add_marque_form.html', header=header)
+    """
+    Affiche le formulaire d'ajout de marque.
+    """
+    return render_template('/actions/add_marque_form.html')
+
+
+@app.route('/add_marque', methods=['GET', 'POST'])
+def add_marque():
+    """
+    Traite les données du formulaire d'ajout de marque.
+    """
+    if request.method == 'POST':
+        nom_marque = request.form['nom_marque']
+        description_marque = request.form['description_marque']
+
+        query = """
+            INSERT INTO t_marque (nom_marque, description_marque)
+            VALUES (%s, %s)
+        """
+        values = (nom_marque, description_marque)
+
+        try:
+            cursor.execute(query, values)
+            cnx.commit()
+            flash('La marque a été ajoutée avec succès.', 'success')
+        except Exception as e:
+            cnx.rollback()
+            flash('Une erreur est survenue lors de l\'ajout de la marque. Veuillez réessayer plus tard.', 'danger')
+            print(e)
+
+        return redirect(url_for('marques'))
+
+    else:
+        return render_template('/actions/add_marque_form.html')
 
 
 @app.route('/marques')
 def marques():
     """
-    Récupère les données de la table t_marque dans la base de données MySQL et les affiche sur la page "personnes.html".
+    Récupère les données de la table t_marque dans la base de données MySQL et les affiche sur la page "marques.html".
     """
     query = """
         SELECT t_marque.id_marque, t_marque.nom_marque, description_marque

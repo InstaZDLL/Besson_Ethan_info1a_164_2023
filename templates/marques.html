@@ -72,14 +72,17 @@
         }
     });
 
+    // Test
     document.addEventListener("DOMContentLoaded", function () {
         // ... existing code
 
-        // add click event listener to the add button
-        let addBtn = document.getElementById("add-btn");
-        addBtn.addEventListener("click", function () {
-            // redirect to the add page
-            window.location.href = "/add_marque";
+        // add click event listener to all add buttons
+        let addBtns = document.querySelectorAll(".add-btn");
+        addBtns.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                // redirect to the add page
+                window.location.href = "/add_marque_form";
+            });
         });
     });
 
@@ -126,6 +129,8 @@
             {% endfor %}
         </tbody>
     </table>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
     {% include '/actions/floating-buttons.html' %}
     {% include 'footer.html' %}
 </body>

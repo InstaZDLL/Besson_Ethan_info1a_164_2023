@@ -190,15 +190,11 @@ def marques():
 #     return jsonify(marque_data)
 
 
-@app.route('/recycle', methods=['GET', 'POST'])
-def handle_recycle():
-    if request.method == 'POST':
-        # Run the script
-        subprocess.Popen(['python', '/database/mysql_dump_import.py'])
-        # Show a pop-up message
-        return render_template('/actions/popup.html')
-    else:
-        return render_template('/actions/floating-buttons.html')
+@app.route('/recycle')
+def recycle():
+    # code to run your script here
+    subprocess.Popen(['python', '../FlaskWebS/database/mysql_dump_import.py'])
+    return 'Script run'
 
 
 @app.route('/about')

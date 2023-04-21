@@ -35,7 +35,6 @@
         <li><a href="/marques">Marques</a></li>
         <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
     </ul>
-    {% include '/actions/background-boxes.html' %}
     <div class="rounded-box">
         <div style="padding-left: 30px;">
             <h1>Personnes</h1>
@@ -64,9 +63,10 @@
             {% endfor %}
         </tbody>
     </table>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
     {% include '/actions/delete-button.html' %}
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+    {% include '/actions/background-boxes.html' %}
     {% include '/actions/floating-buttons.html' %}
     {% include 'footer.html' %}
 </body>

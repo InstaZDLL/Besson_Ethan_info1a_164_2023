@@ -1,15 +1,3 @@
-<script>
-    function handleRecycleClick() {
-        // Make an AJAX request to the Flask server
-        fetch('/recycle', { method: 'POST' })
-          .then(response => console.log(response))
-          .catch(error => console.error(error));
-      }
-
-      // Attach the function to the recycling button
-      const recycleButton = document.querySelector('#recycle-button');
-      recycleButton.addEventListener('click', handleRecycleClick);
-</script>
 <div class="floating-container">
     <div class="floating-button">
         <i class="material-icons">add</i>
@@ -25,6 +13,16 @@
         </a>
     </div>
 </div>
+<script>
+    document.querySelector('#recycle-button').addEventListener('click', function() {
+        fetch('/recycle')
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                alert('The database was successfully recovered');
+            });
+    });
+</script>
 
 
 <!-- Backup

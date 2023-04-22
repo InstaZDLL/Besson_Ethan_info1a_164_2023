@@ -1,3 +1,5 @@
+import threading
+
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify
 import os
@@ -7,6 +9,10 @@ import subprocess
 app = Flask(__name__)
 app = Flask(__name__, static_url_path='/static')
 load_dotenv()
+
+# Set up a threading.Lock object to synchronize access to the import flag
+import_lock = threading.Lock()
+import_running = False
 
 # Accéder aux variables du fichier .env en utilisant os.environ
 host_mysql = os.environ.get('HOST_MYSQL')
@@ -190,11 +196,23 @@ def marques():
 #     return jsonify(marque_data)
 
 
+# Route to start the database import script
 @app.route('/recycle')
 def recycle():
-    # code to run your script here
-    subprocess.Popen(['python', '../FlaskWebS/database/mysql_dump_import.py'])
-    return 'Script run'
+    # Only allow one import script to run at a time
+    global import_running
+    with import_lock:
+        if import_running:
+            return 'Database import script is already running'
+        import_running = True
+
+    # Start the import script as a subprocess
+    subprocess.Popen(['python', '../FlaskWebS/database/engine/engine.py'])
+
+    # Release the import lock and return a message
+    with import_lock:
+        import_running = False
+    return 'Database import script started'
 
 
 @app.route('/about')

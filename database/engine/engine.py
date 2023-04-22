@@ -11,7 +11,7 @@ USER_MYSQL = os.getenv("USER_MYSQL")
 PASS_MYSQL = os.getenv("PASS_MYSQL")
 PORT_MYSQL = os.getenv("PORT_MYSQL")
 NAME_BD_MYSQL = os.getenv("NAME_BD_MYSQL")
-NAME_FILE_DUMP_SQL_BD = os.getenv("NAME_FILE_DUMP_SQL_BD")
+NAME_FILE_DUMP_SQL_BD = "../FlaskWebS/database/besson_ethan_info_1a.sql"
 
 # Lire le fichier de dump SQL
 with open(NAME_FILE_DUMP_SQL_BD, "r") as f:

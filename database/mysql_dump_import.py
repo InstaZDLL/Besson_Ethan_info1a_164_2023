@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Charger les variables d'environnement
+# Load environment variables
 HOST_MYSQL = os.getenv("HOST_MYSQL")
 USER_MYSQL = os.getenv("USER_MYSQL")
 PASS_MYSQL = os.getenv("PASS_MYSQL")
@@ -15,14 +15,14 @@ PORT_MYSQL = os.getenv("PORT_MYSQL")
 NAME_BD_MYSQL = os.getenv("NAME_BD_MYSQL")
 NAME_FILE_DUMP_SQL_BD = os.getenv("NAME_FILE_DUMP_SQL_BD")
 
-# Lire le fichier de dump SQL
+# Read the SQL dump file
 with open(NAME_FILE_DUMP_SQL_BD, "r") as f:
     sql_dump = f.read()
 
-# Extraire le nom de la base de données de l'instruction CREATE DATABASE
+# Extract the name of the database from the CREATE DATABASE statement
 database_name = re.search(r"CREATE DATABASE IF NOT EXISTS `(.+?)`", sql_dump).group(1)
 
-# Se connecter à MySQL sans spécifier de base de données
+# Connect to MySQL without specifying a database
 try:
     connection = mysql.connector.connect(
         host=HOST_MYSQL,
@@ -42,33 +42,33 @@ except mysql.connector.Error as e:
         print(f"Erreur : {e} \U0000274C")
         exit(1)
 
-# Créer un objet curseur
+# Create a cursor object
 cursor = connection.cursor()
 
-# Importer le fichier de dump SQL
+# Import the SQL dump file
 try:
-    # Diviser le dump SQL en requêtes individuelles
+    # Split the SQL dump into individual queries
     queries = sql_dump.split(";")
 
     cursor = connection.cursor(buffered=True)
 
     for query in queries:
-        # Vérifier si la requête n'est pas vide
+        # Check if the request is not empty
         if query.strip():
-            # Exécuter la requête
+            # Execute the request
             cursor.execute(query)
 
-            # Vérifier si la requête renvoie des données
+            # Check if the request returns data
             if cursor.description:
-                # Récupérer toutes les lignes du jeu de résultats
+                # Retrieve all rows from the result set
                 rows = cursor.fetchall()
 
-                # Traiter le jeu de résultats
+                # Process the result set
                 for row in rows:
-                    # Faire quelque chose avec la ligne
+                    # Do something with the line
                     pass
 
-                # Libérer la mémoire associée au jeu de résultats
+                # Release the memory associated with the result set
                 cursor.free_result()
 
     connection.commit()

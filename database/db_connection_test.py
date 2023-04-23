@@ -3,11 +3,11 @@ import mysql.connector
 from prettytable import PrettyTable
 from dotenv import load_dotenv
 
-# charger les variables d'environnement à partir du fichier .env
+# load environment variables from the .env file
 load_dotenv()
 database=os.getenv("NAME_BD_MYSQL")
 try:
-    # créer une connexion à la base de données MySQL
+    # create a connection to the MySQL database
     mydb = mysql.connector.connect(
         host=os.getenv("HOST_MYSQL"),
         user=os.getenv("USER_MYSQL"),
@@ -32,28 +32,28 @@ except mysql.connector.Error as e:
         exit(1)
 
 try:
-    # créer un objet curseur pour exécuter des requêtes SQL
+    # create a cursor object to execute SQL queries
     mycursor = mydb.cursor()
 
-    # exécuter une requête SELECT
+    # execute a SELECT query
     table_name = "t_materiel"
     mycursor.execute(f"SELECT * FROM {table_name}")
 
-    # récupérer toutes les lignes de l'ensemble des résultats
+    # retrieve all rows from the result set
     rows = mycursor.fetchall()
 
-    # créer un joli objet table
+    # create a pretty table object
     table = PrettyTable()
     table.field_names = [i[0] for i in mycursor.description]
 
-    # ajouter des lignes au tableau
+    # add rows to the table
     for row in rows:
         table.add_row(row)
 
     # afficher le tableau dans le terminal
     print(table)
 
-    # afficher un message de succès
+    # display a success message
     print(f"Affichage réussi de la table {table_name}. \U00002705")
 except mysql.connector.Error as e:
     if e.errno == 1146:
@@ -64,6 +64,6 @@ except mysql.connector.Error as e:
     else:
         print(f"Erreur : {e} \U0000274C")
 finally:
-    # fermer le curseur et la connexion à la base de données
+    # close the cursor and the connection to the database
     mycursor.close()
     mydb.close()

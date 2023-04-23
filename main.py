@@ -195,26 +195,6 @@ def marques():
 #     # return the Marque data as a JSON response
 #     return jsonify(marque_data)
 
-
-# Route to start the database import script
-@app.route('/recycle')
-def recycle():
-    # Only allow one import script to run at a time
-    global import_running
-    with import_lock:
-        if import_running:
-            return 'Database import script is already running'
-        import_running = True
-
-    # Start the import script as a subprocess
-    subprocess.Popen(['python', '../FlaskWebS/database/engine/engine.py'])
-
-    # Release the import lock and return a message
-    with import_lock:
-        import_running = False
-    return 'Database import script started'
-
-
 @app.route('/about')
 def about():
     """

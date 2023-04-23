@@ -7,7 +7,7 @@ app = Flask(__name__)
 app = Flask(__name__, static_url_path='/static')
 load_dotenv()
 
-# Accéder aux variables du fichier .env en utilisant os.environ
+# Accessing variables in the .env file using os.environ
 host_mysql = os.environ.get('HOST_MYSQL')
 user_mysql = os.environ.get('USER_MYSQL')
 pass_mysql = os.environ.get('PASS_MYSQL')
@@ -20,7 +20,7 @@ debug_flask = os.environ.get('DEBUG_FLASK') == 'true'
 port_flask = int(os.environ.get('PORT_FLASK'))
 app.secret_key = os.environ.get('SECRET_KEY_FLASK')
 
-# Connexion à la base de données MySQL
+# Connection to the MySQL database
 try:
     cnx = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
                                   database=name_bd_mysql)
@@ -33,7 +33,7 @@ cursor = cnx.cursor()
 @app.route('/')
 def index():
     """
-    Affiche la page d'accueil de l'application Flask.
+    Displays the home page of the Flask application.
     """
     return render_template('index.html')
 
@@ -41,7 +41,7 @@ def index():
 @app.errorhandler(404)
 def not_found_error(error):
     """
-    Gère l'erreur 404 (page non trouvée) et affiche une page d'erreur personnalisée.
+    Handles the 404 error (page not found) and displays a custom error page.
     """
     return render_template('404.html'), 404
 
@@ -49,7 +49,7 @@ def not_found_error(error):
 @app.route('/materiel')
 def materiel():
     """
-    Récupère les données de la table t_materiel dans la base de données MySQL et les affiche sur la page "materiel.html".
+    Retrieves the data from the table t_materiel in the MySQL database and displays it on the page "materiel.html".
     """
     query = "SELECT * FROM t_materiel"
     cursor.execute(query)
@@ -61,8 +61,8 @@ def materiel():
 @app.route('/personnes')
 def personnes():
     """
-    Récupère les données de la table t_personnes_avoir_materiel (en les joignant avec les tables t_personnes et t_materiel)
-    dans la base de données MySQL et les affiche sur la page "personnes.html".
+    Retrieves the data from the table t_persons_have_equipment (by joining them with the tables t_persons and t_material)
+    in the MySQL database and displays them on the page "personnes.html".
     """
     query = """
         SELECT t_personnes_avoir_materiel.id_personnes_avoir_materiel, t_personnes.prenom_pers, t_personnes.nom_pers, t_materiel.nom_mat
@@ -81,6 +81,9 @@ def personnes():
 
 @app.route('/delete_row')
 def delete_row():
+    """
+    Deletes a row from the table t_personnes_avoir_materiel in the MySQL database.
+    """
     # Get the row id from the request parameters
     row_id = request.args.get('id')
 
@@ -110,7 +113,7 @@ def delete_row_marque():
 @app.route('/add_marque_form')
 def add_marque_form():
     """
-    Affiche le formulaire d'ajout de marque.
+    Displays the add person form.
     """
     return render_template('/actions/add_marque_form.html')
 
@@ -118,7 +121,7 @@ def add_marque_form():
 @app.route('/modify_marque', methods=['GET', 'POST'])
 def modify_marque():
     """
-    Traite les données du formulaire de modification de marque.
+    Processes the data from the mark modification form.
     """
     if request.method == 'POST':
         id = request.form['id']
@@ -168,7 +171,7 @@ def get_row_data():
 @app.route('/add_marque', methods=['GET', 'POST'])
 def add_marque():
     """
-    Traite les données du formulaire d'ajout de marque.
+    Processes the data from the add mark form and adds it to the MySQL database.
     """
     if request.method == 'POST':
         nom_marque = request.form['nom_marque']
@@ -198,7 +201,7 @@ def add_marque():
 @app.route('/marques')
 def marques():
     """
-    Récupère les données de la table t_marque dans la base de données MySQL et les affiche sur la page "marques.html".
+    Retrieves the data from the t_brand table in the MySQL database and displays it on the "brands.html" page.
     """
     query = """
         SELECT t_marque.id_marque, t_marque.nom_marque, description_marque
@@ -216,7 +219,7 @@ def marques():
 @app.route('/about')
 def about():
     """
-    Affiche la page "about.html".
+    Displays the "about.html" page.
     """
     return render_template('about.html')
 

@@ -34,8 +34,8 @@ try:
 except mysql.connector.Error as e:
     if e.errno == 2003:
         print(f"\U0000274C Erreur lors de la connexion à la base de données : {e}\n1. Vérifier que vous avez démarer "
-              f"votre base"
-              f"de données\n2. Vérifier que les informations de connexion sont juste dans le fichier \033[1m.env\033["
+              f"votre base "
+              f"de données.\n2. Vérifier que les informations de connexion sont juste dans le fichier \033[1m.env\033["
               f"0m")
         exit(1)
     else:

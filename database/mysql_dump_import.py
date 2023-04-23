@@ -30,10 +30,17 @@ try:
         password=PASS_MYSQL,
         port=PORT_MYSQL,
     )
-    print("Connexion à MySQL réussie.")
+    print("Connexion à MySQL réussie.\U00002705")
 except mysql.connector.Error as e:
-    print(f"Erreur lors de la connexion à MySQL : {e}")
-    exit(1)
+    if e.errno == 2003:
+        print(f"\U0000274C Erreur lors de la connexion à la base de données : {e}\n1. Vérifier que vous avez démarer "
+              f"votre base"
+              f"de données\n2. Vérifier que les informations de connexion sont juste dans le fichier \033[1m.env\033["
+              f"0m")
+        exit(1)
+    else:
+        print(f"Erreur : {e} \U0000274C")
+        exit(1)
 
 # Créer un objet curseur
 cursor = connection.cursor()
@@ -65,11 +72,11 @@ try:
                 cursor.free_result()
 
     connection.commit()
-    print("Importation du fichier de dump SQL réussie.")
+    print("Importation du fichier de dump SQL réussie. \U00002705")
 except FileNotFoundError:
-    print("Erreur : fichier de dump SQL introuvable.")
+    print("Erreur : fichier de dump SQL introuvable. \U0000274C")
 except Exception as e:
-    print(f"Erreur : {e}")
+    print(f"Erreur : {e} \U0000274C")
 finally:
     cursor.close()
     connection.close()

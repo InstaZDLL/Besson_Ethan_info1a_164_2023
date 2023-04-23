@@ -56,3 +56,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// Modify
+document.addEventListener("DOMContentLoaded", function () {
+  // select all of the .modify-btn elements
+  let modifyBtns = document.querySelectorAll(".modify-btn");
+  // attach the click event listener to each .modify-btn element
+  for (let i = 0; i < modifyBtns.length; i++) {
+    modifyBtns[i].addEventListener("click", function () {
+      if (confirm("Are you sure you want to modify this row?")) {
+        // find the index of the id_marque column
+        let headers = document.querySelectorAll("th");
+        let idMarqueIndex;
+        for (let i = 0; i < headers.length; i++) {
+          if (headers[i].textContent === "id_marque") {
+            idMarqueIndex = i;
+            break;
+          }
+        }
+
+        // grab the id of the row from the id_marque cell
+        let row = this.closest("tr");
+        let idMarqueCell = row.cells[idMarqueIndex];
+        let id = idMarqueCell.textContent;
+
+        // redirect to the modify page with the id as a query parameter
+        window.location.href = "/modify_marque?id=" + id;
+      }
+    });
+  }
+});

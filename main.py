@@ -4,15 +4,10 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify
 import os
 import mysql.connector
-import subprocess
 
 app = Flask(__name__)
 app = Flask(__name__, static_url_path='/static')
 load_dotenv()
-
-# Set up a threading.Lock object to synchronize access to the import flag
-import_lock = threading.Lock()
-import_running = False
 
 # Accéder aux variables du fichier .env en utilisant os.environ
 host_mysql = os.environ.get('HOST_MYSQL')
@@ -120,6 +115,56 @@ def add_marque_form():
     Affiche le formulaire d'ajout de marque.
     """
     return render_template('/actions/add_marque_form.html')
+
+
+@app.route('/modify_marque', methods=['GET', 'POST'])
+def modify_marque():
+    """
+    Traite les données du formulaire de modification de marque.
+    """
+    if request.method == 'POST':
+        id = request.form['id']
+        nom_marque = request.form['nom_marque']
+        description_marque = request.form['description_marque']
+
+        query = """
+            UPDATE t_marque
+            SET nom_marque = %s, description_marque = %s
+            WHERE id_marque = %s
+        """
+        values = (nom_marque, description_marque, id)
+
+        try:
+            cursor.execute(query, values)
+            cnx.commit()
+            flash('La marque a été modifiée avec succès.', 'success')
+        except Exception as e:
+            cnx.rollback()
+            flash('Une erreur est survenue lors de la modification de la marque. Veuillez réessayer plus tard.',
+                  'danger')
+            print(e)
+
+        return redirect(url_for('marques'))
+
+    else:
+        return render_template('/actions/modify_marque_form.html')
+
+
+@app.route('/get_row_data')
+def get_row_data():
+    # Get the id from the request parameters
+    id = request.args.get('id')
+
+    # Execute the SQL query to fetch the data for the row with the given id
+    cursor.execute(f"SELECT * FROM t_marque WHERE id_marque={id}")
+    row = cursor.fetchone()
+
+    # Return the data as a JSON object
+    return {
+        "id": row[0],
+        "nom_marque": row[1],
+        "description_marque": row[2]
+    }
 
 
 @app.route('/add_marque', methods=['GET', 'POST'])

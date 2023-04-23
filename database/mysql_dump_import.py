@@ -1,3 +1,5 @@
+import sys
+
 import mysql.connector
 import os
 import re
@@ -71,3 +73,5 @@ except Exception as e:
 finally:
     cursor.close()
     connection.close()
+
+sys.exit(0)

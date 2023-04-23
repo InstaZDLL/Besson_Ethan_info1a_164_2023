@@ -61,11 +61,11 @@ Change if you need, the `besson_ethan_info_1a.sql` and paste your dump in this f
   nano besson_ethan_info_1a.sql
 ```
 
-Run the `mysql_dump_import.py` and the `db_connection_test.py`.
+Run the `db_connection_test.py` and the `mysql_dump_import.py`.
 
 ```bash
-  py mysql_dump_import.py
   py db_connection_test.py
+  py mysql_dump_import.py
 ```
 
 Start the server.

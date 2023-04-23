@@ -30,13 +30,13 @@ CREATE TABLE IF NOT EXISTS `t_categorie` (
   PRIMARY KEY (`id_categorie`)
 ) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_categorie: ~5 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_categorie: ~8 rows (approximately)
 INSERT INTO `t_categorie` (`id_categorie`, `nom_cat`, `description_cat`, `derniere_actualisation`) VALUES
 	(1, 'Ordinateurs', NULL, '2023-03-16 14:08:55'),
 	(2, 'Claviers et souris', NULL, '2023-03-16 14:38:19'),
 	(4, 'Cartouche d\'encre', NULL, '2023-03-16 14:09:43'),
 	(5, 'Photoconducteurs', NULL, '2023-03-16 14:09:52'),
-	(6, 'Récupérateur de tonner', NULL, '2023-04-18 07:49:03'),
+	(6, 'RÃ©cupÃ©rateur de tonner', NULL, '2023-04-18 07:49:03'),
 	(7, 'Serveurs', NULL, '2023-04-18 07:55:19'),
 	(8, 'Moniteurs', NULL, '2023-04-18 07:56:23'),
 	(9, 'Autres', NULL, '2023-04-18 07:56:22');
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `t_categorie_avoir_materiel` (
   CONSTRAINT `fk_t_categorie_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`)
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_categorie_avoir_materiel: ~0 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_categorie_avoir_materiel: ~38 rows (approximately)
 INSERT INTO `t_categorie_avoir_materiel` (`id_categorie_avoir_materiel`, `fk_categorie`, `fk_materiel`, `derniere_actualisation`) VALUES
 	(1, 2, 1, '2023-04-18 07:59:18'),
 	(2, 2, 2, '2023-04-18 07:59:18'),
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `t_departement_avoir_materiel` (
   CONSTRAINT `fk_t_departement_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_departement_avoir_materiel: ~0 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_departement_avoir_materiel: ~10 rows (approximately)
 INSERT INTO `t_departement_avoir_materiel` (`id_departement_avoir_materiel`, `fk_materiel`, `fk_departement`, `derniere_actualisation`) VALUES
 	(1, 1, 1, '2023-04-18 08:13:19'),
 	(2, 13, 1, '2023-04-18 08:13:30'),
@@ -151,9 +151,9 @@ CREATE TABLE IF NOT EXISTS `t_fournisseur` (
   PRIMARY KEY (`id_fournisseur`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_fournisseur: ~3 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_fournisseur: ~5 rows (approximately)
 INSERT INTO `t_fournisseur` (`id_fournisseur`, `nom_four`, `adresse`, `num_tel`, `derniere_actualisation`) VALUES
-	(1, 'HP', 'Ueberlandstrasse 1, 8600 Dübendorf, Switzerland', '+41 58 444 ', '2023-04-18 07:52:00'),
+	(1, 'HP', 'Ueberlandstrasse 1, 8600 DÃ¼bendorf, Switzerland', '+41 58 444 ', '2023-04-18 07:52:00'),
 	(2, 'Benq', '16 Jihu Road Neihu, Taipei 114 Taiwan', '+886 2 2727', '2023-03-16 14:18:36'),
 	(3, 'Hewlett Packard Enterprise', '1701 E Mossy Oaks Rd, Spring, TX 77389, United States', '+1 888 342 ', '2023-03-16 14:16:18'),
 	(4, 'Synology', '9F., No.1, Yuandong Rd., Banqiao Dist., New Taipei City 220632, Taiwan', '+886 2 2955 1814', '2023-04-18 07:20:02'),
@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `t_fournisseur_avoir_materiel` (
   CONSTRAINT `fk_t_fournisseur_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`)
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_fournisseur_avoir_materiel: ~0 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_fournisseur_avoir_materiel: ~38 rows (approximately)
 INSERT INTO `t_fournisseur_avoir_materiel` (`id_fournisseur_avoir_materiel`, `fk_fournisseur`, `fk_materiel`, `derniere_actualisation`) VALUES
 	(1, 1, 1, '2023-04-18 07:25:54'),
 	(2, 1, 2, '2023-04-18 07:25:54'),
@@ -222,15 +222,23 @@ CREATE TABLE IF NOT EXISTS `t_marque` (
   `description_marque` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `derniere_actualisation` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_marque`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_marque: ~3 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_marque: ~13 rows (approximately)
 INSERT INTO `t_marque` (`id_marque`, `nom_marque`, `description_marque`, `derniere_actualisation`) VALUES
-	(1, 'HP', 'HP', '2023-04-18 07:25:54'),
-	(2, 'Hewlett Packard Enterprise', 'HPE', '2023-03-16 14:18:06'),
+	(1, 'HP', 'Hewlett Packard', '2023-04-23 12:05:54'),
+	(2, 'HPE', 'Hewlett Packard Enterprise', '2023-04-23 12:05:51'),
 	(3, 'Benq', 'Benq', '2023-04-18 07:26:00'),
 	(4, 'Synology', 'Synology', '2023-04-18 07:26:30'),
-	(5, 'Samsung', 'Samsung', '2023-04-18 07:26:41');
+	(5, 'Samsung', 'Samsung', '2023-04-18 07:26:41'),
+	(6, 'Apple', 'Apple', '2023-04-23 12:07:49'),
+	(7, 'Asus', 'Asus', '2023-04-23 12:08:02'),
+	(8, 'Lenovo', 'Lenovo', '2023-04-23 12:08:29'),
+	(9, 'TP-Link', 'TP-Link', '2023-04-23 12:11:16'),
+	(10, 'Sony', 'Sony', '2023-04-23 12:11:34'),
+	(11, 'Dell', 'Dell', '2023-04-23 12:11:36'),
+	(12, 'Brother', 'Brother', '2023-04-23 12:11:47'),
+	(13, 'Cisco', 'Cisco', '2023-04-23 12:15:04');
 
 -- Dumping structure for table besson_ethan_info_1a.t_marque_avoir_materiel
 DROP TABLE IF EXISTS `t_marque_avoir_materiel`;
@@ -246,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `t_marque_avoir_materiel` (
   CONSTRAINT `fk_t_marque_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`)
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_marque_avoir_materiel: ~2 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_marque_avoir_materiel: ~38 rows (approximately)
 INSERT INTO `t_marque_avoir_materiel` (`id_marque_avoir_materiel`, `fk_marque`, `fk_materiel`, `derniere_actualisation`) VALUES
 	(1, 1, 1, '2023-04-18 07:37:12'),
 	(2, 1, 2, '2023-04-18 07:37:12'),
@@ -353,7 +361,7 @@ CREATE TABLE IF NOT EXISTS `t_personnes` (
   PRIMARY KEY (`id_personnes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_personnes: ~2 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_personnes: ~4 rows (approximately)
 INSERT INTO `t_personnes` (`id_personnes`, `prenom_pers`, `nom_pers`, `dep_pers`, `derniere_actualisation`) VALUES
 	(1, 'Darwin', 'Lamark', '502', '2023-03-15 09:59:44'),
 	(2, 'Lara', 'Croft', '444', '2023-04-04 09:48:11'),
@@ -375,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `t_personnes_ajout_materiel` (
   CONSTRAINT `fk_t_personnes_has_t_materiel_t_personnes1` FOREIGN KEY (`fk_personnes`) REFERENCES `t_personnes` (`id_personnes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_personnes_ajout_materiel: ~0 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_personnes_ajout_materiel: ~38 rows (approximately)
 INSERT INTO `t_personnes_ajout_materiel` (`id_personnes_ajout_materiel`, `fk_personnes`, `fk_materiel`, `date_ajout`, `derniere_actualisation`) VALUES
 	(1, 1, 1, '2023-04-18 10:06:23', '2023-04-18 08:09:11'),
 	(2, 1, 2, '2023-04-18 10:06:23', '2023-04-18 08:09:11'),
@@ -430,7 +438,7 @@ CREATE TABLE IF NOT EXISTS `t_personnes_avoir_materiel` (
   CONSTRAINT `fk_t_personnes_has_t_materiel_t_personnes` FOREIGN KEY (`fk_personnes`) REFERENCES `t_personnes` (`id_personnes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_personnes_avoir_materiel: ~0 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_personnes_avoir_materiel: ~13 rows (approximately)
 INSERT INTO `t_personnes_avoir_materiel` (`id_personnes_avoir_materiel`, `fk_personnes`, `fk_materiel`, `derniere_actualisation`) VALUES
 	(1, 1, 1, '2023-04-18 08:00:45'),
 	(2, 1, 13, '2023-04-18 08:01:09'),
@@ -461,7 +469,7 @@ CREATE TABLE IF NOT EXISTS `t_personnes_retrait_materiel` (
   CONSTRAINT `fk_t_personnes_has_t_materiel_t_personnes2` FOREIGN KEY (`fk_personnes`) REFERENCES `t_personnes` (`id_personnes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_personnes_retrait_materiel: ~0 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_personnes_retrait_materiel: ~1 rows (approximately)
 INSERT INTO `t_personnes_retrait_materiel` (`id_personnes_retrait_materiel`, `fk_personnes`, `fk_materiel`, `date_retrait`, `derniere_actualisation`) VALUES
 	(1, 2, 14, '2023-04-18 10:11:02', '2023-04-18 08:11:03');
 

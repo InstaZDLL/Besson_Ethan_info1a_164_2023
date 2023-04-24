@@ -11,15 +11,19 @@ The goal of this project is to show our skills and understanding of web developm
 ## Roadmap
 
 
-- Add the option to modify the content of a table in the `marques.html`.
+1. [x] Add the option to modify the content of a table in the `marques.html`.
+2. [x] Add the option to add content to the table in the `marques.html`.
+3. [x] Correct the code of the delete button in the `marques.html` and modify the `main.py` for create the sql request.
+4. [ ] ~~Add the option to recover button for restoring the previous database.~~
+5. [ ] Add an image in the footer.
 
-- Add the option to add content to the table in the `marques.html`.
 
-- Correct the code of the delete button in the `marques.html` and modify the `main.py` for create the sql request.
+### Definitions :
 
-- Add the option to recover button for restoring the previous database.
 
-- Add an image in the footer.
+1. [x] Finished
+2. [ ] In progress
+3. [ ] ~~Cancelled~~
 
 
 ## Run Locally
@@ -40,10 +44,10 @@ Go to the project directory.
 Install dependencies.
 
 ```bash
-  py dependencies.py
+  pip install pip flask python-dotenv mysql-connector-python prettytable
 ```
 
-Modify the .env file.
+Modify the environment variables in the.env file.
 
 ```bash
   nano .env
@@ -52,7 +56,7 @@ Modify the .env file.
 Go to the database folder.
 
 ```bash
-  cd database
+  cd FlaskWebS/database
 ```
 
 Change if you need, the `besson_ethan_info_1a.sql` and paste your dump in this file.
@@ -94,7 +98,7 @@ To run this project, you will need to modify the following environment variables
 
 You can change the sql request to show an other table.
 
-```py
+```python
 @app.route('/personnes')
 def personnes():
     """

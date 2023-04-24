@@ -7,7 +7,7 @@ The goal of this project is to show our skills and understanding of web developm
 
 
 [![Version](https://img.shields.io/github/v/release/InstaZDLL/FlaskWebS?style=for-the-badge)](https://github.com/InstaZDLL/FlaskWebS/releases)
-[![AFLv3 License](https://img.shields.io/github/license/InstaZDLL/FlaskWebS?style=for-the-badge)](https://opensource.org/license/afl-3-0-php)
+[![AFLv3 License](https://img.shields.io/github/license/InstaZDLL/FlaskWebS?logo=e&style=for-the-badge)](https://opensource.org/license/afl-3-0-php)
 [![Last commit](https://img.shields.io/github/last-commit/InstaZDLL/FlaskWebS?style=for-the-badge)](https://github.com/InstaZDLL/FlaskWebS)
 
 

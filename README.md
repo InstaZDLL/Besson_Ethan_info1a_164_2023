@@ -105,25 +105,22 @@ To run this project, you will need to modify the following environment variables
 You can change the sql request to show an other table.
 
 ```python
-@app.route('/personnes')
-def personnes():
+@app.route('/marques')
+def marques():
     """
-    Récupère les données de la table t_personnes_avoir_materiel (en les joignant avec les tables t_personnes et t_materiel)
-    dans la base de données MySQL et les affiche sur la page "personnes.html".
+    Retrieves the data from the t_brand table in the MySQL database and displays it on the "brands.html" page.
     """
     query = """
-        SELECT t_personnes_avoir_materiel.id_personnes_avoir_materiel, t_personnes.prenom_pers, t_personnes.nom_pers, t_materiel.nom_mat
-        FROM t_personnes
-        INNER JOIN t_personnes_avoir_materiel ON t_personnes.id_personnes = t_personnes_avoir_materiel.fk_personnes
-        INNER JOIN t_materiel ON t_personnes_avoir_materiel.fk_materiel = t_materiel.id_materiel
-        WHERE t_personnes.id_personnes;
+        SELECT t_marque.id_marque, t_marque.nom_marque, description_marque
+        FROM t_marque
+        WHERE t_marque.id_marque;
     """
     cursor.execute(query)
     data = cursor.fetchall()
 
     headers = [column[0] for column in cursor.description]
 
-    return render_template('personnes.html', data=data, headers=headers)
+    return render_template('marques.html', data=data, headers=headers)
 ```
 
 If you change something here don't forget to modify the html code too in the `personnes.html`, or you can also opt for automatic headers such as `marques.html`.

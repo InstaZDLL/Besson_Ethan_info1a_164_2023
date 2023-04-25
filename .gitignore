@@ -161,3 +161,4 @@ cython_debug/
 .idea/
 
 /release-note.md
+/database/data.sqlite

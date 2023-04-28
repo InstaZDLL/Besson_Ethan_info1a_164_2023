@@ -79,6 +79,49 @@ def personnes():
     return render_template('personnes.html', data=data, headers=headers)
 
 
+# Begin New code block
+
+@app.route('/filter', methods=['POST'])
+def filter_data():
+    hide_dates = request.form.get('hide_dates')
+    if hide_dates == "1":
+        headers = [h for h in headers if h not in ['date_achat', 'date_expi']]
+        data = [[row[i] for i in range(len(row)) if headers[i] not in ['date_achat', 'date_expi']] for row in data]
+    else:
+        headers = [column[0] for column in cursor.description]
+        data = cursor.fetchall()
+    return render_template('data_table.html', headers=headers, data=data)
+
+@app.route('/categorie', methods=['GET', 'POST'])
+def categorie():
+    """
+    Retrieves the data from the table t_persons_have_equipment (by joining them with the tables t_persons and t_material)
+    in the MySQL database and displays them on the page "personnes.html".
+    """
+    query = """
+        SELECT t_materiel.id_materiel, t_materiel.nom_mat, t_materiel.model_mat, t_materiel.serial_num, t_materiel.date_achat, t_materiel.date_expi, t_materiel.prix_mat, t_categorie.nom_cat
+        FROM t_materiel
+        LEFT JOIN t_categorie_avoir_materiel ON t_materiel.id_materiel = t_categorie_avoir_materiel.fk_materiel
+        LEFT JOIN t_categorie ON t_categorie_avoir_materiel.fk_categorie = t_categorie.id_categorie;
+    """
+    cursor.execute(query)
+    data = cursor.fetchall()
+
+    headers = [column[0] for column in cursor.description]
+
+    if request.method == 'POST':
+        hide_dates = request.form.get('hide_dates')
+        if hide_dates:
+            headers = [h for h in headers if h not in ['date_expi', 'date_achat']]
+            data = [[row[i] for i, h in enumerate(headers)] for row in data]
+
+    return render_template('categorie.html', data=data, headers=headers)
+
+
+
+# End New code block
+
+
 @app.route('/delete_row')
 def delete_row():
     """

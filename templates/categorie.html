@@ -15,28 +15,33 @@
     <script src="/static/js/jquery-3.6.4.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <style>
-        /*
         table {
-            width: auto;
-            table-layout: auto;
-            border-collapse: collapse;
-            z-index: 1;
+             width: auto;
+             table-layout: auto;
+             border-collapse: collapse;
+             z-index: 1;
         }
-        table td {
-            text-align: center;
-        }*/
-        #hideColumns {
-            z-index: 1;
-            background: linear-gradient(45deg, #ff9897, #f650a0);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 40px;
-            margin: 20px;
-            font-size: 16px;
-            cursor: pointer;
-            display: block;
-            position: relative;
+         table td {
+             text-align: center;
+        }
+         thead th {
+             text-align: center;
+        }
+         #hideColumns {
+             width: 192px;
+             z-index: 1;
+             background: linear-gradient(45deg, #ff9897, #f650a0);
+             color: white;
+             border: none;
+             border-radius: 20px;
+             padding: 10px 40px;
+             margin: 20px;
+             font-size: 16px;
+             cursor: pointer;
+             display: block;
+             position: relative;
+             margin-bottom: 20px;
+             margin-left: 0;
         }
     </style>
     <script>
@@ -80,57 +85,61 @@
         <input type="submit" value="Masquer les dates d'achat et d'expiration" name="hide_dates">
     </form>
     <br>
-    <button id="hideColumns">Hide Columns</button>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Model</th>
-          <th>Serial Number</th>
-          {% if 'date_achat' not in headers and 'date_expi' not in headers %}
-            {# If both date_achat and date_expi columns are hidden, show the Prix column twice #}
-            <th>Price</th>
-            <th>Price</th>
-          {% else %}
-            {% if 'date_achat' in headers %}
-              <th>Date of Purchase</th>
-            {% endif %}
-            {% if 'date_expi' in headers %}
-              <th>Expiration Date</th>
-            {% endif %}
-            <th>Price</th>
-          {% endif %}
-          <th>Category</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in data %}
-          <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-            <td>{{ row[2] }}</td>
-            <td>{{ row[3] }}</td>
-            {% if 'date_achat' not in headers and 'date_expi' not in headers %}
-              <td>{{ row[6] }}</td>
-              <td>{{ row[6] }}</td>
-            {% else %}
-              {% if 'date_achat' in headers %}
-                <td>{{ row[4] }}</td>
+    <div class="container">
+        <button id="hideColumns">Hide Columns</button>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Model</th>
+              <th>Serial Number</th>
+              {% if 'date_achat' not in headers and 'date_expi' not in headers %}
+                {# If both date_achat and date_expi columns are hidden, show the Prix column twice #}
+                <th>Price</th>
+                <th>Price</th>
+              {% else %}
+                {% if 'date_achat' in headers %}
+                  <th>Date of Purchase</th>
+                {% endif %}
+                {% if 'date_expi' in headers %}
+                  <th>Expiration Date</th>
+                {% endif %}
+                <th>Price</th>
               {% endif %}
-              {% if 'date_expi' in headers %}
-                <td>{{ row[5] }}</td>
-              {% endif %}
-              <td>{{ row[6] }}</td>
-            {% endif %}
-            <td>{{ row[7] }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in data %}
+              <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                {% if 'date_achat' not in headers and 'date_expi' not in headers %}
+                  <td>{{ row[6] }}</td>
+                  <td>{{ row[6] }}</td>
+                {% else %}
+                  {% if 'date_achat' in headers %}
+                    <td>{{ row[4] }}</td>
+                  {% endif %}
+                  {% if 'date_expi' in headers %}
+                    <td>{{ row[5] }}</td>
+                  {% endif %}
+                  <td>{{ row[6] }}</td>
+                {% endif %}
+                <td>{{ row[7] }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    {% include '/actions/delete-button.html' %} {% include '/actions/background-boxes.html' %} {% include 'footer.html' %}
+    {% include '/actions/delete-button.html' %}
+    {% include '/actions/background-boxes.html' %}
+    {% include 'footer.html' %}
 </body>
 
 </html>

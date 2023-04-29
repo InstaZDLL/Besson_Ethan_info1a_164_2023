@@ -81,6 +81,29 @@ def personnes():
 
 # Begin New code block
 
+
+@app.route('/delete_row_materiel', methods=['POST'])
+def delete_row_materiel():
+    id = request.form['id']
+    cursor = cnx.cursor()
+    # delete any referencing rows in the t_categorie_avoir_materiel table
+    cursor.execute('DELETE FROM t_categorie_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_departement_avoir_materiel table
+    cursor.execute('DELETE FROM t_departement_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_fournisseur_avoir_materiel table
+    cursor.execute('DELETE FROM t_fournisseur_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_marque_avoir_materiel table
+    cursor.execute('DELETE FROM t_marque_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_personnes_ajout_materiel table
+    cursor.execute('DELETE FROM t_personnes_ajout_materiel WHERE fk_materiel=%s', (id,))
+    # delete the row in the t_materiel table
+    cursor.execute('DELETE FROM t_materiel WHERE id_materiel=%s', (id,))
+    cnx.commit()
+    cursor.close()
+    return 'Row deleted'
+
+
+
 @app.route('/filter', methods=['POST'])
 def filter_data():
     hide_dates = request.form.get('hide_dates')
@@ -116,7 +139,6 @@ def categorie():
             data = [[row[i] for i, h in enumerate(headers)] for row in data]
 
     return render_template('categorie.html', data=data, headers=headers)
-
 
 
 # End New code block

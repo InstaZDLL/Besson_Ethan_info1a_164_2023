@@ -23,6 +23,7 @@ The goal of this project is to show our skills and understanding of web developm
 4. [ ] ~~Add the option to recover button for restoring the previous database.~~
 5. [ ] Add an image in the footer.
 6. [ ] Add functionality to the filter button.
+7. [ ] Add a tag table to the editing panel.
 
 
 ### Definitions :

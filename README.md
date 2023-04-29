@@ -22,8 +22,9 @@ The goal of this project is to show our skills and understanding of web developm
 3. [x] Correct the code of the delete button in the `marques.html` and modify the `main.py` for create the sql request.
 4. [ ] ~~Add the option to recover button for restoring the previous database.~~
 5. [ ] Add an image in the footer.
-6. [ ] Add functionality to the filter button.
+6. [ ] Add functionality to the filter button in `materiel.html`.
 7. [ ] Add a tag table to the editing panel.
+8. [ ] Add functionality to the two remaining buttons in `categorie.html`.
 
 
 ### Definitions :

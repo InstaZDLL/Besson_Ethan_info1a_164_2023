@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/roboto-font.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/delete-button.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/all-buttons-categorie.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
@@ -115,7 +115,7 @@
                     {% endif %}
                     <td>{{ row[7] }}</td>
                     <td>
-                        <button type="button" class="btn btn-p add-btn" id="add-b">Add</button>
+                        <button type="button" class="btn btn-p add-b" id="add-b">Add</button>
                         <button type="button" class="btn btn-s delete-b" data-row-id="{{ row[0] }}">Delete</button>
                         <button type="button" class="btn btn-t modify-b">Modify</button>
                     </td>

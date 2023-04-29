@@ -83,6 +83,12 @@ def personnes():
 
 @app.route('/delete_row_materiel', methods=['POST'])
 def delete_row_materiel():
+    """
+        This route allows for the deletion of a row in the t_materiel table and any referencing rows in other tables.
+        The id of the row to be deleted is obtained from a form submission. The function then uses this id to execute
+        a series of DELETE statements on the relevant tables. Finally, the function returns a message indicating that
+        the row has been deleted.
+    """
     id = request.form['id']
     cursor = cnx.cursor()
     # delete any referencing rows in the t_categorie_avoir_materiel table

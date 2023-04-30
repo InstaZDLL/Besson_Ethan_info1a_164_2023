@@ -87,7 +87,7 @@
         </div>
     </div>
     <div class="portainer">
-        <form action="/add_materiel" method="post">
+        <form action="/add_materiel" method="post" onsubmit="return validateForm()">
             <label for="id_materiel">id_materiel:</label><br>
             <input type="text" id="id_materiel" name="id_materiel"><br><br>
             <label for="nom_mat">nom_mat:</label><br>
@@ -110,6 +110,61 @@
             </select><br><br>
             <input type="submit" value="Finish">
         </form>
+        <script>
+            function validateForm() {
+                // Get the values of the input fields
+                var idMateriel = document.getElementById('id_materiel').value;
+                var nomMat = document.getElementById('nom_mat').value;
+                var modelMat = document.getElementById('model_mat').value;
+                var serialNum = document.getElementById('serial_num').value;
+                var dateAchat = document.getElementById('date_achat').value;
+                var dateExpi = document.getElementById('date_expi').value;
+                var prixCat = document.getElementById('prix_mat').value;
+                var nomCat = document.getElementById('nom_cat').value;
+
+                // Define regular expressions to validate the input values
+                var idMaterielRegex = /^\d+$/;
+                var stringRegex = /^.{1,255}$/;
+                var numberRegex = /^\d{1,12}$/;
+
+                // Validate the input values
+                if (!idMaterielRegex.test(idMateriel)) {
+                    alert('Invalid value for id_materiel');
+                    return false;
+                }
+                if (!stringRegex.test(nomMat)) {
+                    alert('Invalid value for nom_mat');
+                    return false;
+                }
+                if (!stringRegex.test(modelMat)) {
+                    alert('Invalid value for model_mat');
+                    return false;
+                }
+                if (!stringRegex.test(serialNum)) {
+                    alert('Invalid value for serial_num');
+                    return false;
+                }
+                if (dateAchat === '') {
+                    alert('Please select a value for date_achat');
+                    return false;
+                }
+                if (dateExpi === '') {
+                    alert('Please select a value for date_expi');
+                    return false;
+                }
+                if (!numberRegex.test(prixCat)) {
+                    alert('Invalid value for prix_mat');
+                    return false;
+                }
+                if (nomCat === '') {
+                    alert('Please select a value for nom_cat');
+                    return false;
+                }
+
+                // If all input values are valid, submit the form
+                return true;
+            }
+        </script>
         <script>
             // Get the current date and time
             var now = new Date();

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Add Marque</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/roboto-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <style>
+        .portainer {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             z-index: 2;
+             width: auto;
+             margin: 0 auto;
+             margin-bottom: 70px;
+        }
+         form {
+             background-color: #f2f2f2;
+             padding: 20px;
+             border-radius: 10px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+         select {
+             display: block;
+             padding: 5px;
+             font-size: 16px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+             box-shadow: inset 0 1px 3px #ddd;
+             background-color: #fff;
+             width: 100%;
+             max-width: 500px; /* Increase this value */
+        }
+         option {
+             font-size: 16px;
+        }
+         #nom_cat {
+             z-index: 3;
+        }
+         input[type="text"] {
+             display: block;
+             padding: 5px;
+             font-size: 16px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+             box-shadow: inset 0 1px 3px #ddd;
+             background-color: #fff;
+             width: 100%;
+             max-width: 500px; /* Increase this value */
+        }
+         input[type="datetime-local"] {
+             display: block;
+             padding: 5px;
+             font-size: 16px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+             box-shadow: inset 0 1px 3px #ddd;
+             background-color: #fff;
+             width: 100%;
+             max-width: 500px; /* Increase this value */
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="horizontal">
+        <li><a href="/">Project Modulus 164</a></li>
+        <li><a href="/materiel">Matériel</a></li>
+        <li><a href="/personnes">Personnes</a></li>
+        <li><a href="/marques">Marques</a></li>
+        <li><a class="active" href="/categorie">Catégorie</a></li>
+        <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
+    </ul>
+    <div class="rounded-box">
+        <div style="padding-left: 30px;">
+            <h1>Add Matériel</h1>
+            <p>Page d'ajout de données.</p>
+        </div>
+    </div>
+    <div class="portainer">
+        <form action="/add_materiel" method="post">
+            <label for="id_materiel">id_materiel:</label><br>
+            <input type="text" id="id_materiel" name="id_materiel"><br><br>
+            <label for="nom_mat">nom_mat:</label><br>
+            <input type="text" id="nom_mat" name="nom_mat"><br><br>
+            <label for="model_mat">model_mat:</label><br>
+            <input type="text" id="model_mat" name="model_mat"><br><br>
+            <label for="serial_num">serial_num:</label><br>
+            <input type="text" id="serial_num" name="serial_num"><br><br>
+            <label for="date_achat">date_achat:</label><br>
+            <input type="datetime-local" id="date_achat" name="date_achat"><br><br>
+            <label for="date_expi">date_expi:</label><br>
+            <input type="datetime-local" id="date_expi" name="date_expi"><br><br>
+            <label for="prix_mat">prix_mat:</label><br>
+            <input type="text" id="prix_mat" name="prix_mat"><br><br>
+            <label for="nom_cat">nom_cat:</label><br>
+            <select id="nom_cat" name="nom_cat">
+                {% for row in categories %}
+                    <option value="{{ row[0] }}">{{ row[0] }}</option>
+                {% endfor %}
+            </select><br><br>
+            <input type="submit" value="Finish">
+        </form>
+        <script>
+            // Get the current date and time
+            var now = new Date();
+
+            // Format the date and time as a string in the format "YYYY-MM-DDThh:mm"
+            var dateTimeString = now.getFullYear() + '-' +
+                ('0' + (now.getMonth() + 1)).slice(-2) + '-' +
+                ('0' + now.getDate()).slice(-2) + 'T' +
+                ('0' + now.getHours()).slice(-2) + ':' +
+                ('0' + now.getMinutes()).slice(-2);
+
+            // Set the value of the datetime-local input to the current date and time
+            document.getElementById('date_achat').value = dateTimeString;
+
+            // Add four years to the current date
+            now.setFullYear(now.getFullYear() + 4);
+
+            // Format the date and time as a string in the format "YYYY-MM-DDThh:mm"
+            dateTimeString = now.getFullYear() + '-' +
+                ('0' + (now.getMonth() + 1)).slice(-2) + '-' +
+                ('0' + now.getDate()).slice(-2) + 'T' +
+                ('0' + now.getHours()).slice(-2) + ':' +
+                ('0' + now.getMinutes()).slice(-2);
+
+            // Set the value of the datetime-local input to the current date and time plus four years
+            document.getElementById('date_expi').value = dateTimeString;
+        </script>
+    </div>
+    {% include '/actions/background-boxes.html' %} {% include 'footer.html' %}
+</body>
+
+</html>

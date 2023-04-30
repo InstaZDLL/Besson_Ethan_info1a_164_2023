@@ -1,0 +1,31 @@
+.btn {
+  margin-top: 2px; /* Add top margin between buttons */
+  margin-bottom: 2px; /* Add bottom margin between buttons */
+}
+.btn.add-b {
+    background: #5735ea;
+    border-color: #5735ea;
+    color: #fff;
+}
+.btn.add-b:hover, .btn.add-b:focus {
+    border-color: #3a16d6 !important;
+    background: #3a16d6 !important;
+}
+.btn.delete-b {
+    color: #fff;
+    border-color: #32c5f6;
+    background: #32c5f6;
+}
+.btn.delete-b:hover, .btn.delete-b:focus {
+    border-color: #0ab3eb !important;
+    background: #0ab3eb !important;
+}
+.btn.modify-b {
+    color: #fff;
+    background: #48da79;
+    border-color: #48da79;
+}
+.btn.modify-b:hover, .btn.modify-b:focus {
+    border-color: #28c75d !important;
+    background: #28c75d !important;
+}

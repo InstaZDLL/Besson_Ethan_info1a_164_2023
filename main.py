@@ -3,7 +3,6 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 import os
 import mysql.connector
 
-app = Flask(__name__)
 app = Flask(__name__, static_url_path='/static')
 load_dotenv()
 
@@ -81,6 +80,106 @@ def personnes():
 
 # Begin New code block
 
+
+@app.route('/delete_row_materiel', methods=['POST'])
+def delete_row_materiel():
+    """
+        This route allows for the deletion of a row in the t_materiel table and any referencing rows in other tables.
+        The id of the row to be deleted is obtained from a form submission. The function then uses this id to execute
+        a series of DELETE statements on the relevant tables. Finally, the function returns a message indicating that
+        the row has been deleted.
+    """
+    id = request.form['id']
+    cursor = cnx.cursor()
+    # delete any referencing rows in the t_categorie_avoir_materiel table
+    cursor.execute('DELETE FROM t_categorie_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_departement_avoir_materiel table
+    cursor.execute('DELETE FROM t_departement_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_fournisseur_avoir_materiel table
+    cursor.execute('DELETE FROM t_fournisseur_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_marque_avoir_materiel table
+    cursor.execute('DELETE FROM t_marque_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_personnes_ajout_materiel table
+    cursor.execute('DELETE FROM t_personnes_ajout_materiel WHERE fk_materiel=%s', (id,))
+    # delete the row in the t_materiel table
+    cursor.execute('DELETE FROM t_materiel WHERE id_materiel=%s', (id,))
+    cnx.commit()
+    cursor.close()
+    return 'Row deleted'
+
+
+from datetime import datetime
+
+@app.route('/add_materiel', methods=['GET', 'POST'])
+def add_materiel():
+    """
+    Processes the data from the add material form and adds it to the MySQL database.
+    """
+    # Retrieve categories from the database
+    cursor.execute("SELECT nom_cat FROM t_categorie")
+    categories = [row for row in cursor.fetchall()]
+
+    if request.method == 'POST':
+        nom_mat = request.form['nom_mat']
+        model_mat = request.form['model_mat']
+        serial_num = request.form['serial_num']
+        date_achat = datetime.strptime(request.form['date_achat'], '%Y-%m-%dT%H:%M')
+        date_achat_str = date_achat.strftime('%Y-%m-%d %H:%M:%S')
+        date_expi = datetime.strptime(request.form['date_expi'], '%Y-%m-%dT%H:%M')
+        date_expi_str = date_expi.strftime('%Y-%m-%d %H:%M:%S')
+        prix_mat = request.form['prix_mat']
+        nom_cat = request.form['nom_cat']
+
+        query = """
+            INSERT INTO t_materiel (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        values = (nom_mat, model_mat, serial_num, date_achat_str, date_expi_str, prix_mat)
+
+        try:
+            cursor.execute(query, values)
+            cnx.commit()
+            flash('Le matériel a été ajouté avec succès.', 'success')
+        except Exception as e:
+            cnx.rollback()
+            flash('Une erreur est survenue lors de l\'ajout du matériel. Veuillez réessayer plus tard.', 'danger')
+            print(e)
+
+        # Get the ID of the newly added material
+        cursor.execute("SELECT LAST_INSERT_ID()")
+        materiel_id = cursor.fetchone()[0]
+
+        # Add the category of the material
+        query = """
+            INSERT INTO t_categorie_avoir_materiel (fk_materiel, fk_categorie)
+            VALUES (%s, (SELECT id_categorie FROM t_categorie WHERE nom_cat=%s))
+        """
+        values = (materiel_id, nom_cat)
+
+        try:
+            cursor.execute(query, values)
+            cnx.commit()
+            flash('La catégorie du matériel a été ajoutée avec succès.', 'success')
+        except Exception as e:
+            cnx.rollback()
+            flash('Une erreur est survenue lors de l\'ajout de la catégorie du matériel. Veuillez réessayer plus tard.', 'danger')
+            print(e)
+
+        return redirect(url_for('categorie'))
+
+    else:
+        return render_template('/actions/add_materiel_form.html', categories=categories)
+
+
+
+@app.route('/add_materiel_form')
+def add_materiel_form():
+    """
+    Displays the add person form.
+    """
+    return render_template('/actions/add_materiel_form.html')
+
+
 @app.route('/filter', methods=['POST'])
 def filter_data():
     hide_dates = request.form.get('hide_dates')
@@ -116,7 +215,6 @@ def categorie():
             data = [[row[i] for i, h in enumerate(headers)] for row in data]
 
     return render_template('categorie.html', data=data, headers=headers)
-
 
 
 # End New code block

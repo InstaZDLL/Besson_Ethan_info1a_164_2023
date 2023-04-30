@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/roboto-font.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/delete-button.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/all-buttons-categorie.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
     <script src="/static/js/jquery-3.6.4.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/action-buttons-materiel.js"></script>
     <style>
         table {
              width: auto;
@@ -51,26 +52,6 @@
              z-index: 1;
         }
     </style>
-    <script>
-        $(document).ready(function() {
-            var columnsHidden = false;
-            $("#hideColumns").click(function() {
-                if (columnsHidden) {
-                    // Show the date_achat and date_expi columns
-                    $("th:contains('Date of Purchase'), th:contains('Expiration Date')").show();
-                    $("td:nth-child(5), td:nth-child(6)").show();
-                    $(this).text("Hide Columns");
-                    columnsHidden = false;
-                } else {
-                    // Hide the date_achat and date_expi columns
-                    $("th:contains('Date of Purchase'), th:contains('Expiration Date')").hide();
-                    $("td:nth-child(5), td:nth-child(6)").hide();
-                    $(this).text("Unhide");
-                    columnsHidden = true;
-                }
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -89,70 +70,63 @@
         </div>
     </div>
     <form method="POST">
-    <input type="submit" value="Masquer les dates d'achat et d'expiration" name="hide_dates">
-  </form>
-  <br>
-  <div class="container">
-     <button id="hideColumns">Hide Columns</button>
-     <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Model</th>
-          <th>Serial Number</th>
-          {% if 'date_achat' not in headers and 'date_expi' not in headers %}
-          {# If both date_achat and date_expi columns are hidden, show the Prix column twice #}
-          <th>Price</th>
-          <th>Price</th>
-          {% else %}
-          {% if 'date_achat' in headers %}
-          <th>Date of Purchase</th>
-          {% endif %}
-          {% if 'date_expi' in headers %}
-          <th>Expiration Date</th>
-          {% endif %}
-          <th>Price</th>
-          {% endif %}
-          <th>Category</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in data %}
-        <tr>
-          <td>{{ row[0] }}</td>
-          <td>{{ row[1] }}</td>
-          <td>{{ row[2] }}</td>
-          <td>{{ row[3] }}</td>
-          {% if 'date_achat' not in headers and 'date_expi' not in headers %}
-          <td>{{ row[6] }}</td>
-          <td>{{ row[6] }}</td>
-          {% else %}
-          {% if 'date_achat' in headers %}
-          <td>{{ row[4] }}</td>
-          {% endif %}
-          {% if 'date_expi' in headers %}
-          <td>{{ row[5] }}</td>
-          {% endif %}
-          <td>{{ row[6] }}</td>
-          {% endif %}
-          <td>{{ row[7] }}</td>
-          <td>
-            <button type="button" class="btn btn-primary add-btn" id="add-btn">Add</button>
-            <button type="button" class="btn btn-secondary delete-btn">Delete</button>
-            <button type="button" class="btn btn-tertiary modify-btn">Modify</button>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-     </table>
+        <input type="submit" value="Masquer les dates d'achat et d'expiration" name="hide_dates">
+    </form>
+    <br>
+    <div class="container">
+        <button id="hideColumns">Hide Columns</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Model</th>
+                    <th>Serial Number</th>
+                    {% if 'date_achat' not in headers and 'date_expi' not in headers %} {# If both date_achat and date_expi columns are hidden, show the Prix column twice #}
+                    <th>Price</th>
+                    <th>Price</th>
+                    {% else %} {% if 'date_achat' in headers %}
+                    <th>Date of Purchase</th>
+                    {% endif %} {% if 'date_expi' in headers %}
+                    <th>Expiration Date</th>
+                    {% endif %}
+                    <th>Price</th>
+                    {% endif %}
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    {% if 'date_achat' not in headers and 'date_expi' not in headers %}
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[6] }}</td>
+                    {% else %} {% if 'date_achat' in headers %}
+                    <td>{{ row[4] }}</td>
+                    {% endif %} {% if 'date_expi' in headers %}
+                    <td>{{ row[5] }}</td>
+                    {% endif %}
+                    <td>{{ row[6] }}</td>
+                    {% endif %}
+                    <td>{{ row[7] }}</td>
+                    <td>
+                        <button type="button" class="btn btn-p add-b" id="add-b">Add</button>
+                        <button type="button" class="btn btn-s delete-b" data-row-id="{{ row[0] }}">Delete</button>
+                        <button type="button" class="btn btn-t modify-b">Modify</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    {% include '/actions/delete-button.html' %}
-    {% include '/actions/background-boxes.html' %}
-    {% include 'footer.html' %}
+    {% include '/actions/delete-button.html' %} {% include '/actions/background-boxes.html' %} {% include 'footer.html' %}
 </body>
 
 </html>

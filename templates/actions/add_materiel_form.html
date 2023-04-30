@@ -14,13 +14,17 @@
     <script src="/static/js/jquery-3.6.4.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <style>
-        .portainer {
+         .portainer {
              display: flex;
+             position: relative;
              justify-content: center;
              align-items: center;
              width: auto;
              margin: 0 auto 70px;
              z-index: 2;
+        }
+         .portainer form > * {
+             margin-bottom: -10px;
         }
          form {
              background-color: #f2f2f2;
@@ -67,6 +71,29 @@
              width: 100%;
              max-width: 500px; /* Increase this value */
         }
+         .end-btn{
+             width:150px;
+             height:45px;
+             border-radius:45px;
+             cursor:pointer;
+             border:none;
+             text-transform:uppercase;
+             letter-spacing:2px;
+             font-weight:bold;
+             box-shadow:0px 8px 30px rgba(0,0,0,0.2);
+             transition:all 0.3s ease;
+             position: absolute;
+             bottom: -10px;
+             left: 50%;
+             transform: translateX(-50%);
+         }
+          .end-btn:hover{
+             background:#2ceae5;
+             transform:translateY(-7px);
+             color:#fff;
+             box-shadow:0px 10px 25px rgba(46,223,229,0.445);
+             transform: translate(-50%, -7px);
+         }
     </style>
 </head>
 
@@ -107,7 +134,7 @@
                     <option value="{{ row[0] }}">{{ row[0] }}</option>
                 {% endfor %}
             </select><br><br>
-            <input type="submit" value="Finish">
+            <input type="submit" value="Finish"  class="end-btn">
         </form>
         <script>
             function validateForm() {

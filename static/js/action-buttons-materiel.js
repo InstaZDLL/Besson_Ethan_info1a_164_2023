@@ -17,6 +17,7 @@ $(document).ready(function() {
         }
     });
 });
+
 // Delete Button
 $(document).ready(function() {
     $('.delete-b').click(function() {

@@ -18,10 +18,9 @@
              display: flex;
              justify-content: center;
              align-items: center;
-             z-index: 2;
              width: auto;
-             margin: 0 auto;
-             margin-bottom: 70px;
+             margin: 0 auto 70px;
+             z-index: 2;
         }
          form {
              background-color: #f2f2f2;
@@ -111,55 +110,29 @@
             <input type="submit" value="Finish">
         </form>
         <script>
-            // Input fields Regexp
             function validateForm() {
-                // Get the values of the input fields
-                var idMateriel = document.getElementById('id_materiel').value;
-                var nomMat = document.getElementById('nom_mat').value;
-                var modelMat = document.getElementById('model_mat').value;
-                var serialNum = document.getElementById('serial_num').value;
-                var dateAchat = document.getElementById('date_achat').value;
-                var dateExpi = document.getElementById('date_expi').value;
-                var prixCat = document.getElementById('prix_mat').value;
-                var nomCat = document.getElementById('nom_cat').value;
+                // Define an array of objects representing each input field and its corresponding regex
+                var fields = [
+                    { id: 'id_materiel', regex: /^\d+$/ },
+                    { id: 'nom_mat', regex: /^.{1,255}$/ },
+                    { id: 'model_mat', regex: /^.{1,255}$/ },
+                    { id: 'serial_num', regex: /^.{1,255}$/ },
+                    { id: 'date_achat', regex: /.+/ },
+                    { id: 'date_expi', regex: /.+/ },
+                    { id: 'prix_mat', regex: /^\d{1,12}$/ },
+                    { id: 'nom_cat', regex: /.+/ }
+                ];
 
-                // Define regular expressions to validate the input values
-                var idMaterielRegex = /^\d+$/;
-                var stringRegex = /^.{1,255}$/;
-                var numberRegex = /^\d{1,12}$/;
+                // Loop through each input field and validate it
+                for (var i = 0; i < fields.length; i++) {
+                    var input = document.getElementById(fields[i].id);
+                    var regex = fields[i].regex;
+                    var value = input.value;
 
-                // Validate the input values
-                if (!idMaterielRegex.test(idMateriel)) {
-                    alert('Invalid value for id_materiel');
-                    return false;
-                }
-                if (!stringRegex.test(nomMat)) {
-                    alert('Invalid value for nom_mat');
-                    return false;
-                }
-                if (!stringRegex.test(modelMat)) {
-                    alert('Invalid value for model_mat');
-                    return false;
-                }
-                if (!stringRegex.test(serialNum)) {
-                    alert('Invalid value for serial_num');
-                    return false;
-                }
-                if (dateAchat === '') {
-                    alert('Please select a value for date_achat');
-                    return false;
-                }
-                if (dateExpi === '') {
-                    alert('Please select a value for date_expi');
-                    return false;
-                }
-                if (!numberRegex.test(prixCat)) {
-                    alert('Invalid value for prix_mat');
-                    return false;
-                }
-                if (nomCat === '') {
-                    alert('Please select a value for nom_cat');
-                    return false;
+                    if (!regex.test(value)) {
+                        alert('Invalid value for ' + input.name);
+                        return false;
+                    }
                 }
 
                 // If all input values are valid, submit the form
@@ -172,11 +145,7 @@
             var now = new Date();
 
             // Format the date and time as a string in the format "YYYY-MM-DDThh:mm"
-            var dateTimeString = now.getFullYear() + '-' +
-                ('0' + (now.getMonth() + 1)).slice(-2) + '-' +
-                ('0' + now.getDate()).slice(-2) + 'T' +
-                ('0' + now.getHours()).slice(-2) + ':' +
-                ('0' + now.getMinutes()).slice(-2);
+            var dateTimeString = now.toISOString().slice(0, 16);
 
             // Set the value of the datetime-local input to the current date and time
             document.getElementById('date_achat').value = dateTimeString;
@@ -185,11 +154,7 @@
             now.setFullYear(now.getFullYear() + 4);
 
             // Format the date and time as a string in the format "YYYY-MM-DDThh:mm"
-            dateTimeString = now.getFullYear() + '-' +
-                ('0' + (now.getMonth() + 1)).slice(-2) + '-' +
-                ('0' + now.getDate()).slice(-2) + 'T' +
-                ('0' + now.getHours()).slice(-2) + ':' +
-                ('0' + now.getMinutes()).slice(-2);
+            dateTimeString = now.toISOString().slice(0, 16);
 
             // Set the value of the datetime-local input to the current date and time plus four years
             document.getElementById('date_expi').value = dateTimeString;

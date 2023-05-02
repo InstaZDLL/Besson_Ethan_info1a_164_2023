@@ -15,13 +15,12 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <style>
         .portainer {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 2;
-                width: auto;
-                margin: 0 auto;
-                margin-bottom: 70px;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               z-index: 2;
+               width: auto;
+               margin: 0 auto 70px;
             }
 
             form {
@@ -67,7 +66,7 @@
         // pre-fill the form with the existing data for this row
         // you will need to write some server-side code to fetch the data for this row
         // and return it as a JSON object
-        fetch("/get_row_data?id=" + id)
+        fetch("/get_row_data_marque?id=" + id)
             .then(response => response.json())
             .then(data => {
                 // Pre-filled in the input field

@@ -51,3 +51,32 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// Modify
+document.addEventListener("DOMContentLoaded", function () {
+  // select all of the .modify-b elements
+  let modifyBtns = document.querySelectorAll(".modify-b");
+  // attach the click event listener to each .modify-b element
+  for (let i = 0; i < modifyBtns.length; i++) {
+    modifyBtns[i].addEventListener("click", function () {
+      if (confirm("Are you sure you want to modify this row?")) {
+        // find the index of the ID column
+        let headers = document.querySelectorAll("th");
+        let idMaterielIndex;
+        for (let i = 0; i < headers.length; i++) {
+          if (headers[i].textContent === "ID") {
+            idMaterielIndex = i;
+            break;
+          }
+        }
+
+        // grab the id of the row from the ID cell
+        let row = this.closest("tr");
+        let idMaterielCell = row.cells[idMaterielIndex];
+        let id = idMaterielCell.textContent;
+
+        // redirect to the modify page with the id as a query parameter
+        window.location.href = "/modify_materiel?id=" + id;
+      }
+    });
+  }
+});

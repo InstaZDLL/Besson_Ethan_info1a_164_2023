@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, flash, redirect, url_for
 import os
 import mysql.connector
+from datetime import datetime
 
 app = Flask(__name__, static_url_path='/static')
 load_dotenv()
@@ -80,6 +81,48 @@ def personnes():
 
 # Begin New code block
 
+@app.route('/modify_materiel', methods=['GET', 'POST'])
+def modify_materiel():
+    if request.method == 'POST':
+        id_materiel = request.form['id_materiel']
+        nom_mat = request.form['nom_mat']
+        model_mat = request.form['model_mat']
+        serial_num = request.form['serial_num']
+        date_achat = request.form['date_achat']
+        date_expi = request.form['date_expi']
+        prix_mat = request.form['prix_mat']
+        nom_cat = request.form['nom_cat']
+
+        cursor = cnx.cursor()
+
+        # Update the t_materiel table with the new values
+        cursor.execute('''
+            UPDATE t_materiel
+            SET nom_mat=%s, model_mat=%s, serial_num=%s, date_achat=%s, date_expi=%s, prix_mat=%s
+            WHERE id_materiel=%s
+        ''', (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat, id_materiel))
+
+        # Commit the changes and close the cursor
+        cnx.commit()
+        cursor.close()
+
+        return render_template('/actions/modify_materiel.html', success=True)
+    else:
+        # Get the id from the query parameter
+        id_materiel = request.args.get('id')
+
+        cursor = cnx.cursor()
+
+        # Query the database for the row with the given id
+        cursor.execute('SELECT * FROM t_materiel WHERE id_materiel=%s', (id_materiel,))
+        row = cursor.fetchone()
+
+        # Close the cursor
+        cursor.close()
+
+        # Pass the row data to the template to pre-fill the form
+        return render_template('/actions/modify_materiel.html', material=row, materiel_id=materiel_id)
+
 
 @app.route('/delete_row_materiel', methods=['POST'])
 def delete_row_materiel():
@@ -107,8 +150,6 @@ def delete_row_materiel():
     cursor.close()
     return 'Row deleted'
 
-
-from datetime import datetime
 
 @app.route('/add_materiel', methods=['GET', 'POST'])
 def add_materiel():
@@ -292,8 +333,8 @@ def modify_marque():
         return render_template('/actions/modify_marque_form.html')
 
 
-@app.route('/get_row_data')
-def get_row_data():
+@app.route('/get_row_data_marque')
+def get_row_data_marque():
     # Get the id from the request parameters
     id = request.args.get('id')
 

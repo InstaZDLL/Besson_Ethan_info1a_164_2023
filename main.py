@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, jsonify
 import os
 import mysql.connector
 from datetime import datetime
@@ -80,6 +80,28 @@ def personnes():
 
 
 # Begin New code block
+@app.route('/get_row_data')
+def get_row_data():
+    # Get the id from the request parameters
+    id = request.args.get('id')
+
+    # Execute the SQL query to fetch the data for the row with the given id
+    cursor.execute(f"SELECT * FROM t_materiel WHERE id_materiel={id}")
+    row = cursor.fetchone()
+
+    # Create a dictionary to store the data
+    data = {
+        "id_materiel": row[0],
+        "nom_mat": row[1],
+        "model_mat": row[2],
+        "serial_num": row[3],
+        "date_achat": row[4],
+        "date_expi": row[5],
+        "prix_mat": row[6]
+    }
+
+    # Return the data as a JSON object
+    return jsonify(data)
 
 @app.route('/modify_materiel', methods=['GET', 'POST'])
 def modify_materiel():
@@ -188,14 +210,14 @@ def add_materiel():
 
         # Get the ID of the newly added material
         cursor.execute("SELECT LAST_INSERT_ID()")
-        materiel_id = cursor.fetchone()[0]
+        id_materiel = cursor.fetchone()[0]
 
         # Add the category of the material
         query = """
             INSERT INTO t_categorie_avoir_materiel (fk_materiel, fk_categorie)
             VALUES (%s, (SELECT id_categorie FROM t_categorie WHERE nom_cat=%s))
         """
-        values = (materiel_id, nom_cat)
+        values = (id_materiel, nom_cat)
 
         try:
             cursor.execute(query, values)

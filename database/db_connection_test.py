@@ -36,7 +36,7 @@ try:
     mycursor = mydb.cursor()
 
     # execute a SELECT query
-    table_name = "t_materiel"
+    table_name = "t_categorie"
     mycursor.execute(f"SELECT * FROM {table_name}")
 
     # retrieve all rows from the result set

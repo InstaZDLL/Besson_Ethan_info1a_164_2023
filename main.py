@@ -143,7 +143,7 @@ def modify_materiel():
         cursor.close()
 
         # Pass the row data to the template to pre-fill the form
-        return render_template('/actions/modify_materiel.html', material=row, materiel_id=materiel_id)
+        return render_template('/actions/modify_materiel.html', material=row, id_materiel=id_materiel)
 
 
 @app.route('/delete_row_materiel', methods=['POST'])

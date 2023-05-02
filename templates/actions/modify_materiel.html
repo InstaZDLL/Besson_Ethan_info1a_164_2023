@@ -48,7 +48,9 @@
         </div>
     </div>
     <div class="portainer">
-        <form action="/modify_materiel/{{materiel_id}}" method="post">
+        <form action="/modify_materiel/{{id_materiel}}" method="post">
+            <label for="id_mat">ID:</label><br>
+            <input type="text" id="id_mat" name="id_mat" value="{{ material[0] }}"><br><br>
             <label for="nom_mat">Nom:</label><br>
             <input type="text" id="nom_mat" name="nom_mat" value="{{ material[1] }}"><br><br>
             <label for="model_mat">Modèle:</label><br>
@@ -75,7 +77,7 @@
         </form>
     </div>
     <script>
-        let materiel_id = {{ materiel_id }};
+        let id_materiel = {{ id_materiel }};
     </script>
     <script>
         // Validate date fields to ensure that the expiration date is greater than the purchase date
@@ -89,10 +91,10 @@
         });
 
         // pre-fill the form with the existing data for this material
-        fetch("/get_row_data?id=" + materiel_id)
+        fetch("/get_row_data?id=" + id_materiel)
             .then(response => response.json())
             .then(data => {
-                document.querySelector("#id_materiel").value = data.id;
+                document.querySelector("#id_materiel").value = data.id_mat;
                 document.querySelector("#nom_mat").value = data.nom_mat;
                 document.querySelector("#model_mat").value = data.model_mat;
                 document.querySelector("#serial_num").value = data.serial_num;
@@ -102,6 +104,7 @@
                 document.querySelector("#nom_cat").value = data.nom_cat;
             });
     </script>
+    {% include '/actions/background-boxes.html' %} {% include 'footer.html' %}
 </body>
 
 </html>

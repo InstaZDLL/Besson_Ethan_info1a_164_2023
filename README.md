@@ -41,7 +41,7 @@ The goal of this project is to show our skills and understanding of web developm
 Clone the project.
 
 ```bash
-  git clone https://github.com/InstaZDLL/FlaskWebS.git
+  git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
 ```
 
 Go to the project directory.

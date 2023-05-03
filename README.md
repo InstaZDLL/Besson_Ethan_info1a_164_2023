@@ -47,7 +47,7 @@ Clone the project.
 Go to the project directory.
 
 ```bash
-  cd FlaskWebS
+  cd Besson_Ethan_info1a_164_2023
 ```
 
 Install dependencies.
@@ -65,7 +65,7 @@ Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#enviro
 Go to the database folder.
 
 ```bash
-  cd FlaskWebS/database
+  cd Besson_Ethan_info1a_164_2023/database
 ```
 
 Change if you need, the `besson_ethan_info_1a.sql` and paste your dump in this file.

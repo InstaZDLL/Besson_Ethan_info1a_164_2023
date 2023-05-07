@@ -53,7 +53,7 @@ Go to the project directory.
 Install dependencies.
 
 ```bash
-  pip install pip flask python-dotenv mysql-connector-python prettytable
+  pip install -r requirements.txt
 ```
 
 Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the.env file.

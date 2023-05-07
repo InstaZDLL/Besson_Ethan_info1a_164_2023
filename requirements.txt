@@ -1,0 +1,4 @@
+python-dotenv==0.15.0
+Flask==2.0.1
+mysql-connector-python==8.0.25
+prettytable==2.2.0

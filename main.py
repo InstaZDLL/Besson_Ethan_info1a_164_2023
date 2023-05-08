@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, jso
 import os
 import mysql.connector
 from datetime import datetime
+from PyFormModify import ModifyMaterielForm
 
 app = Flask(__name__, static_url_path='/static')
 load_dotenv()
@@ -82,38 +83,44 @@ def personnes():
 # Begin New code block
 @app.route('/get_row_data')
 def get_row_data():
-    # Get the id from the request parameters
-    id = request.args.get('id')
+    id_materiel = request.args.get('id')
 
-    # Execute the SQL query to fetch the data for the row with the given id
-    cursor.execute(f"SELECT * FROM t_materiel WHERE id_materiel={id}")
+    cursor = cnx.cursor()
+
+    # Query the database for the row with the given id
+    cursor.execute('SELECT * FROM t_materiel WHERE id_materiel=%s', (id_materiel,))
     row = cursor.fetchone()
 
-    # Create a dictionary to store the data
+    # Close the cursor
+    cursor.close()
+
+    # Convert the row data into a dictionary
     data = {
-        "id_materiel": row[0],
-        "nom_mat": row[1],
-        "model_mat": row[2],
-        "serial_num": row[3],
-        "date_achat": row[4],
-        "date_expi": row[5],
-        "prix_mat": row[6]
+        'id_mat': row[0],
+        'nom_mat': row[1],
+        'model_mat': row[2],
+        'serial_num': row[3],
+        'date_achat': row[4].isoformat() if row[4] else None,
+        'date_expi': row[5].isoformat() if row[5] else None,
+        'prix_mat': row[6],
+        'nom_cat': row[7]
     }
 
-    # Return the data as a JSON object
     return jsonify(data)
 
 @app.route('/modify_materiel', methods=['GET', 'POST'])
 def modify_materiel():
-    if request.method == 'POST':
-        id_materiel = request.form['id_materiel']
-        nom_mat = request.form['nom_mat']
-        model_mat = request.form['model_mat']
-        serial_num = request.form['serial_num']
-        date_achat = request.form['date_achat']
-        date_expi = request.form['date_expi']
-        prix_mat = request.form['prix_mat']
-        nom_cat = request.form['nom_cat']
+    form = ModifyMaterielForm()
+
+    if form.validate_on_submit():
+        id_materiel = form.id_mat.data
+        nom_mat = form.nom_mat.data
+        model_mat = form.model_mat.data
+        serial_num = form.serial_num.data
+        date_achat = form.date_achat.data
+        date_expi = form.date_expi.data
+        prix_mat = form.prix_mat.data
+        nom_cat = form.nom_cat.data
 
         cursor = cnx.cursor()
 
@@ -124,26 +131,22 @@ def modify_materiel():
             WHERE id_materiel=%s
         ''', (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat, id_materiel))
 
+        # Update the t_categorie_avoir_materiel table with the new category
+        cursor.execute('''
+            UPDATE t_categorie_avoir_materiel
+            SET fk_categorie=%s
+            WHERE fk_materiel=%s
+        ''', (nom_cat, id_materiel))
+
         # Commit the changes and close the cursor
         cnx.commit()
         cursor.close()
 
-        return render_template('/actions/modify_materiel.html', success=True)
-    else:
-        # Get the id from the query parameter
-        id_materiel = request.args.get('id')
+        return render_template('/actions/modify_materiel.html', form=form, success=True)
 
-        cursor = cnx.cursor()
+    # Perform the database query and rendering logic
 
-        # Query the database for the row with the given id
-        cursor.execute('SELECT * FROM t_materiel WHERE id_materiel=%s', (id_materiel,))
-        row = cursor.fetchone()
-
-        # Close the cursor
-        cursor.close()
-
-        # Pass the row data to the template to pre-fill the form
-        return render_template('/actions/modify_materiel.html', material=row, id_materiel=id_materiel)
+    return render_template('/actions/modify_materiel.html', form=form)
 
 
 @app.route('/delete_row_materiel', methods=['POST'])

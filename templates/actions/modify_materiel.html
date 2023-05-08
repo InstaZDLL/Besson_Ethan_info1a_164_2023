@@ -50,59 +50,61 @@
         </div>
     </div>
     <div class="portainer">
-        <form action="/modify_materiel/{{id_materiel}}" method="post">
-            <label for="id_mat">ID:</label><br>
-            <input type="text" id="id_mat" name="id_mat" value="{{ material[0] }}"><br><br>
-            <label for="nom_mat">Nom:</label><br>
-            <input type="text" id="nom_mat" name="nom_mat" value="{{ material[1] }}"><br><br>
-            <label for="model_mat">Modèle:</label><br>
-            <input type="text" id="model_mat" name="model_mat" value="{{ material[2] }}"><br><br>
-            <label for="serial_num">Numéro de série:</label><br>
-            <input type="text" id="serial_num" name="serial_num" value="{{ material[3] }}"><br><br>
-            <label for="date_achat">Date d'achat:</label><br>
-            <input type="datetime-local" id="date_achat" name="date_achat" value="{{ material[4].strftime('%Y-%m-%dT%H:%M') }}"><br><br>
-            <label for="date_expi">Date d'expiration:</label><br>
-            <input type="datetime-local" id="date_expi" name="date_expi" value="{{ material[5].strftime('%Y-%m-%dT%H:%M') }}"><br><br>
-            <label for="prix_mat">Prix:</label><br>
-            <input type="text" id="prix_mat" name="prix_mat" value="{{ material[6] }}"><br><br>
-            <label for="nom_cat">Catégorie:</label><br>
-            <select id="nom_cat" name="nom_cat">
-                {% for category in categories %}
-                {% if category[0] == material[7] %}
-                <option selected>{{ category[0] }}</option>
-                {% else %}
-                <option>{{ category[0] }}</option>
-                {% endif %}
-                {% endfor %}
-            </select><br><br>
-            <input type="submit" value="Modifier">
+        <form action="{{ url_for('modify_materiel') }}" method="post">
+            {{ form.csrf_token }}
+            <label for="{{ form.id_mat.id }}">{{ form.id_mat.label.text }}:</label><br>
+            {{ form.id_mat(class="form-control") }}<br><br>
+
+            <label for="{{ form.nom_mat.id }}">{{ form.nom_mat.label.text }}:</label><br>
+            {{ form.nom_mat(class="form-control") }}<br><br>
+
+            <label for="{{ form.model_mat.id }}">{{ form.model_mat.label.text }}:</label><br>
+            {{ form.model_mat(class="form-control") }}<br><br>
+
+            <label for="{{ form.serial_num.id }}">{{ form.serial_num.label.text }}:</label><br>
+            {{ form.serial_num(class="form-control") }}<br><br>
+
+            <label for="{{ form.date_achat.id }}">{{ form.date_achat.label.text }}:</label><br>
+            {{ form.date_achat(class="form-control") }}<br><br>
+
+            <label for="{{ form.date_expi.id }}">{{ form.date_expi.label.text }}:</label><br>
+            {{ form.date_expi(class="form-control") }}<br><br>
+
+            <label for="{{ form.prix_mat.id }}">{{ form.prix_mat.label.text }}:</label><br>
+            {{ form.prix_mat(class="form-control") }}<br><br>
+
+            <label for="{{ form.nom_cat.id }}">{{ form.nom_cat.label.text }}:</label><br>
+            {{ form.nom_cat(class="form-control") }}<br><br>
+
+            <input type="submit" value="Modifier" class="btn btn-primary">
         </form>
     </div>
     <script>
-        // Validate date fields to ensure that the expiration date is greater than the purchase date
-        document.querySelector("form").addEventListener("submit", function() {
-            // let id_materiel = {{ id_materiel }};
+       document.addEventListener("DOMContentLoaded", function() {
+          // Validate date fields to ensure that the expiration date is greater than the purchase date
+          document.querySelector("form").addEventListener("submit", function(event) {
             let dateAchat = new Date(document.querySelector("#date_achat").value);
             let dateExpi = new Date(document.querySelector("#date_expi").value);
             if (dateExpi <= dateAchat) {
-                alert("La date d'expiration doit être supérieure à la date d'achat.");
-                event.preventDefault();
+              alert("La date d'expiration doit être supérieure à la date d'achat.");
+              event.preventDefault();
             }
-        });
+          });
 
-        // pre-fill the form with the existing data for this material
-        fetch("/get_row_data?id=" + id_materiel)
+          // Pre-fill the form with the existing data for this material
+          fetch("/get_row_data?id=" + id_materiel)
             .then(response => response.json())
             .then(data => {
-                document.querySelector("#id_materiel").value = data.id_mat;
-                document.querySelector("#nom_mat").value = data.nom_mat;
-                document.querySelector("#model_mat").value = data.model_mat;
-                document.querySelector("#serial_num").value = data.serial_num;
-                document.querySelector("#date_achat").value = data.date_achat;
-                document.querySelector("#date_expi").value = data.date_expi;
-                document.querySelector("#prix_mat").value = data.prix_mat;
-                document.querySelector("#nom_cat").value = data.nom_cat;
+              document.querySelector("#id_mat").value = data.id_mat;
+              document.querySelector("#nom_mat").value = data.nom_mat;
+              document.querySelector("#model_mat").value = data.model_mat;
+              document.querySelector("#serial_num").value = data.serial_num;
+              document.querySelector("#date_achat").value = data.date_achat;
+              document.querySelector("#date_expi").value = data.date_expi;
+              document.querySelector("#prix_mat").value = data.prix_mat;
+              document.querySelector("#nom_cat").value = data.nom_cat;
             });
+        });
     </script>
     {% include '/actions/background-boxes.html' %}
     {% include 'footer.html' %}

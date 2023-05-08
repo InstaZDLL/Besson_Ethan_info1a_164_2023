@@ -5,7 +5,7 @@ Flask-WTF==1.1.1
 itsdangerous==2.1.2
 Jinja2==3.1.2
 mysql-connector-python==8.0.33
-protobuf==4.22.4
+protobuf==3.20.3
 prettytable==3.7.0
 python-dotenv==1.0.0
 Werkzeug==2.3.3

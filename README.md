@@ -150,6 +150,7 @@ If you change something here don't forget to modify the html code too in the `pe
 
 
 - [@InstaZDLL](https://github.com/InstaZDLL)
+- [@Sentinel773](https://github.com/Sentinel773)
 
 
 ## License

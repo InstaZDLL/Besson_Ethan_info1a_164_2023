@@ -183,6 +183,7 @@ def add_materiel():
     categories = [row for row in cursor.fetchall()]
 
     if request.method == 'POST':
+        id_materiel = request.form['id_materiel']
         nom_mat = request.form['nom_mat']
         model_mat = request.form['model_mat']
         serial_num = request.form['serial_num']
@@ -194,10 +195,10 @@ def add_materiel():
         nom_cat = request.form['nom_cat']
 
         query = """
-            INSERT INTO t_materiel (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat)
-            VALUES (%s, %s, %s, %s, %s, %s)
+            INSERT INTO t_materiel (id_materiel, nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
         """
-        values = (nom_mat, model_mat, serial_num, date_achat_str, date_expi_str, prix_mat)
+        values = (id_materiel, nom_mat, model_mat, serial_num, date_achat_str, date_expi_str, prix_mat)
 
         try:
             cursor.execute(query, values)
@@ -207,10 +208,6 @@ def add_materiel():
             cnx.rollback()
             flash('Une erreur est survenue lors de l\'ajout du matériel. Veuillez réessayer plus tard.', 'danger')
             print(e)
-
-        # Get the ID of the newly added material
-        cursor.execute("SELECT LAST_INSERT_ID()")
-        id_materiel = cursor.fetchone()[0]
 
         # Add the category of the material
         query = """
@@ -232,6 +229,7 @@ def add_materiel():
 
     else:
         return render_template('/actions/add_materiel_form.html', categories=categories)
+
 
 
 

@@ -11,3 +11,4 @@ python-dotenv==1.0.0
 Werkzeug==2.3.3
 wcwidth==0.2.6
 WTForms==3.0.1
+requests==2.30.0

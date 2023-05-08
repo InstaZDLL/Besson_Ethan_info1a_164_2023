@@ -80,30 +80,31 @@
         </form>
     </div>
     <script>
-       document.addEventListener("DOMContentLoaded", function() {
-          // Validate date fields to ensure that the expiration date is greater than the purchase date
-          document.querySelector("form").addEventListener("submit", function(event) {
-            let dateAchat = new Date(document.querySelector("#date_achat").value);
-            let dateExpi = new Date(document.querySelector("#date_expi").value);
-            if (dateExpi <= dateAchat) {
-              alert("La date d'expiration doit être supérieure à la date d'achat.");
-              event.preventDefault();
-            }
-          });
-
-          // Pre-fill the form with the existing data for this material
-          fetch("/get_row_data?id=" + id_materiel)
-            .then(response => response.json())
-            .then(data => {
-              document.querySelector("#id_mat").value = data.id_mat;
-              document.querySelector("#nom_mat").value = data.nom_mat;
-              document.querySelector("#model_mat").value = data.model_mat;
-              document.querySelector("#serial_num").value = data.serial_num;
-              document.querySelector("#date_achat").value = data.date_achat;
-              document.querySelector("#date_expi").value = data.date_expi;
-              document.querySelector("#prix_mat").value = data.prix_mat;
-              document.querySelector("#nom_cat").value = data.nom_cat;
+        document.addEventListener("DOMContentLoaded", function() {
+            // Validate date fields to ensure that the expiration date is greater than the purchase date
+            document.querySelector("form").addEventListener("submit", function(event) {
+                let dateAchat = new Date(document.querySelector("#date_achat").value);
+                let dateExpi = new Date(document.querySelector("#date_expi").value);
+                if (dateExpi <= dateAchat) {
+                    alert("La date d'expiration doit être supérieure à la date d'achat.");
+                    event.preventDefault();
+                }
             });
+
+            // pre-fill the form with the existing data for this material
+            let id_materiel = "{{ id_materiel }}";
+            fetch("/get_row_data?id=" + id_materiel)
+                .then(response => response.json())
+                .then(data => {
+                    document.querySelector("#id_mat").value = data.id_mat;
+                    document.querySelector("#nom_mat").value = data.nom_mat;
+                    document.querySelector("#model_mat").value = data.model_mat;
+                    document.querySelector("#serial_num").value = data.serial_num;
+                    document.querySelector("#date_achat").value = data.date_achat;
+                    document.querySelector("#date_expi").value = data.date_expi;
+                    document.querySelector("#prix_mat").value = data.prix_mat;
+                    document.querySelector("#nom_cat").value = data.nom_cat;
+                });
         });
     </script>
     {% include '/actions/background-boxes.html' %}

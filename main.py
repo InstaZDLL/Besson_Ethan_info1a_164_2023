@@ -4,6 +4,7 @@ import os
 import mysql.connector
 from datetime import datetime
 from PyFormModify import ModifyMaterielForm
+import requests
 
 app = Flask(__name__, static_url_path='/static')
 load_dotenv()
@@ -110,43 +111,31 @@ def get_row_data():
 
 @app.route('/modify_materiel', methods=['GET', 'POST'])
 def modify_materiel():
-    form = ModifyMaterielForm()
+    id_materiel = request.args.get('id')
+    response = requests.get('get_row_data', params={'id': id_materiel})
+    row = response.json()
+    form = ModifyMaterielForm(obj=row)
+    if request.method == 'POST' and form.validate():
+        # Process form data and update the database
+        # ...
 
-    if form.validate_on_submit():
-        id_materiel = form.id_mat.data
-        nom_mat = form.nom_mat.data
-        model_mat = form.model_mat.data
-        serial_num = form.serial_num.data
-        date_achat = form.date_achat.data
-        date_expi = form.date_expi.data
-        prix_mat = form.prix_mat.data
-        nom_cat = form.nom_cat.data
+        return render_template('/actions/modify_materiel.html', success=True)
+    else:
+        # Get the id from the query parameter
+        id_materiel = request.args.get('id')
 
         cursor = cnx.cursor()
 
-        # Update the t_materiel table with the new values
-        cursor.execute('''
-            UPDATE t_materiel
-            SET nom_mat=%s, model_mat=%s, serial_num=%s, date_achat=%s, date_expi=%s, prix_mat=%s
-            WHERE id_materiel=%s
-        ''', (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat, id_materiel))
+        # Query the database for the row with the given id
+        cursor.execute('SELECT * FROM t_materiel WHERE id_materiel=%s', (id_materiel,))
+        row = cursor.fetchone()
 
-        # Update the t_categorie_avoir_materiel table with the new category
-        cursor.execute('''
-            UPDATE t_categorie_avoir_materiel
-            SET fk_categorie=%s
-            WHERE fk_materiel=%s
-        ''', (nom_cat, id_materiel))
-
-        # Commit the changes and close the cursor
-        cnx.commit()
+        # Close the cursor
         cursor.close()
 
-        return render_template('/actions/modify_materiel.html', form=form, success=True)
+        # Pass the row data and id_materiel to the template to pre-fill the form
+        return render_template('/actions/modify_materiel.html', form=form, material=row, id_materiel=id_materiel)
 
-    # Perform the database query and rendering logic
-
-    return render_template('/actions/modify_materiel.html', form=form)
 
 
 @app.route('/delete_row_materiel', methods=['POST'])

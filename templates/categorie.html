@@ -116,13 +116,41 @@
                     <td>
                         <button type="button" class="btn btn-p add-b" id="add-b">Add</button>
                         <button type="button" class="btn btn-s delete-b" data-row-id="{{ row[0] }}">Delete</button>
-                        <button type="button" class="btn btn-t modify-b">Modify</button>
+                        <button type="button" class="btn btn-t modify-b" data-row-id="{{ row[0] }}">Modify</button>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Function to retrieve the row data and redirect to /modify_materiel
+            function modifyRow(rowId) {
+                fetch("/get_row_data?id=" + rowId)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Redirect to /modify_materiel with the row data as query parameters
+                        let queryParams = new URLSearchParams(data);
+                        window.location.href = "/modify_materiel?" + queryParams.toString();
+                    })
+                    .catch(error => {
+                        console.error("Error retrieving row data:", error);
+                    });
+            }
+
+            // Event delegation to handle "Modify" button clicks
+            document.addEventListener("click", function(event) {
+                if (event.target.classList.contains("modify-b")) {
+                    // Get the row ID from the data-row-id attribute
+                    let rowId = event.target.getAttribute("data-row-id");
+                    if (rowId) {
+                        modifyRow(rowId);
+                    }
+                }
+            });
+        });
+    </script>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     {% include '/actions/delete-button.html' %}

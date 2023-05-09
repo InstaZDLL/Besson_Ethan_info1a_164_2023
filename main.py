@@ -117,9 +117,10 @@ def show_modify_materiel():
         "prix_mat": row[6],
         "nom_cat": categorie_name
     }
-
+    # TODO delete the line here if needed v
+    form = ModifyMaterielForm(data=data)
     # render the modify_materiel.html template and pass the data to it
-    return render_template("/actions/modify_materiel.html", data=data)
+    return render_template("/actions/modify_materiel.html", data=data, form=form)
 
 
 @app.route("/get_row_data")

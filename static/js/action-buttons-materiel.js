@@ -49,3 +49,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// Modify
+document.addEventListener("DOMContentLoaded", function() {
+    // select all of the .modify-b elements
+    let modifyBtns = document.querySelectorAll(".modify-b");
+    // attach the click event listener to each .modify-b element
+    for (let i = 0; i < modifyBtns.length; i++) {
+        modifyBtns[i].addEventListener("click", function() {
+            if (confirm("Are you sure you want to modify this row?")) {
+                // grab the id of the row from the data-row-id attribute
+                let id = this.getAttribute("data-row-id");
+
+                // redirect to the get_row_data page with the id as a query parameter
+                window.location.href = "/get_row_data?id=" + id;
+            }
+        });
+    }
+});

@@ -182,6 +182,16 @@ def modify_materiel():
     prix_mat = request.form["prix_mat"]
     nom_cat = request.form["nom_cat"]
 
+    # validate and convert the date values
+    try:
+        date_achat = datetime.strptime(date_achat, "%Y-%m-%dT%H:%M").strftime("%Y-%m-%d %H:%M:%S")
+    except ValueError:
+        date_achat = None
+    try:
+        date_expi = datetime.strptime(date_expi, "%Y-%m-%dT%H:%M").strftime("%Y-%m-%d %H:%M:%S")
+    except ValueError:
+        date_expi = None
+
     # update the data in the t_materiel table
     cursor.execute("UPDATE t_materiel SET nom_mat=%s, model_mat=%s, serial_num=%s, date_achat=%s, date_expi=%s, prix_mat=%s WHERE id_materiel=%s", (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat, id_mat))
 
@@ -198,9 +208,10 @@ def modify_materiel():
     cnx.commit()
 
     # redirect to the success page
-    return redirect(url_for("success"))
+    return redirect(url_for("categorie"))
 
 
+# TODO make the succes page and the redirection to the /categorie
 @app.route("/success")
 def success():
     # render the success.html template

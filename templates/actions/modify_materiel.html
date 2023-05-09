@@ -85,38 +85,39 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Validate date fields to ensure that the expiration date is greater than the purchase date
-            document.querySelector("form").addEventListener("submit", function(event) {
-                let dateAchat = new Date(document.querySelector("#date_achat").value);
-                let dateExpi = new Date(document.querySelector("#date_expi").value);
-                if (dateExpi <= dateAchat) {
-                    alert("La date d'expiration doit être supérieure à la date d'achat.");
-                    event.preventDefault();
-                } else {
-                    // convert the date values to the ISO format
-                    document.querySelector("#date_achat").value = dateAchat.toISOString();
-                    document.querySelector("#date_expi").value = dateExpi.toISOString();
-                }
-            });
+          // Validate date fields to ensure that the expiration date is greater than the purchase date
+          document.querySelector("form").addEventListener("submit", function(event) {
+            let dateAchat = new Date(document.querySelector("#date_achat").value);
+            let dateExpi = new Date(document.querySelector("#date_expi").value);
+            if (dateExpi <= dateAchat) {
+              alert("La date d'expiration doit être supérieure à la date d'achat.");
+              event.preventDefault();
+            } else {
+              // convert the date values to the ISO format
+              document.querySelector("#date_achat").value = dateAchat.toISOString().slice(0, 16);
+              document.querySelector("#date_expi").value = dateExpi.toISOString().slice(0, 16);
+            }
+          });
 
-            // pre-fill the form with the existing data for this material
-            let data = {{ data|tojson }};
+          // pre-fill the form with the existing data for this material
+          let data = {{ data|tojson }};
 
-            // format the date values
-            let dateAchat = new Date(data.date_achat);
-            let dateExpi = new Date(data.date_expi);
-            let dateAchatFormatted = dateAchat.toISOString().slice(0, 16);
-            let dateExpiFormatted = dateExpi.toISOString().slice(0, 16);
+          // format the date values
+          let dateAchat = new Date(data.date_achat);
+          let dateExpi = new Date(data.date_expi);
+          let timezoneOffset = dateAchat.getTimezoneOffset() * 60000;
+          let dateAchatFormatted = new Date(dateAchat.getTime() - timezoneOffset).toISOString().slice(0, 16);
+          let dateExpiFormatted = new Date(dateExpi.getTime() - timezoneOffset).toISOString().slice(0, 16);
 
-            // pre-fill the form fields
-            document.querySelector("#id_mat").value = data.id_mat;
-            document.querySelector("#nom_mat").value = data.nom_mat;
-            document.querySelector("#model_mat").value = data.model_mat;
-            document.querySelector("#serial_num").value = data.serial_num;
-            document.querySelector("#date_achat").value = dateAchatFormatted;
-            document.querySelector("#date_expi").value = dateExpiFormatted;
-            document.querySelector("#prix_mat").value = data.prix_mat;
-            document.querySelector("#nom_cat").value = data.nom_cat;
+          // pre-fill the form fields
+          document.querySelector("#id_mat").value = data.id_mat;
+          document.querySelector("#nom_mat").value = data.nom_mat;
+          document.querySelector("#model_mat").value = data.model_mat;
+          document.querySelector("#serial_num").value = data.serial_num;
+          document.querySelector("#date_achat").value = dateAchatFormatted;
+          document.querySelector("#date_expi").value = dateExpiFormatted;
+          document.querySelector("#prix_mat").value = data.prix_mat;
+          document.querySelector("#nom_cat").value = data.nom_cat;
         });
     </script>
     {% include '/actions/background-boxes.html' %}

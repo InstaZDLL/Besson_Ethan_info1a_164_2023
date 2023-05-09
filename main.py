@@ -132,44 +132,6 @@ def show_modify_materiel():
     return render_template("/actions/modify_materiel.html", data=data, form=form, categories=categories)
 
 
-@app.route("/get_row_data")
-def get_row_data():
-    # get the id parameter from the query string
-    id_materiel = request.args.get("id")
-
-    # retrieve data from the t_materiel table
-    cursor = cnx.cursor()
-    cursor.execute("SELECT * FROM t_materiel WHERE id_materiel=%s", (id_materiel,))
-    row = cursor.fetchone()
-
-    # check if a row was found
-    if row is None:
-        cursor.close()
-        return jsonify({"error": "No row found with the given id"})
-
-    # retrieve the category name for the selected row
-    cursor.execute("SELECT t_categorie.nom_cat FROM t_categorie_avoir_materiel JOIN t_categorie ON t_categorie_avoir_materiel.fk_categorie = t_categorie.id_categorie WHERE t_categorie_avoir_materiel.fk_materiel=%s", (id_materiel,))
-    categorie_row = cursor.fetchone()
-    categorie_name = categorie_row[0] if categorie_row else None
-
-    # close the cursor
-    cursor.close()
-
-    # convert the row data into a dictionary
-    data = {
-        "id_mat": row[0],
-        "nom_mat": row[1],
-        "model_mat": row[2],
-        "serial_num": row[3],
-        "date_achat": row[4].isoformat() if row[4] else None,
-        "date_expi": row[5].isoformat() if row[5] else None,
-        "prix_mat": row[6],
-        "nom_cat": categorie_name
-    }
-
-    # return the data as a JSON object
-    return jsonify(data)
-
 @app.route("/modify_materiel", methods=["POST"])
 def modify_materiel():
     # get the form data

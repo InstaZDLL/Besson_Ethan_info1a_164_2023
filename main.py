@@ -82,6 +82,46 @@ def personnes():
 
 
 # Begin New code block
+
+@app.route("/show_modify_materiel")
+def show_modify_materiel():
+    # get the id parameter from the query string
+    id_materiel = request.args.get("id")
+
+    # retrieve data from the t_materiel table
+    cursor = cnx.cursor()
+    cursor.execute("SELECT * FROM t_materiel WHERE id_materiel=%s", (id_materiel,))
+    row = cursor.fetchone()
+
+    # check if a row was found
+    if row is None:
+        cursor.close()
+        return "No row found with the given id"
+
+    # retrieve the category name for the selected row
+    cursor.execute("SELECT t_categorie.nom_cat FROM t_categorie_avoir_materiel JOIN t_categorie ON t_categorie_avoir_materiel.fk_categorie = t_categorie.id_categorie WHERE t_categorie_avoir_materiel.fk_materiel=%s", (id_materiel,))
+    categorie_row = cursor.fetchone()
+    categorie_name = categorie_row[0] if categorie_row else None
+
+    # close the cursor
+    cursor.close()
+
+    # convert the row data into a dictionary
+    data = {
+        "id_mat": row[0],
+        "nom_mat": row[1],
+        "model_mat": row[2],
+        "serial_num": row[3],
+        "date_achat": row[4].isoformat() if row[4] else None,
+        "date_expi": row[5].isoformat() if row[5] else None,
+        "prix_mat": row[6],
+        "nom_cat": categorie_name
+    }
+
+    # render the modify_materiel.html template and pass the data to it
+    return render_template("/actions/modify_materiel.html", data=data)
+
+
 @app.route("/get_row_data")
 def get_row_data():
     # get the id parameter from the query string
@@ -133,24 +173,28 @@ def modify_materiel():
     nom_cat = request.form["nom_cat"]
 
     # update the data in the t_materiel table
-    cursor.execute("UPDATE t_materiel SET nom_mat=?, model_mat=?, serial_num=?, date_achat=?, date_expi=?, prix_mat=? WHERE id_materiel=?", (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat, id_mat))
+    cursor.execute("UPDATE t_materiel SET nom_mat=%s, model_mat=%s, serial_num=%s, date_achat=%s, date_expi=%s, prix_mat=%s WHERE id_materiel=%s", (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat, id_mat))
 
     # update the data in the t_categorie_avoir_materiel and t_categorie tables
-    cursor.execute("SELECT * FROM t_categorie WHERE nom_cat=?", (nom_cat,))
+    cursor.execute("SELECT * FROM t_categorie WHERE nom_cat=%s", (nom_cat,))
     categorie_data = cursor.fetchone()
     if categorie_data:
-        cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_categorie=? WHERE fk_materiel=?", (categorie_data[0], id_mat))
+        cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_categorie=%s WHERE fk_materiel=%s", (categorie_data[0], id_mat))
     else:
-        cursor.execute("INSERT INTO t_categorie (nom_cat) VALUES (?)", (nom_cat,))
-        cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_categorie=? WHERE fk_materiel=?", (cursor.lastrowid, id_mat))
+        cursor.execute("INSERT INTO t_categorie (nom_cat) VALUES (%s)", (nom_cat,))
+        cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_categorie=%s WHERE fk_materiel=%s", (cursor.lastrowid, id_mat))
 
-    # commit the changes and close the database connection
+    # commit the changes
     cnx.commit()
-    cnx.close()
 
     # redirect to the success page
     return redirect(url_for("success"))
 
+
+@app.route("/success")
+def success():
+    # render the success.html template
+    return render_template("success.html")
 
 
 @app.route('/delete_row_materiel', methods=['POST'])

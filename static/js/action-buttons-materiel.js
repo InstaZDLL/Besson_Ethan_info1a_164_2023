@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 // grab the id of the row from the data-row-id attribute
                 let id = this.getAttribute("data-row-id");
 
-                // redirect to the get_row_data page with the id as a query parameter
-                window.location.href = "/get_row_data?id=" + id;
+                // redirect to the show_modify_materiel page with the id as a query parameter
+                window.location.href = "/show_modify_materiel?id=" + id;
             }
         });
     }

@@ -82,59 +82,74 @@ def personnes():
 
 
 # Begin New code block
-@app.route('/get_row_data')
+@app.route("/get_row_data")
 def get_row_data():
-    id_materiel = request.args.get('id')
+    # get the id parameter from the query string
+    id_materiel = request.args.get("id")
 
+    # retrieve data from the t_materiel table
     cursor = cnx.cursor()
-
-    # Query the database for the row with the given id
-    cursor.execute('SELECT * FROM t_materiel WHERE id_materiel=%s', (id_materiel,))
+    cursor.execute("SELECT * FROM t_materiel WHERE id_materiel=%s", (id_materiel,))
     row = cursor.fetchone()
 
-    # Close the cursor
+    # check if a row was found
+    if row is None:
+        cursor.close()
+        return jsonify({"error": "No row found with the given id"})
+
+    # retrieve the category name for the selected row
+    cursor.execute("SELECT t_categorie.nom_cat FROM t_categorie_avoir_materiel JOIN t_categorie ON t_categorie_avoir_materiel.fk_categorie = t_categorie.id_categorie WHERE t_categorie_avoir_materiel.fk_materiel=%s", (id_materiel,))
+    categorie_row = cursor.fetchone()
+    categorie_name = categorie_row[0] if categorie_row else None
+
+    # close the cursor
     cursor.close()
 
-    # Convert the row data into a dictionary
+    # convert the row data into a dictionary
     data = {
-        'id_mat': row[0],
-        'nom_mat': row[1],
-        'model_mat': row[2],
-        'serial_num': row[3],
-        'date_achat': row[4].isoformat() if row[4] else None,
-        'date_expi': row[5].isoformat() if row[5] else None,
-        'prix_mat': row[6],
-        'nom_cat': row[7]
+        "id_mat": row[0],
+        "nom_mat": row[1],
+        "model_mat": row[2],
+        "serial_num": row[3],
+        "date_achat": row[4].isoformat() if row[4] else None,
+        "date_expi": row[5].isoformat() if row[5] else None,
+        "prix_mat": row[6],
+        "nom_cat": categorie_name
     }
 
+    # return the data as a JSON object
     return jsonify(data)
 
-@app.route('/modify_materiel', methods=['GET', 'POST'])
+@app.route("/modify_materiel", methods=["POST"])
 def modify_materiel():
-    id_materiel = request.args.get('id')
-    response = requests.get('get_row_data', params={'id': id_materiel})
-    row = response.json()
-    form = ModifyMaterielForm(obj=row)
-    if request.method == 'POST' and form.validate():
-        # Process form data and update the database
-        # ...
+    # get the form data
+    id_mat = request.form["id_mat"]
+    nom_mat = request.form["nom_mat"]
+    model_mat = request.form["model_mat"]
+    serial_num = request.form["serial_num"]
+    date_achat = request.form["date_achat"]
+    date_expi = request.form["date_expi"]
+    prix_mat = request.form["prix_mat"]
+    nom_cat = request.form["nom_cat"]
 
-        return render_template('/actions/modify_materiel.html', success=True)
+    # update the data in the t_materiel table
+    cursor.execute("UPDATE t_materiel SET nom_mat=?, model_mat=?, serial_num=?, date_achat=?, date_expi=?, prix_mat=? WHERE id_materiel=?", (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat, id_mat))
+
+    # update the data in the t_categorie_avoir_materiel and t_categorie tables
+    cursor.execute("SELECT * FROM t_categorie WHERE nom_cat=?", (nom_cat,))
+    categorie_data = cursor.fetchone()
+    if categorie_data:
+        cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_categorie=? WHERE fk_materiel=?", (categorie_data[0], id_mat))
     else:
-        # Get the id from the query parameter
-        id_materiel = request.args.get('id')
+        cursor.execute("INSERT INTO t_categorie (nom_cat) VALUES (?)", (nom_cat,))
+        cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_categorie=? WHERE fk_materiel=?", (cursor.lastrowid, id_mat))
 
-        cursor = cnx.cursor()
+    # commit the changes and close the database connection
+    cnx.commit()
+    cnx.close()
 
-        # Query the database for the row with the given id
-        cursor.execute('SELECT * FROM t_materiel WHERE id_materiel=%s', (id_materiel,))
-        row = cursor.fetchone()
-
-        # Close the cursor
-        cursor.close()
-
-        # Pass the row data and id_materiel to the template to pre-fill the form
-        return render_template('/actions/modify_materiel.html', form=form, material=row, id_materiel=id_materiel)
+    # redirect to the success page
+    return redirect(url_for("success"))
 
 
 

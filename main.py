@@ -103,6 +103,10 @@ def show_modify_materiel():
     categorie_row = cursor.fetchone()
     categorie_name = categorie_row[0] if categorie_row else None
 
+    # retrieve a list of all categories
+    cursor.execute("SELECT nom_cat FROM t_categorie")
+    categories = [row[0] for row in cursor.fetchall()]
+
     # close the cursor
     cursor.close()
 
@@ -124,8 +128,8 @@ def show_modify_materiel():
 
     form = ModifyMaterielForm(data=data)
 
-    # render the modify_materiel.html template and pass the data to it
-    return render_template("/actions/modify_materiel.html", data=data, form=form)
+    # render the modify_materiel.html template and pass the data and categories to it
+    return render_template("/actions/modify_materiel.html", data=data, form=form, categories=categories)
 
 
 @app.route("/get_row_data")

@@ -73,8 +73,12 @@
             <label for="{{ form.prix_mat.id }}">{{ form.prix_mat.label.text }}:</label><br>
             {{ form.prix_mat(class="form-control") }}<br><br>
 
-            <label for="{{ form.nom_cat.id }}">{{ form.nom_cat.label.text }}:</label><br>
-            {{ form.nom_cat(class="form-control") }}<br><br>
+            <label for="nom_cat">{{ form.nom_cat.label.text }}:</label><br>
+            <select id="nom_cat" name="nom_cat">
+            {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+            </select><br><br>
 
             <input type="submit" value="Modifier" class="btn btn-primary">
         </form>

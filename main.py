@@ -106,19 +106,24 @@ def show_modify_materiel():
     # close the cursor
     cursor.close()
 
+    # assign the date values directly
+    date_achat = row[4]
+    date_expi = row[5]
+
     # convert the row data into a dictionary
     data = {
         "id_mat": row[0],
         "nom_mat": row[1],
         "model_mat": row[2],
         "serial_num": row[3],
-        "date_achat": row[4].isoformat() if row[4] else None,
-        "date_expi": row[5].isoformat() if row[5] else None,
+        "date_achat": date_achat,
+        "date_expi": date_expi,
         "prix_mat": row[6],
         "nom_cat": categorie_name
     }
-    # TODO delete the line here if needed v
+
     form = ModifyMaterielForm(data=data)
+
     # render the modify_materiel.html template and pass the data to it
     return render_template("/actions/modify_materiel.html", data=data, form=form)
 

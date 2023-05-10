@@ -136,6 +136,7 @@ def show_modify_materiel():
 def modify_materiel():
     # get the form data
     id_mat = request.form["id_mat"]
+    print(f"id_mat: {id_mat}")
     nom_mat = request.form["nom_mat"]
     model_mat = request.form["model_mat"]
     serial_num = request.form["serial_num"]
@@ -156,6 +157,7 @@ def modify_materiel():
 
     # get the old value for id_materiel from the query string parameter
     old_id_mat = request.args.get("id")
+    print(f"old_id_mat: {old_id_mat}")
 
     try:
         # update the id_materiel value in the t_materiel table
@@ -178,8 +180,10 @@ def modify_materiel():
 
         # commit the changes
         cnx.commit()
-    except:
+        print("Changes committed")
+    except Exception as e:
         # rollback the changes if an error occurs
+        print(f"Error updating id_materiel: {e}")
         cnx.rollback()
         raise
 

@@ -52,6 +52,9 @@
     <div class="portainer">
         <form action="{{ url_for('modify_materiel') }}" method="post">
             {{ form.csrf_token }}
+
+            <input type="hidden" name="old_id_mat" value="{{ request.args.get('id') }}">
+
             <label for="{{ form.id_mat.id }}">{{ form.id_mat.label.text }}:</label><br>
             {{ form.id_mat(class="form-control") }}<br><br>
 

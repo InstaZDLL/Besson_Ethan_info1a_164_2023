@@ -154,20 +154,34 @@ def modify_materiel():
     except ValueError:
         date_expi = None
 
-    # update the data in the t_materiel table
-    cursor.execute("UPDATE t_materiel SET nom_mat=%s, model_mat=%s, serial_num=%s, date_achat=%s, date_expi=%s, prix_mat=%s WHERE id_materiel=%s", (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat, id_mat))
+    # get the old value for id_materiel from the query string parameter
+    old_id_mat = request.args.get("id")
 
-    # update the data in the t_categorie_avoir_materiel and t_categorie tables
-    cursor.execute("SELECT * FROM t_categorie WHERE nom_cat=%s", (nom_cat,))
-    categorie_data = cursor.fetchone()
-    if categorie_data:
-        cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_categorie=%s WHERE fk_materiel=%s", (categorie_data[0], id_mat))
-    else:
-        cursor.execute("INSERT INTO t_categorie (nom_cat) VALUES (%s)", (nom_cat,))
-        cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_categorie=%s WHERE fk_materiel=%s", (cursor.lastrowid, id_mat))
+    try:
+        # update the id_materiel value in the t_materiel table
+        cursor.execute("UPDATE t_materiel SET id_materiel=%s WHERE id_materiel=%s", (id_mat, old_id_mat))
 
-    # commit the changes
-    cnx.commit()
+        # update the fk_materiel value in the t_categorie_avoir_materiel table
+        cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_materiel=%s WHERE fk_materiel=%s", (id_mat, old_id_mat))
+
+        # update the other fields in the t_materiel table
+        cursor.execute("UPDATE t_materiel SET nom_mat=%s, model_mat=%s, serial_num=%s, date_achat=%s, date_expi=%s, prix_mat=%s WHERE id_materiel=%s", (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat, id_mat))
+
+        # update the data in the t_categorie_avoir_materiel and t_categorie tables
+        cursor.execute("SELECT * FROM t_categorie WHERE nom_cat=%s", (nom_cat,))
+        categorie_data = cursor.fetchone()
+        if categorie_data:
+            cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_categorie=%s WHERE fk_materiel=%s", (categorie_data[0], id_mat))
+        else:
+            cursor.execute("INSERT INTO t_categorie (nom_cat) VALUES (%s)", (nom_cat,))
+            cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_categorie=%s WHERE fk_materiel=%s", (cursor.lastrowid, id_mat))
+
+        # commit the changes
+        cnx.commit()
+    except:
+        # rollback the changes if an error occurs
+        cnx.rollback()
+        raise
 
     # redirect to the success page
     return redirect(url_for("categorie"))

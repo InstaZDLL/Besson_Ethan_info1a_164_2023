@@ -136,7 +136,6 @@ def show_modify_materiel():
 def modify_materiel():
     # get the form data
     id_mat = request.form["id_mat"]
-    print(f"id_mat: {id_mat}")
     nom_mat = request.form["nom_mat"]
     model_mat = request.form["model_mat"]
     serial_num = request.form["serial_num"]
@@ -155,16 +154,12 @@ def modify_materiel():
     except ValueError:
         date_expi = None
 
-    # get the old value for id_materiel from the query string parameter
-    old_id_mat = request.args.get("id")
-    print(f"old_id_mat: {old_id_mat}")
+    # get the old value for id_materiel from the form data
+    old_id_mat = request.form["old_id_mat"]
 
     try:
         # update the id_materiel value in the t_materiel table
         cursor.execute("UPDATE t_materiel SET id_materiel=%s WHERE id_materiel=%s", (id_mat, old_id_mat))
-
-        # update the fk_materiel value in the t_categorie_avoir_materiel table
-        cursor.execute("UPDATE t_categorie_avoir_materiel SET fk_materiel=%s WHERE fk_materiel=%s", (id_mat, old_id_mat))
 
         # update the other fields in the t_materiel table
         cursor.execute("UPDATE t_materiel SET nom_mat=%s, model_mat=%s, serial_num=%s, date_achat=%s, date_expi=%s, prix_mat=%s WHERE id_materiel=%s", (nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat, id_mat))
@@ -180,10 +175,8 @@ def modify_materiel():
 
         # commit the changes
         cnx.commit()
-        print("Changes committed")
-    except Exception as e:
+    except:
         # rollback the changes if an error occurs
-        print(f"Error updating id_materiel: {e}")
         cnx.rollback()
         raise
 

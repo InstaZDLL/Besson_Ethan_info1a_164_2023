@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `t_categorie` (
   PRIMARY KEY (`id_categorie`)
 ) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_categorie: ~6 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_categorie: ~7 rows (approximately)
 INSERT INTO `t_categorie` (`id_categorie`, `nom_cat`, `description_cat`, `derniere_actualisation`) VALUES
 	(1, 'Ordinateurs', NULL, '2023-03-16 14:08:55'),
 	(2, 'Claviers et souris', NULL, '2023-03-16 14:38:19'),
@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS `t_categorie_avoir_materiel` (
   PRIMARY KEY (`id_categorie_avoir_materiel`),
   KEY `fk_t_categorie_avoir_materiel_t_categorie` (`fk_categorie`),
   KEY `fk_t_categorie_avoir_materiel_t_materiel` (`fk_materiel`),
-  CONSTRAINT `fk_t_categorie_avoir_materiel_t_categorie` FOREIGN KEY (`fk_categorie`) REFERENCES `t_categorie` (`id_categorie`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `fk_t_categorie_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE RESTRICT
+  CONSTRAINT `fk_t_categorie_avoir_materiel_t_categorie` FOREIGN KEY (`fk_categorie`) REFERENCES `t_categorie` (`id_categorie`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_t_categorie_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table besson_ethan_info_1a.t_categorie_avoir_materiel: ~38 rows (approximately)
@@ -123,8 +123,8 @@ CREATE TABLE IF NOT EXISTS `t_departement_avoir_materiel` (
   PRIMARY KEY (`id_departement_avoir_materiel`),
   KEY `fk_t_departement_avoir_materiel_t_materiel` (`fk_materiel`),
   KEY `fk_t_departement_avoir_materiel_t_departement` (`fk_departement`),
-  CONSTRAINT `fk_t_departement_avoir_materiel_t_departement` FOREIGN KEY (`fk_departement`) REFERENCES `t_departement` (`id_departement`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `fk_t_departement_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE RESTRICT
+  CONSTRAINT `fk_t_departement_avoir_materiel_t_departement` FOREIGN KEY (`fk_departement`) REFERENCES `t_departement` (`id_departement`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_t_departement_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table besson_ethan_info_1a.t_departement_avoir_materiel: ~10 rows (approximately)
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `t_fournisseur` (
 
 -- Dumping data for table besson_ethan_info_1a.t_fournisseur: ~5 rows (approximately)
 INSERT INTO `t_fournisseur` (`id_fournisseur`, `nom_four`, `adresse`, `num_tel`, `derniere_actualisation`) VALUES
-	(1, 'HP', 'Ueberlandstrasse 1, 8600 DÃ¼bendorf, Switzerland', '+41 58 444 ', '2023-04-18 07:52:00'),
+	(1, 'HP', 'Ueberlandstrasse 1, 8600 DÃƒÂ¼bendorf, Switzerland', '+41 58 444 ', '2023-04-18 07:52:00'),
 	(2, 'Benq', '16 Jihu Road Neihu, Taipei 114 Taiwan', '+886 2 2727', '2023-03-16 14:18:36'),
 	(3, 'Hewlett Packard Enterprise', '1701 E Mossy Oaks Rd, Spring, TX 77389, United States', '+1 888 342 ', '2023-03-16 14:16:18'),
 	(4, 'Synology', '9F., No.1, Yuandong Rd., Banqiao Dist., New Taipei City 220632, Taiwan', '+886 2 2955 1814', '2023-04-18 07:20:02'),
@@ -169,8 +169,8 @@ CREATE TABLE IF NOT EXISTS `t_fournisseur_avoir_materiel` (
   PRIMARY KEY (`id_fournisseur_avoir_materiel`),
   KEY `fk_t_fournisseur_avoir_materiel_t_fournisseur` (`fk_fournisseur`),
   KEY `fk_t_fournisseur_avoir_materiel_t_materiel` (`fk_materiel`),
-  CONSTRAINT `fk_t_fournisseur_avoir_materiel_t_fournisseur` FOREIGN KEY (`fk_fournisseur`) REFERENCES `t_fournisseur` (`id_fournisseur`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `fk_t_fournisseur_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE RESTRICT
+  CONSTRAINT `fk_t_fournisseur_avoir_materiel_t_fournisseur` FOREIGN KEY (`fk_fournisseur`) REFERENCES `t_fournisseur` (`id_fournisseur`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_t_fournisseur_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table besson_ethan_info_1a.t_fournisseur_avoir_materiel: ~38 rows (approximately)
@@ -250,8 +250,8 @@ CREATE TABLE IF NOT EXISTS `t_marque_avoir_materiel` (
   PRIMARY KEY (`id_marque_avoir_materiel`),
   KEY `fk_t_marque_avoir_materiel_t_marque` (`fk_marque`),
   KEY `fk_t_marque_avoir_materiel_t_materiel` (`fk_materiel`),
-  CONSTRAINT `fk_t_marque_avoir_materiel_t_marque` FOREIGN KEY (`fk_marque`) REFERENCES `t_marque` (`id_marque`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `fk_t_marque_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE RESTRICT
+  CONSTRAINT `fk_t_marque_avoir_materiel_t_marque` FOREIGN KEY (`fk_marque`) REFERENCES `t_marque` (`id_marque`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_t_marque_avoir_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table besson_ethan_info_1a.t_marque_avoir_materiel: ~38 rows (approximately)
@@ -379,8 +379,8 @@ CREATE TABLE IF NOT EXISTS `t_personnes_ajout_materiel` (
   PRIMARY KEY (`id_personnes_ajout_materiel`),
   KEY `fk_t_personnes_has_t_materiel_t_materiel1` (`fk_materiel`),
   KEY `fk_t_personnes_has_t_materiel_t_personnes1` (`fk_personnes`),
-  CONSTRAINT `fk_t_personnes_has_t_materiel_t_materiel1` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `fk_t_personnes_has_t_materiel_t_personnes1` FOREIGN KEY (`fk_personnes`) REFERENCES `t_personnes` (`id_personnes`) ON DELETE CASCADE ON UPDATE RESTRICT
+  CONSTRAINT `fk_t_personnes_has_t_materiel_t_materiel1` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_t_personnes_has_t_materiel_t_personnes1` FOREIGN KEY (`fk_personnes`) REFERENCES `t_personnes` (`id_personnes`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table besson_ethan_info_1a.t_personnes_ajout_materiel: ~0 rows (approximately)
@@ -434,8 +434,8 @@ CREATE TABLE IF NOT EXISTS `t_personnes_avoir_materiel` (
   PRIMARY KEY (`id_personnes_avoir_materiel`),
   KEY `fk_t_personnes_has_t_materiel_t_materiel` (`fk_materiel`),
   KEY `fk_t_personnes_has_t_materiel_t_personnes` (`fk_personnes`),
-  CONSTRAINT `fk_t_personnes_has_t_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `fk_t_personnes_has_t_materiel_t_personnes` FOREIGN KEY (`fk_personnes`) REFERENCES `t_personnes` (`id_personnes`) ON DELETE CASCADE ON UPDATE RESTRICT
+  CONSTRAINT `fk_t_personnes_has_t_materiel_t_materiel` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_t_personnes_has_t_materiel_t_personnes` FOREIGN KEY (`fk_personnes`) REFERENCES `t_personnes` (`id_personnes`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table besson_ethan_info_1a.t_personnes_avoir_materiel: ~0 rows (approximately)
@@ -465,8 +465,8 @@ CREATE TABLE IF NOT EXISTS `t_personnes_retrait_materiel` (
   PRIMARY KEY (`id_personnes_retrait_materiel`),
   KEY `fk_t_personnes_has_t_materiel_t_materiel2` (`fk_materiel`),
   KEY `fk_t_personnes_has_t_materiel_t_personnes2` (`fk_personnes`),
-  CONSTRAINT `fk_t_personnes_has_t_materiel_t_materiel2` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `fk_t_personnes_has_t_materiel_t_personnes2` FOREIGN KEY (`fk_personnes`) REFERENCES `t_personnes` (`id_personnes`) ON DELETE CASCADE ON UPDATE RESTRICT
+  CONSTRAINT `fk_t_personnes_has_t_materiel_t_materiel2` FOREIGN KEY (`fk_materiel`) REFERENCES `t_materiel` (`id_materiel`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_t_personnes_has_t_materiel_t_personnes2` FOREIGN KEY (`fk_personnes`) REFERENCES `t_personnes` (`id_personnes`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table besson_ethan_info_1a.t_personnes_retrait_materiel: ~1 rows (approximately)

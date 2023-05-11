@@ -336,13 +336,14 @@ def delete_row():
     row_id = request.args.get('id')
 
     # Execute the SQL query to delete the row with the given id
-    cursor.execute(f"DELETE FROM t_personnes_avoir_materiel WHERE id_personnes_avoir_materiel={row_id}")
+    cursor.execute("DELETE FROM t_personnes_avoir_materiel WHERE id_personnes_avoir_materiel=%s", (row_id,))
 
     # Commit the changes to the database
     cnx.commit()
 
     # Return a JSON response indicating success
     return {"status": "success"}
+
 
 
 @app.route('/delete_row_marque', methods=['POST'])
@@ -405,7 +406,7 @@ def get_row_data_marque():
     id = request.args.get('id')
 
     # Execute the SQL query to fetch the data for the row with the given id
-    cursor.execute(f"SELECT * FROM t_marque WHERE id_marque={id}")
+    cursor.execute("SELECT * FROM t_marque WHERE id_marque=%s", (id,))
     row = cursor.fetchone()
 
     # Return the data as a JSON object
@@ -414,6 +415,7 @@ def get_row_data_marque():
         "nom_marque": row[1],
         "description_marque": row[2]
     }
+
 
 
 @app.route('/add_marque', methods=['GET', 'POST'])

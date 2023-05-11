@@ -25,6 +25,13 @@ The goal of this project is to show our skills and understanding of web developm
 6. [ ] Add functionality to the filter button in `materiel.html`.
 7. [ ] Add a tag table to the editing panel. 🔄
 8. [x] Add functionality to the two remaining buttons in `categorie.html`.
+9. [ ] Restructuring of file names and paths.
+10. [ ] Re-structuring of the sources of the html files and optimization of the code.
+11. [ ] Add protection against SQL injections.
+12. [ ] Separate the different app routes in separate files for a better organization of the code.
+13. [ ] Import automatically the database when the server starts.
+14. [ ] Add a `server-start.py` file and initialize the application package in it.
+15. [ ] Removal of unused fonts in `/fonts` folder.
 
 
 ### Definitions :
@@ -52,11 +59,15 @@ Go to the project directory.
 
 Install dependencies.
 
+*If you use PyCharm, you don’t need to run this command, PyCharm installs all dependencies automatically*
+
 ```bash
   pip install -r requirements.txt
 ```
 
-Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the.env file.
+**[Linux only]** Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the.env file.
+
+*Note : if you are on windows, just edit the file with notepad or other text editing tool*
 
 ```bash
   nano .env
@@ -68,8 +79,9 @@ Go to the database folder.
   cd database
 ```
 
-Change if you need, the `besson_ethan_info_1a.sql` and paste your dump in this file.
+**[Linux only]** Change if you need, the `besson_ethan_info_1a.sql` and paste your dump in this file.
 
+*Note : if you are on windows, just edit the file with notepad or other text editing tool*
 ```bash
   nano besson_ethan_info_1a.sql
 ```
@@ -80,9 +92,10 @@ Run the `mysql_dump_import.py` to import the database.
   py mysql_dump_import.py
 ```
 
-Start the server.
+Return to the root folder of the project and start the server.
 
 ```bash
+  cd ..
   py main.py
 ```
 

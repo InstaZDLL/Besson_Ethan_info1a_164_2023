@@ -25,12 +25,35 @@
                margin: 0 auto 70px;
             }
 
-            form {
+             form {
                 background-color: #f2f2f2;
                 padding: 20px;
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             }
+             .end-btn{
+                 width:150px;
+                 height:45px;
+                 border-radius:45px;
+                 cursor:pointer;
+                 border:none;
+                 text-transform:uppercase;
+                 letter-spacing:2px;
+                 font-weight:bold;
+                 box-shadow:0px 8px 30px rgba(0,0,0,0.2);
+                 transition:all 0.3s ease;
+                 position: absolute;
+                 bottom: -10px;
+                 left: 50%;
+                 transform: translateX(-50%);
+             }
+              .end-btn:hover{
+                 background:#2ceae5;
+                 transform:translateY(-7px);
+                 color:#fff;
+                 box-shadow:0px 10px 25px rgba(46,223,229,0.445);
+                 transform: translate(-50%, -7px);
+             }
     </style>
 </head>
 
@@ -76,17 +99,46 @@
             <label for="{{ form.prix_mat.id }}">{{ form.prix_mat.label.text }}:</label><br>
             {{ form.prix_mat(class="form-control") }}<br><br>
 
-            <label for="nom_cat">{{ form.nom_cat.label.text }}:</label><br>
-            <select id="nom_cat" name="nom_cat">
-            {% for category in categories %}
-            <option value="{{ category }}">{{ category }}</option>
-            {% endfor %}
-            </select><br><br>
+            <div class="qtagselect">
+              <select id="nom_cat" name="nom_cat" class="qtagselect__select">
+                {% for category in categories %}
+                  {% if category == data.nom_cat %}
+                    <option value="{{ category }}" selected>{{ category }}</option>
+                  {% else %}
+                    <option value="{{ category }}">{{ category }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
 
-            <input type="submit" value="Modifier" class="btn btn-primary">
+            <input type="submit" value="Modifier" class="end-btn">
         </form>
     </div>
     <script>
+        $(function() {
+            // initialize the tag select
+            let tagselect = $('.qtagselect__select').tagselect({
+                'isOpen': false,
+                'maxTag': 1,
+            });
+
+            // add an event listener for the change event
+            $('.qtagselect__select').on('change', function() {
+                // destroy and re-initialize the tag select
+                tagselect.tagselect('destroy');
+                tagselect = $('.qtagselect__select').tagselect({
+                    'isOpen': false,
+                    'maxTag': 1,
+                });
+            });
+        });
+
+        // get a reference to the select element
+        let selectElement = document.querySelector("#nom_cat");
+
+        // get the selected value
+        let selectedValue = selectElement.value;
+
         document.querySelector("form").addEventListener("submit", function(event) {
           let idMatInput = document.querySelector("#id_mat");
           let idMatRegex = /^\d+$/;

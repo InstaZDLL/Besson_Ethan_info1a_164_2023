@@ -142,7 +142,7 @@ def modify_materiel_form():
     date_achat = request.form["date_achat"]
     date_expi = request.form["date_expi"]
     prix_mat = request.form["prix_mat"]
-    nom_cat = request.form["nom_cat"]
+    nom_cat = request.form.get("nom_cat")
 
     # validate and convert the date values
     try:
@@ -182,6 +182,7 @@ def modify_materiel_form():
 
     # redirect to the success page
     return redirect(url_for("categorie"))
+
 
 
 # TODO make the succes page and the redirection to the /categorie

@@ -128,12 +128,12 @@ def show_modify_materiel():
 
     form = ModifyMaterielForm(data=data)
 
-    # render the modify_materiel.html template and pass the data and categories to it
-    return render_template("/actions/modify_materiel.html", data=data, form=form, categories=categories)
+    # render the modify_materiel_form.html template and pass the data and categories to it
+    return render_template("/actions/modify_materiel_form.html", data=data, form=form, categories=categories)
 
 
-@app.route("/modify_materiel", methods=["POST"])
-def modify_materiel():
+@app.route("/modify_materiel_form", methods=["POST"])
+def modify_materiel_form():
     # get the form data
     id_mat = request.form["id_mat"]
     nom_mat = request.form["nom_mat"]
@@ -142,7 +142,7 @@ def modify_materiel():
     date_achat = request.form["date_achat"]
     date_expi = request.form["date_expi"]
     prix_mat = request.form["prix_mat"]
-    nom_cat = request.form["nom_cat"]
+    nom_cat = request.form.get("nom_cat")
 
     # validate and convert the date values
     try:
@@ -182,6 +182,7 @@ def modify_materiel():
 
     # redirect to the success page
     return redirect(url_for("categorie"))
+
 
 
 # TODO make the succes page and the redirection to the /categorie

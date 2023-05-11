@@ -23,7 +23,7 @@ The goal of this project is to show our skills and understanding of web developm
 4. [ ] ~~Add the option to recover button for restoring the previous database.~~
 5. [ ] Add an image in the footer.
 6. [ ] Add functionality to the filter button in `materiel.html`.
-7. [ ] Add a tag table to the editing panel. 🔄
+7. [x] Add a tag table to the editing panel. 🔄
 8. [x] Add functionality to the two remaining buttons in `categorie.html`.
 9. [ ] Restructuring of file names and paths.
 10. [ ] Re-structuring of the sources of the html files and optimization of the code.

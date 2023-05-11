@@ -27,7 +27,7 @@ The goal of this project is to show our skills and understanding of web developm
 8. [x] Add functionality to the two remaining buttons in `categorie.html`.
 9. [ ] Restructuring of file names and paths.
 10. [ ] Re-structuring of the sources of the html files and optimization of the code.
-11. [ ] Add protection against SQL injections.
+11. [x] Add protection against SQL injections.
 12. [ ] Separate the different app routes in separate files for a better organization of the code.
 13. [x] Import automatically the database when the server starts.
 14. [ ] Add a `server-start.py` file and initialize the application package in it.

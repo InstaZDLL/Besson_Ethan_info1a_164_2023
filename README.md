@@ -34,6 +34,7 @@ The goal of this project is to show our skills and understanding of web developm
 15. [x] Removal of unused fonts in `/fonts` folder.
 16. [ ] Add functionality to the `/success` app route.
 17. [ ] Add a success of a failed popup when submitting to all forms linked to `categorie.html`.
+18. [ ] Add the possibility to change the id of the marques in all linked forms in the `marques.html`.
 
 
 ### Definitions :

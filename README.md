@@ -31,7 +31,7 @@ The goal of this project is to show our skills and understanding of web developm
 12. [ ] Separate the different app routes in separate files for a better organization of the code.
 13. [x] Import automatically the database when the server starts.
 14. [ ] Add a `server-start.py` file and initialize the application package in it.
-15. [ ] Removal of unused fonts in `/fonts` folder.
+15. [x] Removal of unused fonts in `/fonts` folder.
 
 
 ### Definitions :

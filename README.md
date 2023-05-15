@@ -25,7 +25,7 @@ The goal of this project is to show our skills and understanding of web developm
 6. [ ] Add functionality to the filter button in `materiel.html`.
 7. [x] Add a tag table to the editing panel. 🔄
 8. [x] Add functionality to the two remaining buttons in `categorie.html`.
-9. [ ] Restructuring of file names and paths.
+9. [ ] Restructuring of file names and paths. 🔜
 10. [x] Re-structuring of the sources of the html files and optimization of the code.
 11. [x] Add protection against SQL injections.
 12. [x] Separate the different app routes in separate files for a better organization of the code.
@@ -47,6 +47,7 @@ The goal of this project is to show our skills and understanding of web developm
 3. [ ] ~~Cancelled~~
 
 - 🔄 The objective has been modified (not the original but keep the same goal)
+- 🔜 The objective is partially completed (with further updates to come)
 
 ## Run Locally
 

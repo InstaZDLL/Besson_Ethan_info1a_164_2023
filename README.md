@@ -28,13 +28,14 @@ The goal of this project is to show our skills and understanding of web developm
 9. [ ] Restructuring of file names and paths.
 10. [ ] Re-structuring of the sources of the html files and optimization of the code.
 11. [x] Add protection against SQL injections.
-12. [ ] Separate the different app routes in separate files for a better organization of the code.
+12. [x] Separate the different app routes in separate files for a better organization of the code.
 13. [x] Import automatically the database when the server starts.
-14. [ ] Add a `server-start.py` file and initialize the application package in it.
+14. [x] Add a `run-app.py` file and initialize the application package in it. 🔄
 15. [x] Removal of unused fonts in `/fonts` folder.
 16. [ ] Add functionality to the `/success` app route.
 17. [ ] Add a success of a failed popup when submitting to all forms linked to `categorie.html`.
 18. [ ] Add the possibility to change the id of the marques in all linked forms in the `marques.html`.
+19. [ ] Correct all resource paths.
 
 
 ### Definitions :

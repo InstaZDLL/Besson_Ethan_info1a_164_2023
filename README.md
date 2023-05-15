@@ -40,6 +40,7 @@ The goal of this project is to show our skills and understanding of web developm
 21. [x] Move the database SQL and the `mysql_dump_import.py` to a python package.
 22. [x] Implement the functionality to import the database in the `run_app.py`.
 23. [ ] Add a switch to display or not the connection test result table.
+24. [ ] Fix this error (Erreur lors de la connexion à MySQL : 1049 (42000): Unknown database 'besson_ethan_info_1a')
 
 
 ### Definitions :

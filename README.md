@@ -39,6 +39,7 @@ The goal of this project is to show our skills and understanding of web developm
 20. [ ] Fix the bug of the qtagselect from the page `modify_materiel.html`.
 21. [ ] Move the database SQL and the `mysql_dump_import.py` to a python package.
 22. [ ] Implement the functionality to import the database in the `run_app.py`.
+23. [ ] Add a switch to display or not the connection test result table.
 
 
 ### Definitions :

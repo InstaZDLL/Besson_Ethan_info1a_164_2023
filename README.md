@@ -37,7 +37,9 @@ The goal of this project is to show our skills and understanding of web developm
 18. [ ] Add the possibility to change the id of the marques in all linked forms in the `marques.html`.
 19. [x] Correct all resource paths.
 20. [ ] Fix the bug of the qtagselect from the page `modify_materiel.html`.
-21. [ ] Add a switch to display or not the connection test result table.
+21. [ ] Move the database SQL and the `mysql_dump_import.py` to a python package.
+22. [ ] Implement the functionality to import the database in the `run_app.py`.
+23. [ ] Add a switch to display or not the connection test result table.
 
 
 ### Definitions :
@@ -52,59 +54,86 @@ The goal of this project is to show our skills and understanding of web developm
 
 ## Run Locally
 
+### Windows
 
 Clone the project.
 
-```bash
-  git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
+```git
+git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
 ```
 
 Go to the project directory.
 
-```bash
-  cd Besson_Ethan_info1a_164_2023
+```shell
+cd Besson_Ethan_info1a_164_2023
 ```
 
 Install dependencies.
 
 *If you use PyCharm, you don’t need to run this command, PyCharm installs all dependencies automatically*
 
-```bash
-  pip install -r requirements.txt
+```shell
+pip install -r requirements.txt
 ```
 
-**[Linux only]** Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the.env file.
+Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the `.env` file. You can edit the file with Notepad or another text editing tool.
 
-*Note : if you are on windows, just edit the file with notepad or other text editing tool*
-
-```bash
-  nano .env
+```shell
+notepad .env
 ```
 
-Go to the database folder.
+Change, if needed, the `besson_ethan_info_1a.sql` file in the `database` directory. You can edit the file with Notepad or another text editing tool.
 
-```bash
-  cd database
+```shell
+cd database
+notepad besson_ethan_info_1a.sql
 ```
 
-**[Linux only]** Change if you need, the `besson_ethan_info_1a.sql` and paste your dump in this file.
+Return to the root folder of the project and start the server. You can launch the `start.bat` file with a **double click** or in the terminal with `.\start.bat`.
 
-*Note : if you are on windows, just edit the file with notepad or other text editing tool*
-```bash
-  nano besson_ethan_info_1a.sql
+```shell
+.\start.bat
 ```
 
-Run the `mysql_dump_import.py` to import the database.
+### Linux
 
-```bash
-  py mysql_dump_import.py
+Clone the project.
+
+```git
+git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
 ```
 
-Return to the root folder of the project and start the server.
+Go to the project directory.
 
-```bash
-  cd ..
-  py main.py
+```shell
+cd Besson_Ethan_info1a_164_2023
+```
+
+Install dependencies.
+
+*If you use PyCharm, you don’t need to run this command, PyCharm installs all dependencies automatically*
+
+```shell
+pip install -r requirements.txt
+```
+
+Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the `.env` file. You can use the following command to edit the file:
+
+```shell
+nano .env
+```
+
+Change, if needed, the `besson_ethan_info_1a.sql` file in the `database` directory. You can use the following command to edit the file:
+
+```shell
+cd database
+nano besson_ethan_info_1a.sql
+```
+
+Return to the root folder of the project and start the server using the following command:
+
+```shell
+./start.sh
 ```
 
 
@@ -128,7 +157,7 @@ To run this project, you will need to modify the following environment variables
 You can change the sql request to show an other table.
 
 ```python
-@app.route('/marques')
+@bp.route('/marques')
 def marques():
     """
     Retrieves the data from the t_brand table in the MySQL database and displays it on the "brands.html" page.
@@ -171,7 +200,6 @@ If you change something here don't forget to modify the html code too in the `pe
 
 
 - [@InstaZDLL](https://github.com/InstaZDLL)
-- [@Sentinel773](https://github.com/Sentinel773)
 
 
 ## License

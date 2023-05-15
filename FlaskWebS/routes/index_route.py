@@ -9,6 +9,3 @@ def index():
     Displays the home page of the Flask application.
     """
     return render_template('index.html')
-
-# Other route functions and logic
-# ...

@@ -17,43 +17,42 @@
     <script src="/static/js/jquery.tagselect.js"></script>
     <style>
         .portainer {
-               display: flex;
-               justify-content: center;
-               align-items: center;
-               z-index: 2;
-               width: auto;
-               margin: 0 auto 70px;
-            }
-
-             form {
-                background-color: #f2f2f2;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            }
-             .end-btn{
-                 width:150px;
-                 height:45px;
-                 border-radius:45px;
-                 cursor:pointer;
-                 border:none;
-                 text-transform:uppercase;
-                 letter-spacing:2px;
-                 font-weight:bold;
-                 box-shadow:0px 8px 30px rgba(0,0,0,0.2);
-                 transition:all 0.3s ease;
-                 position: absolute;
-                 bottom: -10px;
-                 left: 50%;
-                 transform: translateX(-50%);
-             }
-              .end-btn:hover{
-                 background:#2ceae5;
-                 transform:translateY(-7px);
-                 color:#fff;
-                 box-shadow:0px 10px 25px rgba(46,223,229,0.445);
-                 transform: translate(-50%, -7px);
-             }
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             z-index: 2;
+             width: auto;
+             margin: 0 auto 70px;
+        }
+         form {
+             background-color: #f2f2f2;
+             padding: 20px;
+             border-radius: 10px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+         .end-btn{
+             width:150px;
+             height:45px;
+             border-radius:45px;
+             cursor:pointer;
+             border:none;
+             text-transform:uppercase;
+             letter-spacing:2px;
+             font-weight:bold;
+             box-shadow:0px 8px 30px rgba(0,0,0,0.2);
+             transition:all 0.3s ease;
+             position: absolute;
+             bottom: -10px;
+             left: 50%;
+             transform: translateX(-50%);
+        }
+         .end-btn:hover{
+             background:#2ceae5;
+             transform:translateY(-7px);
+             color:#fff;
+             box-shadow:0px 10px 25px rgba(46,223,229,0.445);
+             transform: translate(-50%, -7px);
+        }
     </style>
 </head>
 
@@ -140,97 +139,101 @@
         let selectedValue = selectElement.value;
 
         document.querySelector("form").addEventListener("submit", function(event) {
-          let idMatInput = document.querySelector("#id_mat");
-          let idMatRegex = /^\d+$/;
-          if (!idMatRegex.test(idMatInput.value)) {
-            alert("Invalid input for id_mat");
-            event.preventDefault();
-          }
+            let idMatInput = document.querySelector("#id_mat");
+            let idMatRegex = /^\d+$/;
+            if (!idMatRegex.test(idMatInput.value)) {
+                alert("Invalid input for id_mat");
+                event.preventDefault();
+            }
 
-          let nomMatInput = document.querySelector("#nom_mat");
-          let nomMatRegex = /^.{1,255}$/;
-          if (!nomMatRegex.test(nomMatInput.value)) {
-            alert("Invalid input for nom_mat");
-            event.preventDefault();
-          }
+            let nomMatInput = document.querySelector("#nom_mat");
+            let nomMatRegex = /^.{1,255}$/;
+            if (!nomMatRegex.test(nomMatInput.value)) {
+                alert("Invalid input for nom_mat");
+                event.preventDefault();
+            }
 
-          let modelMatInput = document.querySelector("#model_mat");
-          let modelMatRegex = /^.{1,255}$/;
-          if (!modelMatRegex.test(modelMatInput.value)) {
-            alert("Invalid input for model_mat");
-            event.preventDefault();
-          }
+            let modelMatInput = document.querySelector("#model_mat");
+            let modelMatRegex = /^.{1,255}$/;
+            if (!modelMatRegex.test(modelMatInput.value)) {
+                alert("Invalid input for model_mat");
+                event.preventDefault();
+            }
 
-          let serialNumInput = document.querySelector("#serial_num");
-          let serialNumRegex = /^.{1,255}$/;
-          if (!serialNumRegex.test(serialNumInput.value)) {
-            alert("Invalid input for serial_num");
-            event.preventDefault();
-          }
+            let serialNumInput = document.querySelector("#serial_num");
+            let serialNumRegex = /^.{1,255}$/;
+            if (!serialNumRegex.test(serialNumInput.value)) {
+                alert("Invalid input for serial_num");
+                event.preventDefault();
+            }
 
-          let dateAchatInput = document.querySelector("#date_achat");
-          let dateAchatRegex = /.+/;
-          if (!dateAchatRegex.test(dateAchatInput.value)) {
-            alert("Invalid input for date_achat");
-            event.preventDefault();
-          }
+            let dateAchatInput = document.querySelector("#date_achat");
+            let dateAchatRegex = /.+/;
+            if (!dateAchatRegex.test(dateAchatInput.value)) {
+                alert("Invalid input for date_achat");
+                event.preventDefault();
+            }
 
-          let dateExpiInput = document.querySelector("#date_expi");
-          let dateExpiRegex = /.+/;
-          if (!dateExpiRegex.test(dateExpiInput.value)) {
-            alert("Invalid input for date_expi");
-            event.preventDefault();
-          }
+            let dateExpiInput = document.querySelector("#date_expi");
+            let dateExpiRegex = /.+/;
+            if (!dateExpiRegex.test(dateExpiInput.value)) {
+                alert("Invalid input for date_expi");
+                event.preventDefault();
+            }
 
-          let prixMatInput = document.querySelector("#prix_mat");
-          let prixMatRegex = /^\d{1,12}$/;
-          if (!prixMatRegex.test(prixMatInput.value)) {
-            alert("Invalid input for prix_mat");
-            event.preventDefault();
-          }
+            let prixMatInput = document.querySelector("#prix_mat");
+            let prixMatRegex = /^\d{1,12}$/;
+            if (!prixMatRegex.test(prixMatInput.value)) {
+                alert("Invalid input for prix_mat");
+                event.preventDefault();
+            }
 
-          let nomCatInput = document.querySelector("#nom_cat");
-          let nomCatRegex = /.+/;
-          if (!nomCatRegex.test(nomCatInput.value)) {
-            alert("Invalid input for nom_cat");
-            event.preventDefault();
-          }
+            let nomCatInput = document.querySelector("#nom_cat");
+            let nomCatRegex = /.+/;
+            if (!nomCatRegex.test(nomCatInput.value)) {
+                alert("Invalid input for nom_cat");
+                event.preventDefault();
+            }
         });
 
         document.addEventListener("DOMContentLoaded", function() {
-          // Validate date fields to ensure that the expiration date is greater than the purchase date
-          document.querySelector("form").addEventListener("submit", function(event) {
-            let dateAchat = new Date(document.querySelector("#date_achat").value);
-            let dateExpi = new Date(document.querySelector("#date_expi").value);
-            if (dateExpi <= dateAchat) {
-              alert("La date d'expiration doit être supérieure à la date d'achat.");
-              event.preventDefault();
-            } else {
-              // convert the date values to the ISO format
-              document.querySelector("#date_achat").value = dateAchat.toISOString().slice(0, 16);
-              document.querySelector("#date_expi").value = dateExpi.toISOString().slice(0, 16);
-            }
-          });
+            // Validate date fields to ensure that the expiration date is greater than the purchase date
+            document.querySelector("form").addEventListener("submit", function(event) {
+                let dateAchat = new Date(document.querySelector("#date_achat").value);
+                let dateExpi = new Date(document.querySelector("#date_expi").value);
+                if (dateExpi <= dateAchat) {
+                    alert("La date d'expiration doit être supérieure à la date d'achat.");
+                    event.preventDefault();
+                } else {
+                    // convert the date values to the ISO format
+                    document.querySelector("#date_achat").value = dateAchat.toISOString().slice(0, 16);
+                    document.querySelector("#date_expi").value = dateExpi.toISOString().slice(0, 16);
+                }
+            });
 
-          // pre-fill the form with the existing data for this material
-          let data = {{ data|tojson }};
+            // pre-fill the form with the existing data for this material
+            let data = {
+                {
+                    data | tojson
+                }
+            };
 
-          // format the date values
-          let dateAchat = new Date(data.date_achat);
-          let dateExpi = new Date(data.date_expi);
-          let timezoneOffset = dateAchat.getTimezoneOffset() * 60000;
-          let dateAchatFormatted = new Date(dateAchat.getTime() - timezoneOffset).toISOString().slice(0, 16);
-          let dateExpiFormatted = new Date(dateExpi.getTime() - timezoneOffset).toISOString().slice(0, 16);
+            // format the date values
+            let dateAchat = new Date(data.date_achat);
+            let dateExpi = new Date(data.date_expi);
+            let timezoneOffset = dateAchat.getTimezoneOffset() * 60000;
+            let dateAchatFormatted = new Date(dateAchat.getTime() - timezoneOffset).toISOString().slice(0, 16);
+            let dateExpiFormatted = new Date(dateExpi.getTime() - timezoneOffset).toISOString().slice(0, 16);
 
-          // pre-fill the form fields
-          document.querySelector("#id_mat").value = data.id_mat;
-          document.querySelector("#nom_mat").value = data.nom_mat;
-          document.querySelector("#model_mat").value = data.model_mat;
-          document.querySelector("#serial_num").value = data.serial_num;
-          document.querySelector("#date_achat").value = dateAchatFormatted;
-          document.querySelector("#date_expi").value = dateExpiFormatted;
-          document.querySelector("#prix_mat").value = data.prix_mat;
-          document.querySelector("#nom_cat").value = data.nom_cat;
+            // pre-fill the form fields
+            document.querySelector("#id_mat").value = data.id_mat;
+            document.querySelector("#nom_mat").value = data.nom_mat;
+            document.querySelector("#model_mat").value = data.model_mat;
+            document.querySelector("#serial_num").value = data.serial_num;
+            document.querySelector("#date_achat").value = dateAchatFormatted;
+            document.querySelector("#date_expi").value = dateExpiFormatted;
+            document.querySelector("#prix_mat").value = data.prix_mat;
+            document.querySelector("#nom_cat").value = data.nom_cat;
         });
     </script>
     {% include '/actions/background-boxes.html' %}

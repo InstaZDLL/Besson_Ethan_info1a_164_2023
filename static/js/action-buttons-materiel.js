@@ -25,7 +25,9 @@ $(document).ready(function() {
         $.ajax({
             url: '/delete_row_materiel',
             type: 'POST',
-            data: {id: row_id},
+            data: {
+                id: row_id
+            },
             success: function(response) {
                 console.log(response);
                 // reload the page to see the updated table
@@ -39,18 +41,18 @@ $(document).ready(function() {
 });
 
 // Add button
-document.addEventListener("DOMContentLoaded", function () {
-  // add click event listener to all add buttons
-  let addBtns = document.querySelectorAll(".add-b");
-  addBtns.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      // redirect to the add page
-      window.location.href = "/add_materiel";
+document.addEventListener("DOMContentLoaded", function() {
+    // add click event listener to all add buttons
+    let addBtns = document.querySelectorAll(".add-b");
+    addBtns.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            // redirect to the add page
+            window.location.href = "/add_materiel";
+        });
     });
-  });
 });
 
-// Modify
+// Modify buttom
 document.addEventListener("DOMContentLoaded", function() {
     // select all of the .modify-b elements
     let modifyBtns = document.querySelectorAll(".modify-b");

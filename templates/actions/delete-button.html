@@ -1,27 +1,27 @@
 <script>
     // Get all delete buttons
-        const deleteButtons = document.querySelectorAll(".btn-secondary");
+    const deleteButtons = document.querySelectorAll(".btn-secondary");
 
-        // Attach a click event listener to each delete button
-        deleteButtons.forEach((button) => {
-            button.addEventListener("click", (event) => {
-                // Prevent the button from submitting the form
-                event.preventDefault();
+    // Attach a click event listener to each delete button
+    deleteButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+            // Prevent the button from submitting the form
+            event.preventDefault();
 
-                // Get the ID of the row to delete
-                const id = button.getAttribute("data-id");
+            // Get the ID of the row to delete
+            const id = button.getAttribute("data-id");
 
-                // Show a confirmation popup
-                if (confirm("Êtes-vous sûr de vouloir supprimer cette ligne ?")) {
-                    // If the user confirms, send a request to delete the row with the given id
-                    fetch(`/delete_row?id=${id}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            // Remove the row from the HTML table
-                            button.closest("tr").remove();
-                        })
-                        .catch(error => console.error(error));
-                }
-            });
+            // Show a confirmation popup
+            if (confirm("Êtes-vous sûr de vouloir supprimer cette ligne ?")) {
+                // If the user confirms, send a request to delete the row with the given id
+                fetch(`/delete_row?id=${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Remove the row from the HTML table
+                        button.closest("tr").remove();
+                    })
+                    .catch(error => console.error(error));
+            }
         });
+    });
 </script>

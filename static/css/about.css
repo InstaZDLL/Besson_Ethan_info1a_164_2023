@@ -104,10 +104,11 @@
  @keyframes move {
      0% {
          transform: translate(0px, 0px);
-    }
+     }
      40% {
          transform: translate(-12px, -12px);
-    }
+     }
      50% {
          transform: translate(-12px, -12px);
-    }
+     }
+}

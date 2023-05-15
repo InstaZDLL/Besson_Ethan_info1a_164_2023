@@ -417,21 +417,32 @@ def get_row_data_marque():
     }
 
 
-
+# TODO add the possibility to edit the id
 @app.route('/add_marque', methods=['GET', 'POST'])
 def add_marque():
     """
     Processes the data from the add mark form and adds it to the MySQL database.
     """
     if request.method == 'POST':
+        id_marque = request.form['id_marque']
         nom_marque = request.form['nom_marque']
         description_marque = request.form['description_marque']
 
+        # check if id_marque already exists
+        query = "SELECT id_marque FROM t_marque WHERE id_marque = %s"
+        values = (id_marque,)
+        cursor.execute(query, values)
+        result = cursor.fetchone()
+        if result is not None:
+            flash('La marque avec cet id existe déjà.', 'danger')
+            return redirect(url_for('add_marque'))
+
+        # insert new record
         query = """
-            INSERT INTO t_marque (nom_marque, description_marque)
-            VALUES (%s, %s)
+            INSERT INTO t_marque (id_marque, nom_marque, description_marque)
+            VALUES (%s, %s, %s)
         """
-        values = (nom_marque, description_marque)
+        values = (id_marque, nom_marque, description_marque)
 
         try:
             cursor.execute(query, values)
@@ -446,6 +457,8 @@ def add_marque():
 
     else:
         return render_template('/actions/add_marque_form.html')
+
+
 
 
 @app.route('/marques')

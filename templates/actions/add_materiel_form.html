@@ -140,53 +140,53 @@
         <script>
             // Input fields regexp
             function validateForm() {
-                // Define an array of objects representing each input field and its corresponding regex
-                var fields = [
-                    { id: 'id_materiel', regex: /^\d+$/ },
-                    { id: 'nom_mat', regex: /^.{1,255}$/ },
-                    { id: 'model_mat', regex: /^.{1,255}$/ },
-                    { id: 'serial_num', regex: /^.{1,255}$/ },
-                    { id: 'date_achat', regex: /.+/ },
-                    { id: 'date_expi', regex: /.+/ },
-                    { id: 'prix_mat', regex: /^\d{1,12}$/ },
-                    { id: 'nom_cat', regex: /.+/ }
-                ];
+              // Define an array of objects representing each input field and its corresponding regex
+              const fields = [
+                { id: 'id_materiel', regex: /^\d+$/ },
+                { id: 'nom_mat', regex: /^.{1,255}$/ },
+                { id: 'model_mat', regex: /^.{1,255}$/ },
+                { id: 'serial_num', regex: /^.{1,255}$/ },
+                { id: 'date_achat', regex: /.+/ },
+                { id: 'date_expi', regex: /.+/ },
+                { id: 'prix_mat', regex: /^\d{1,12}$/ },
+                { id: 'nom_cat', regex: /.+/ }
+              ];
 
-                // Loop through each input field and validate it
-                for (var i = 0; i < fields.length; i++) {
-                    var input = document.getElementById(fields[i].id);
-                    var regex = fields[i].regex;
-                    var value = input.value;
+              // Loop through each input field and validate it
+              for (const field of fields) {
+                const input = document.getElementById(field.id);
+                const value = input.value;
 
-                    if (!regex.test(value)) {
-                        alert('Invalid value for ' + input.name);
-                        return false;
-                    }
+                if (!field.regex.test(value)) {
+                  alert(`Invalid value for ${input.name}`);
+                  return false;
                 }
+              }
 
-                // If all input values are valid, submit the form
-                return true;
+              // If all input values are valid, submit the form
+              return true;
             }
-        </script>
-        <script>
+
             // Default local date and time set
             // Get the current date and time
-            var now = new Date();
+            const now = new Date();
 
             // Format the date and time as a string in the format "YYYY-MM-DDThh:mm"
-            var dateTimeString = now.toISOString().slice(0, 16);
+            const dateTimeString = now.toISOString().slice(0, 16);
 
             // Set the value of the datetime-local input to the current date and time
-            document.getElementById('date_achat').value = dateTimeString;
+            const dateAchatInput = document.getElementById('date_achat');
+            dateAchatInput.value = dateTimeString;
 
             // Add four years to the current date
             now.setFullYear(now.getFullYear() + 4);
 
             // Format the date and time as a string in the format "YYYY-MM-DDThh:mm"
-            dateTimeString = now.toISOString().slice(0, 16);
+            const newDateTimeString = now.toISOString().slice(0, 16);
 
             // Set the value of the datetime-local input to the current date and time plus four years
-            document.getElementById('date_expi').value = dateTimeString;
+            const dateExpiInput = document.getElementById('date_expi');
+            dateExpiInput.value = newDateTimeString;
         </script>
     </div>
     {% include '/actions/background-boxes.html' %}

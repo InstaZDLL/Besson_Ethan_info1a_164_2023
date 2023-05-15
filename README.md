@@ -56,13 +56,13 @@ The goal of this project is to show our skills and understanding of web developm
 
 Clone the project.
 
-```bash
+```git
   git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
 ```
 
 Go to the project directory.
 
-```bash
+```shell
   cd Besson_Ethan_info1a_164_2023
 ```
 
@@ -70,7 +70,7 @@ Install dependencies.
 
 *If you use PyCharm, you don’t need to run this command, PyCharm installs all dependencies automatically*
 
-```bash
+```shell
   pip install -r requirements.txt
 ```
 
@@ -78,34 +78,24 @@ Install dependencies.
 
 *Note : if you are on windows, just edit the file with notepad or other text editing tool*
 
-```bash
+```shell
   nano .env
 ```
 
-Go to the database folder.
-
-```bash
-  cd database
-```
 
 **[Linux only]** Change if you need, the `besson_ethan_info_1a.sql` and paste your dump in this file.
 
 *Note : if you are on windows, just edit the file with notepad or other text editing tool*
-```bash
+```shell
+  cd database
   nano besson_ethan_info_1a.sql
 ```
 
-Run the `mysql_dump_import.py` to import the database.
+**[Linux only]** Return to the root folder of the project and start the server.
 
-```bash
-  py mysql_dump_import.py
-```
-
-Return to the root folder of the project and start the server.
-
-```bash
-  cd ..
-  py main.py
+*Note : if you are on windows, lunch the start.bat with a **double click** on the file or in the terminal with `.\start.bat`*
+```shell
+  ./start.sh
 ```
 
 

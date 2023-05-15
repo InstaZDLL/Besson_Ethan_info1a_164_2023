@@ -32,20 +32,9 @@ except mysql.connector.Error as e:
 cursor = cnx.cursor()
 
 
-@app.route('/')
-def index():
-    """
-    Displays the home page of the Flask application.
-    """
-    return render_template('index.html')
 
 
-@app.errorhandler(404)
-def not_found_error(error):
-    """
-    Handles the 404 error (page not found) and displays a custom error page.
-    """
-    return render_template('404.html'), 404
+
 
 
 @app.route('/materiel')
@@ -479,12 +468,7 @@ def marques():
     return render_template('marques.html', data=data, headers=headers)
 
 
-@app.route('/about')
-def about():
-    """
-    Displays the "about.html" page.
-    """
-    return render_template('about.html')
+
 
 
 if __name__ == '__main__':

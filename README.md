@@ -99,7 +99,7 @@ Return to the root folder of the project and start the server.
 
 ```bash
   cd ..
-  py main.py.bak
+  py main.py
 ```
 
 

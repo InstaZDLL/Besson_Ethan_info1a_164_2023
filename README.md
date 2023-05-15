@@ -37,6 +37,8 @@ The goal of this project is to show our skills and understanding of web developm
 18. [ ] Add the possibility to change the id of the marques in all linked forms in the `marques.html`.
 19. [x] Correct all resource paths.
 20. [ ] Fix the bug of the qtagselect from the page `modify_materiel.html`.
+21. [ ] Move the database SQL and the `mysql_dump_import.py` to a python package.
+22. [ ] Implement the functionality to import the database in the `run_app.py`.
 
 
 ### Definitions :
@@ -127,7 +129,7 @@ To run this project, you will need to modify the following environment variables
 You can change the sql request to show an other table.
 
 ```python
-@app.route('/marques')
+@bp.route('/marques')
 def marques():
     """
     Retrieves the data from the t_brand table in the MySQL database and displays it on the "brands.html" page.
@@ -170,7 +172,6 @@ If you change something here don't forget to modify the html code too in the `pe
 
 
 - [@InstaZDLL](https://github.com/InstaZDLL)
-- [@Sentinel773](https://github.com/Sentinel773)
 
 
 ## License

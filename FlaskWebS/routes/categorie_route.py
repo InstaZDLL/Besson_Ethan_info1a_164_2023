@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash, Blueprint
+from flask import render_template, request, redirect, url_for, flash, jsonify, Blueprint
 from FlaskWebS import cnx, cursor
 from PyFormModify import ModifyMaterielForm
 from datetime import datetime

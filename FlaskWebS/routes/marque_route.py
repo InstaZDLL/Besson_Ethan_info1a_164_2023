@@ -52,7 +52,7 @@ def modify_marque():
                   'danger')
             print(e)
 
-        return redirect(url_for('marques'))
+        return redirect(url_for('marque.marques'))
 
     else:
         return render_template('/actions/modify_marque_form.html')
@@ -93,7 +93,7 @@ def add_marque():
         result = cursor.fetchone()
         if result is not None:
             flash('La marque avec cet id existe déjà.', 'danger')
-            return redirect(url_for('add_marque'))
+            return redirect(url_for('marque.add_marque'))
 
         # insert new record
         query = """
@@ -111,8 +111,10 @@ def add_marque():
             flash('Une erreur est survenue lors de l\'ajout de la marque. Veuillez réessayer plus tard.', 'danger')
             print(e)
 
-        return redirect(url_for('marques'))
-
+        # Redirects to the 'marques' endpoint within the 'marque' Blueprint.
+        # Using 'marque.marques' instead of just 'marques' specifies the endpoint within the Blueprint.
+        # This ensures Flask can correctly build the URL for the 'marques' endpoint.
+        return redirect(url_for('marque.marques'))
     else:
         return render_template('/actions/add_marque_form.html')
 

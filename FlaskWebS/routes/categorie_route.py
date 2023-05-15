@@ -110,7 +110,7 @@ def modify_materiel_form():
         raise
 
     # redirect to the success page
-    return redirect(url_for("categorie"))
+    return redirect(url_for("categorie.categorie"))
 
 
 # TODO make the succes page and the redirection to the /categorie
@@ -200,7 +200,7 @@ def add_materiel():
                   'danger')
             print(e)
 
-        return redirect(url_for('categorie'))
+        return redirect(url_for('categorie.categorie'))
 
     else:
         return render_template('/actions/add_materiel_form.html', categories=categories)

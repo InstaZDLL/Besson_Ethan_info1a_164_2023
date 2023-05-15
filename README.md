@@ -37,6 +37,7 @@ The goal of this project is to show our skills and understanding of web developm
 18. [ ] Add the possibility to change the id of the marques in all linked forms in the `marques.html`.
 19. [x] Correct all resource paths.
 20. [ ] Fix the bug of the qtagselect from the page `modify_materiel.html`.
+21. [ ] Add a switch to display or not the connection test result table.
 
 
 ### Definitions :

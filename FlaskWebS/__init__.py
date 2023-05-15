@@ -34,7 +34,9 @@ from FlaskWebS.routes.index_route import bp as index_bp
 from FlaskWebS.routes.about_route import bp as about_bp
 from FlaskWebS.routes.categorie_route import bp as categorie_bp
 from FlaskWebS.routes.marque_route import bp as marque_bp
+from FlaskWebS.routes.personnes_route import bp as personnes_bp
 
+app.register_blueprint(personnes_bp)
 app.register_blueprint(marque_bp)
 app.register_blueprint(categorie_bp)
 app.register_blueprint(index_bp)

@@ -53,17 +53,18 @@ The goal of this project is to show our skills and understanding of web developm
 
 ## Run Locally
 
+### Windows
 
 Clone the project.
 
 ```git
-  git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
+git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
 ```
 
 Go to the project directory.
 
 ```shell
-  cd Besson_Ethan_info1a_164_2023
+cd Besson_Ethan_info1a_164_2023
 ```
 
 Install dependencies.
@@ -71,31 +72,67 @@ Install dependencies.
 *If you use PyCharm, you don’t need to run this command, PyCharm installs all dependencies automatically*
 
 ```shell
-  pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
-**[Linux only]** Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the.env file.
-
-*Note : if you are on windows, just edit the file with notepad or other text editing tool*
+Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the `.env` file. You can edit the file with Notepad or another text editing tool.
 
 ```shell
-  nano .env
+notepad .env
 ```
 
+Change, if needed, the `besson_ethan_info_1a.sql` file in the `database` directory. You can edit the file with Notepad or another text editing tool.
 
-**[Linux only]** Change if you need, the `besson_ethan_info_1a.sql` and paste your dump in this file.
-
-*Note : if you are on windows, just edit the file with notepad or other text editing tool*
 ```shell
-  cd database
-  nano besson_ethan_info_1a.sql
+cd database
+notepad besson_ethan_info_1a.sql
 ```
 
-**[Linux only]** Return to the root folder of the project and start the server.
+Return to the root folder of the project and start the server. You can launch the `start.bat` file with a **double click** or in the terminal with `.\start.bat`.
 
-*Note : if you are on windows, lunch the start.bat with a **double click** on the file or in the terminal with `.\start.bat`*
 ```shell
-  ./start.sh
+.\start.bat
+```
+
+### Linux
+
+Clone the project.
+
+```git
+git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
+```
+
+Go to the project directory.
+
+```shell
+cd Besson_Ethan_info1a_164_2023
+```
+
+Install dependencies.
+
+*If you use PyCharm, you don’t need to run this command, PyCharm installs all dependencies automatically*
+
+```shell
+pip install -r requirements.txt
+```
+
+Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the `.env` file. You can use the following command to edit the file:
+
+```shell
+nano .env
+```
+
+Change, if needed, the `besson_ethan_info_1a.sql` file in the `database` directory. You can use the following command to edit the file:
+
+```shell
+cd database
+nano besson_ethan_info_1a.sql
+```
+
+Return to the root folder of the project and start the server using the following command:
+
+```shell
+./start.sh
 ```
 
 

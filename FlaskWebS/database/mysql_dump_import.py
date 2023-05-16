@@ -1,10 +1,7 @@
 import mysql.connector
 from prettytable import PrettyTable
 import re
-host_mysql = "localhost"
-user_mysql = "root"
-pass_mysql = ""
-port_mysql = 3306
+from FlaskWebS import host_mysql, user_mysql, pass_mysql, port_mysql, name_bd_mysql
 
 
 def before():
@@ -19,7 +16,7 @@ def before():
     cursor = connection.cursor()
 
     # Create the database
-    cursor.execute("CREATE DATABASE IF NOT EXISTS besson_ethan_info_1a")
+    cursor.execute(f"CREATE DATABASE IF NOT EXISTS {name_bd_mysql}")
 
 
 # def run():

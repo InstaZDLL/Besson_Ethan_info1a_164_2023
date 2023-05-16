@@ -35,6 +35,9 @@ def run():
     # Create a cursor object
     cursor = connection.cursor()
 
+    # Create the database
+    cursor.execute(f"CREATE DATABASE IF NOT EXISTS {database_name}")
+
     # Import the SQL dump file
     try:
         # Split the SQL dump into individual queries

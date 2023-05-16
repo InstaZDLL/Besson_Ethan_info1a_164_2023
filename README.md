@@ -25,16 +25,22 @@ The goal of this project is to show our skills and understanding of web developm
 6. [ ] Add functionality to the filter button in `materiel.html`.
 7. [x] Add a tag table to the editing panel. 🔄
 8. [x] Add functionality to the two remaining buttons in `categorie.html`.
-9. [ ] Restructuring of file names and paths.
-10. [ ] Re-structuring of the sources of the html files and optimization of the code.
+9. [ ] Restructuring of file names and paths. 🔜
+10. [x] Re-structuring of the sources of the html files and optimization of the code.
 11. [x] Add protection against SQL injections.
-12. [ ] Separate the different app routes in separate files for a better organization of the code.
+12. [x] Separate the different app routes in separate files for a better organization of the code.
 13. [x] Import automatically the database when the server starts.
-14. [ ] Add a `server-start.py` file and initialize the application package in it.
+14. [x] Add a `run-app.py` file and initialize the application package in it. 🔄
 15. [x] Removal of unused fonts in `/fonts` folder.
 16. [ ] Add functionality to the `/success` app route.
 17. [ ] Add a success of a failed popup when submitting to all forms linked to `categorie.html`.
 18. [ ] Add the possibility to change the id of the marques in all linked forms in the `marques.html`.
+19. [x] Correct all resource paths.
+20. [ ] Fix the bug of the qtagselect from the page `modify_materiel.html`.
+21. [x] Move the database SQL and the `mysql_dump_import.py` to a python package.
+22. [x] Implement the functionality to import the database in the `run_app.py`.
+23. [ ] Add a switch to display or not the connection test result table.
+24. [ ] Fix this error (Erreur lors de la connexion à MySQL : 1049 (42000): Unknown database 'besson_ethan_info_1a') 🔜
 
 
 ### Definitions :
@@ -44,62 +50,91 @@ The goal of this project is to show our skills and understanding of web developm
 2. [ ] In progress
 3. [ ] ~~Cancelled~~
 
+- 🔄 The objective has been modified (not the original but keep the same goal)
+- 🔜 The objective is partially completed (with further updates to come)
 
 ## Run Locally
 
+### Windows
 
 Clone the project.
 
-```bash
-  git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
+```git
+git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
 ```
 
 Go to the project directory.
 
-```bash
-  cd Besson_Ethan_info1a_164_2023
+```shell
+cd Besson_Ethan_info1a_164_2023
 ```
 
 Install dependencies.
 
 *If you use PyCharm, you don’t need to run this command, PyCharm installs all dependencies automatically*
 
-```bash
-  pip install -r requirements.txt
+```shell
+pip install -r requirements.txt
 ```
 
-**[Linux only]** Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the.env file.
+Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the `.env` file. You can edit the file with Notepad or another text editing tool.
 
-*Note : if you are on windows, just edit the file with notepad or other text editing tool*
-
-```bash
-  nano .env
+```shell
+notepad .env
 ```
 
-Go to the database folder.
+Change, if needed, the `besson_ethan_info_1a.sql` file in the `database` directory. You can edit the file with Notepad or another text editing tool.
 
-```bash
-  cd database
+```shell
+cd database
+notepad besson_ethan_info_1a.sql
 ```
 
-**[Linux only]** Change if you need, the `besson_ethan_info_1a.sql` and paste your dump in this file.
+Return to the root folder of the project and start the server. You can launch the `start.bat` file with a **double click** or in the terminal with `.\start.bat`.
 
-*Note : if you are on windows, just edit the file with notepad or other text editing tool*
-```bash
-  nano besson_ethan_info_1a.sql
+```shell
+.\start.bat
 ```
 
-Run the `mysql_dump_import.py` to import the database.
+### Linux
 
-```bash
-  py mysql_dump_import.py
+Clone the project.
+
+```git
+git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
 ```
 
-Return to the root folder of the project and start the server.
+Go to the project directory.
 
-```bash
-  cd ..
-  py main.py
+```shell
+cd Besson_Ethan_info1a_164_2023
+```
+
+Install dependencies.
+
+*If you use PyCharm, you don’t need to run this command, PyCharm installs all dependencies automatically*
+
+```shell
+pip install -r requirements.txt
+```
+
+Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the `.env` file. You can use the following command to edit the file:
+
+```shell
+nano .env
+```
+
+Change, if needed, the `besson_ethan_info_1a.sql` file in the `database` directory. You can use the following command to edit the file:
+
+```shell
+cd database
+nano besson_ethan_info_1a.sql
+```
+
+Return to the root folder of the project and start the server using the following command:
+
+```shell
+./start.sh
 ```
 
 
@@ -123,7 +158,7 @@ To run this project, you will need to modify the following environment variables
 You can change the sql request to show an other table.
 
 ```python
-@app.route('/marques')
+@bp.route('/marques')
 def marques():
     """
     Retrieves the data from the t_brand table in the MySQL database and displays it on the "brands.html" page.
@@ -166,7 +201,6 @@ If you change something here don't forget to modify the html code too in the `pe
 
 
 - [@InstaZDLL](https://github.com/InstaZDLL)
-- [@Sentinel773](https://github.com/Sentinel773)
 
 
 ## License

@@ -1,12 +1,12 @@
 import mysql.connector
 from prettytable import PrettyTable
 import re
-from FlaskWebS import name_file_dump_sql_bd,host_mysql, user_mysql, pass_mysql, port_mysql, name_bd_mysql
+from FlaskWebS import host_mysql, user_mysql, pass_mysql, port_mysql, name_bd_mysql
 
 
 def run():
     # Read the SQL dump file
-    with open(name_file_dump_sql_bd, "r") as f:
+    with open("besson_ethan_info_1a.sql", "r") as f:
         sql_dump = f.read()
 
     # Extract the name of the database from the CREATE DATABASE statement

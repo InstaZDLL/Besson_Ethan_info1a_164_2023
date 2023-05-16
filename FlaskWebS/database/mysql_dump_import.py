@@ -1,7 +1,5 @@
-import os
 import mysql.connector
 from prettytable import PrettyTable
-from dotenv import load_dotenv
 import re
 from FlaskWebS import name_file_dump_sql_bd,host_mysql, user_mysql, pass_mysql, port_mysql, name_bd_mysql
 

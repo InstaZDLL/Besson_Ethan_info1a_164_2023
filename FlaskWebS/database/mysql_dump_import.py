@@ -83,7 +83,7 @@ def run():
         print("Connexion à la base de données réussie. \U00002705")
     except mysql.connector.Error as e:
         if e.errno == 1049:
-            print(f"La connexion à la base de données a réussi \U00002705, mais la base de données \033[1m{NAME_BD_MYSQL}\033["
+            print(f"La connexion à la base de données a réussi \U00002705, mais la base de données \033[1m{name_bd_mysql}\033["
                   f"m n'existe pas. \U0000274C\n1. Lancer le script \033[1mmysql_dump_import.py\033[0m pour importer la base de données.")
             exit(1)
         elif e.errno == 2003:

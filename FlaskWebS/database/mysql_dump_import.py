@@ -1,44 +1,34 @@
 import mysql.connector
-from FlaskWebS import name_bd_mysql as db_name
-from FlaskWebS import name_file_dump_sql_bd as sql_file_path
-from FlaskWebS import user_mysql, pass_mysql, host_mysql
+from prettytable import PrettyTable
 
+# Database connection details
+host = 'localhost'
+user = 'root'
+password = ''
+database = 'besson_ethan_info_1a'
 
-def run():
-    # Create a connection to the MySQL server
-    cnx = mysql.connector.connect(
-        user=user_mysql,
-        password=pass_mysql,
-        host=host_mysql
-    )
+# Connect to the database
+conn = mysql.connector.connect(host=host, user=user, password=password, database=database)
+cursor = conn.cursor()
 
-    # Create a cursor object to execute SQL statements
-    cursor = cnx.cursor()
+# Execute a SELECT query
+cursor.execute("SELECT * FROM t_categorie")
 
-    # Create a new database using a prepared statement with a parameterized query
-    create_database_query = 'CREATE DATABASE %s'
-    cursor.execute(create_database_query, (db_name,))
+# Retrieve all rows from the result set
+rows = cursor.fetchall()
 
-    # Connect to the new database
-    cursor.execute(f'USE {db_name}')
+# Create a pretty table object
+table = PrettyTable()
+table.field_names = [i[0] for i in cursor.description]
 
-    # Open and read the SQL file
-    with open(sql_file_path, 'r') as sql_file:
-        sql_script = sql_file.read()
+# Add rows to the table
+for row in rows:
+    table.add_row(row)
 
-    # Split the SQL script into separate statements
-    statements = sql_script.split(';')
+# Print the table
+print(table)
 
-    # Execute each statement in the script
-    for statement in statements:
-        if statement.strip() != '':
-            cursor.execute(statement)
-
-    # Commit the changes and close the cursor and connection
-    cnx.commit()
-    cursor.close()
-    cnx.close()
-
-
-if __name__ == "__main__":
-    run()
+# Close the database connection
+cursor.close()
+conn.close()
+print("Finished")

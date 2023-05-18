@@ -1,5 +1,6 @@
-from FlaskWebS.database import mysql_dump_import
 from FlaskWebS import app, adresse_srv_flask, port_flask, debug_flask
+from FlaskWebS.database import mysql_dump_import
+
 
 if __name__ == '__main__':
 

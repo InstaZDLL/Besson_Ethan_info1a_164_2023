@@ -70,14 +70,6 @@ Go to the project directory.
 cd Besson_Ethan_info1a_164_2023
 ```
 
-Install dependencies.
-
-*If you use PyCharm, you don’t need to run this command, PyCharm installs all dependencies automatically*
-
-```shell
-pip install -r requirements.txt
-```
-
 Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the `.env` file. You can edit the file with Notepad or another text editing tool.
 
 ```shell
@@ -109,14 +101,6 @@ Go to the project directory.
 
 ```shell
 cd Besson_Ethan_info1a_164_2023
-```
-
-Install dependencies.
-
-*If you use PyCharm, you don’t need to run this command, PyCharm installs all dependencies automatically*
-
-```shell
-pip install -r requirements.txt
 ```
 
 Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the `.env` file. You can use the following command to edit the file:

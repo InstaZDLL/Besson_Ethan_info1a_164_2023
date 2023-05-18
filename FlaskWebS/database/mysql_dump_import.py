@@ -5,6 +5,7 @@ from prettytable import PrettyTable
 
 load_dotenv()
 
+# Database connection details
 host_mysql = os.environ.get('HOST_MYSQL')
 user_mysql = os.environ.get('USER_MYSQL')
 pass_mysql = os.environ.get('PASS_MYSQL')
@@ -14,11 +15,6 @@ name_file_dump_sql_bd = os.environ.get('NAME_FILE_DUMP_SQL_BD')
 
 
 def run():
-    # Database connection details
-    # host = 'localhost'
-    # user = 'root'
-    # password = ''
-    # database = 'besson_ethan_info_1a'
 
     # SQL dump file path
     dump_file = 'besson_ethan_info_1a.sql'

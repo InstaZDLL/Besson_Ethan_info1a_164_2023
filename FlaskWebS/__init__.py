@@ -22,11 +22,27 @@ app.secret_key = os.environ.get('SECRET_KEY_FLASK')
 # Connection to the MySQL database
 try:
     cnx = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
-                                  database=name_bd_mysql)
+                                   database=name_bd_mysql)
 except mysql.connector.Error as e:
-    print(f"Erreur lors de la connexion à MySQL : {e}")
-    exit(1)
+    if e.errno == 1049:
+        # Unknown database error
+        print(f"Database '{name_bd_mysql}' does not exist. Creating it...")
+        # Create a new connection without specifying a database name
+        cnx = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql)
+        cursor = cnx.cursor()
+        # Execute a CREATE DATABASE statement
+        cursor.execute(f"CREATE DATABASE {name_bd_mysql}")
+        cursor.close()
+        cnx.close()
+        # Connect to the newly created database
+        cnx = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
+                                       database=name_bd_mysql)
+    else:
+        print(f"Error connecting to MySQL: {e}")
+        exit(1)
+
 cursor = cnx.cursor()
+
 
 
 # Import and register the route blueprint

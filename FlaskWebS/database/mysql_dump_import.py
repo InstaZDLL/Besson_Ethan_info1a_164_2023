@@ -17,7 +17,7 @@ name_file_dump_sql_bd = os.environ.get('NAME_FILE_DUMP_SQL_BD')
 def run():
 
     # SQL dump file path
-    dump_file = 'besson_ethan_info_1a.sql'
+    dump_file = name_file_dump_sql_bd #'besson_ethan_info_1a.sql'
 
     # Connect to the database
     conn = mysql.connector.connect(host=host_mysql, user=user_mysql, password=pass_mysql, port=port_mysql)

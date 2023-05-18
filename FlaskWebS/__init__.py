@@ -25,7 +25,8 @@ try:
                                   database=name_bd_mysql)
 except mysql.connector.Error as e:
     print(f"Erreur lors de la connexion à MySQL : {e}")
-    exit(1)
+    # exit(1)
+
 cursor = cnx.cursor()
 
 

@@ -72,7 +72,7 @@
         </div>
     </div>
     <div class="portainer">
-        <form action="{{ url_for('modify_materiel_form') }}" method="post">
+        <form action="{{ url_for('categorie.modify_materiel_form') }}" method="post">
             {{ form.csrf_token }}
 
             <input type="hidden" name="old_id_mat" value="{{ request.args.get('id') }}">
@@ -212,11 +212,7 @@
             });
 
             // pre-fill the form with the existing data for this material
-            let data = {
-                {
-                    data | tojson
-                }
-            };
+            let data = {{data | tojson}};
 
             // format the date values
             let dateAchat = new Date(data.date_achat);

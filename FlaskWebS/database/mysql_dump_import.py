@@ -1,94 +1,77 @@
+from dotenv import load_dotenv
+import os
 import mysql.connector
 from prettytable import PrettyTable
 
-# Database connection details
-host = 'localhost'
-user = 'root'
-password = ''
-database = 'besson_ethan_info_1a'
+load_dotenv()
+
+host_mysql = os.environ.get('HOST_MYSQL')
+user_mysql = os.environ.get('USER_MYSQL')
+pass_mysql = os.environ.get('PASS_MYSQL')
+port_mysql = os.environ.get('PORT_MYSQL')
+name_bd_mysql = os.environ.get('NAME_BD_MYSQL')
+name_file_dump_sql_bd = os.environ.get('NAME_FILE_DUMP_SQL_BD')
 
 
-# SQL dump file path
-dump_file = 'besson_ethan_info_1a.sql'
+def run():
+    # Database connection details
+    # host = 'localhost'
+    # user = 'root'
+    # password = ''
+    # database = 'besson_ethan_info_1a'
 
-# Connect to the database
-conn = mysql.connector.connect(host=host, user=user, password=password)
-cursor = conn.cursor()
+    # SQL dump file path
+    dump_file = 'besson_ethan_info_1a.sql'
 
-# Read the SQL dump file
-with open(dump_file, 'r') as file:
-    sql_statements = file.read()
+    # Connect to the database
+    conn = mysql.connector.connect(host=host_mysql, user=user_mysql, password=pass_mysql, port=port_mysql)
+    cursor = conn.cursor()
 
-# Split SQL statements by semicolon and execute them one by one
-statements = sql_statements.split(';')
-for statement in statements:
-    # Ignore empty statements
-    if not statement.strip():
-        continue
+    # Read the SQL dump file
+    with open(dump_file, 'r') as file:
+        sql_statements = file.read()
 
-    try:
-        # Execute the statement
-        cursor.execute(statement)
-        conn.commit()
-    except mysql.connector.Error as e:
-        print(f'Error executing statement: {statement}')
-        print(f'Error message: {str(e)}')
+    # Split SQL statements by semicolon and execute them one by one
+    statements = sql_statements.split(';')
+    for statement in statements:
+        # Ignore empty statements
+        if not statement.strip():
+            continue
 
-# Connect to the database
-conn = mysql.connector.connect(host=host, user=user, password=password, database=database)
-cursor = conn.cursor()
+        try:
+            # Execute the statement
+            cursor.execute(statement)
+            conn.commit()
+        except mysql.connector.Error as e:
+            print(f'Error executing statement: {statement}')
+            print(f'Error message: {str(e)}')
 
-# Execute a SELECT query
-cursor.execute("SELECT * FROM t_categorie")
+    # Connect to the database
+    conn = mysql.connector.connect(host=host_mysql, user=user_mysql, password=pass_mysql, port=port_mysql, database=name_bd_mysql)
+    cursor = conn.cursor()
 
-# Retrieve all rows from the result set
-rows = cursor.fetchall()
+    # Execute a SELECT query
+    cursor.execute("SELECT * FROM t_categorie")
 
-# Create a pretty table object
-table = PrettyTable()
-table.field_names = [i[0] for i in cursor.description]
+    # Retrieve all rows from the result set
+    rows = cursor.fetchall()
 
-# Add rows to the table
-for row in rows:
-    table.add_row(row)
+    # Create a pretty table object
+    table = PrettyTable()
+    table.field_names = [i[0] for i in cursor.description]
 
-# Print the table
-print(table)
+    # Add rows to the table
+    for row in rows:
+        table.add_row(row)
 
-# Close the database connection
-cursor.close()
-conn.close()
-print("Finished")
+    # Print the table
+    print(table)
 
-# import mysql.connector
-#
-# # Connect to the MySQL server
-# cnx = mysql.connector.connect(
-#     host='localhost',
-#     user='your_username',
-#     password='your_password'
-# )
-#
-# # Create a cursor object to interact with the database
-# cursor = cnx.cursor()
-#
-# # Create the database
-# database_name = 'besson_ethan_info_1a'
-# create_database_query = f"CREATE DATABASE {database_name}"
-# cursor.execute(create_database_query)
-#
-# # Switch to the newly created database
-# use_database_query = f"USE {database_name}"
-# cursor.execute(use_database_query)
-#
-# # Read the SQL dump file
-# sql_dump_file = 'path_to_your_sql_dump_file.sql'
-# with open(sql_dump_file, 'r') as file:
-#     sql_script = file.read()
-#
-# # Execute the SQL script to import the dump
-# cursor.execute(sql_script)
-#
-# # Commit the changes and close the connection
-# cnx.commit()
-# cnx.close()
+    # Close the database connection
+    cursor.close()
+    conn.close()
+    print("Finished")
+
+
+if __name__ == '__main__':
+    run()

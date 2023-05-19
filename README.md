@@ -6,9 +6,9 @@ This is a simple web application created as part of the Modulus 164 project.
 The goal of this project is to show our skills and understanding of web development.
 
 
-[![Version](https://img.shields.io/github/v/release/InstaZDLL/FlaskWebS?style=for-the-badge)](https://github.com/InstaZDLL/FlaskWebS/releases)
-[![AFLv3 License](https://img.shields.io/github/license/InstaZDLL/FlaskWebS?logo=e&style=for-the-badge)](https://opensource.org/license/afl-3-0-php)
-[![Last commit](https://img.shields.io/github/last-commit/InstaZDLL/FlaskWebS?style=for-the-badge)](https://github.com/InstaZDLL/FlaskWebS)
+[![Version](https://img.shields.io/github/v/release/InstaZDLL/Besson_Ethan_info1a_164_2023?style=for-the-badge)](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/releases)
+[![AFLv3 License](https://img.shields.io/github/license/InstaZDLL/Besson_Ethan_info1a_164_2023?logo=e&style=for-the-badge)](https://opensource.org/license/afl-3-0-php)
+[![Last commit](https://img.shields.io/github/last-commit/InstaZDLL/Besson_Ethan_info1a_164_2023?style=for-the-badge)](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023)
 
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
@@ -70,7 +70,7 @@ Go to the project directory.
 cd Besson_Ethan_info1a_164_2023
 ```
 
-Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the `.env` file. You can edit the file with Notepad or another text editing tool.
+Modify the [environment variables](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023#environment-variables) in the `.env` file. You can edit the file with Notepad or another text editing tool.
 
 ```shell
 notepad .env
@@ -103,7 +103,7 @@ Go to the project directory.
 cd Besson_Ethan_info1a_164_2023
 ```
 
-Modify the [environment variables](https://github.com/InstaZDLL/FlaskWebS#environment-variables) in the `.env` file. You can use the following command to edit the file:
+Modify the [environment variables](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023#environment-variables) in the `.env` file. You can use the following command to edit the file:
 
 ```shell
 nano .env

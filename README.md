@@ -76,10 +76,10 @@ Modify the [environment variables](https://github.com/InstaZDLL/Besson_Ethan_inf
 notepad .env
 ```
 
-Change, if needed, the `besson_ethan_info_1a.sql` file in the `database` directory. You can edit the file with Notepad or another text editing tool.
+Change, **if needed**, the `besson_ethan_info_1a.sql` file in the `database` directory. You can edit the file with Notepad or another text editing tool.
 
 ```shell
-cd database
+cd FlaskWebS/database
 notepad besson_ethan_info_1a.sql
 ```
 
@@ -112,7 +112,7 @@ nano .env
 Change, if needed, the `besson_ethan_info_1a.sql` file in the `database` directory. You can use the following command to edit the file:
 
 ```shell
-cd database
+cd FlaskWebS/database
 nano besson_ethan_info_1a.sql
 ```
 

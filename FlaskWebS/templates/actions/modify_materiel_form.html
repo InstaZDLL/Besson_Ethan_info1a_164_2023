@@ -42,7 +42,7 @@
              box-shadow:0px 8px 30px rgba(0,0,0,0.2);
              transition:all 0.3s ease;
              position: absolute;
-             bottom: -10px;
+             bottom: auto;
              left: 50%;
              transform: translateX(-50%);
         }
@@ -98,6 +98,7 @@
             <label for="{{ form.prix_mat.id }}">{{ form.prix_mat.label.text }}:</label><br>
             {{ form.prix_mat(class="form-control") }}<br><br>
 
+            <label for="nom_cat">{{ form.nom_cat.label.text }}:</label><br>
             <div class="qtagselect">
               <select id="nom_cat" name="nom_cat" class="qtagselect__select">
                 {% for category in categories %}

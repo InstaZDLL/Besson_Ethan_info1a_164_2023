@@ -36,7 +36,7 @@ The goal of this project is to show our skills and understanding of web developm
 17. [ ] Add a success and a failed popup when submitting to all forms linked to `categorie.html`. 🔄
 18. [ ] Add the possibility to change the id of the marques in all linked forms in the `marques.html`.
 19. [x] Correct all resource paths.
-20. [ ] Fix the bug of the qtagselect from the page `modify_materiel.html`.
+20. [x] Fix the bug of the qtagselect from the page `modify_materiel.html`.
 21. [x] Move the database SQL and the `mysql_dump_import.py` to a python package.
 22. [x] Implement the functionality to import the database in the `run_app.py`.
 23. [ ] Add a switch en the `.env` file to display or not the connection test result table. 🔄

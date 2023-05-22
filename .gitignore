@@ -188,4 +188,4 @@ $RECYCLE.BIN/
 # =========================
 *.bak
 release.md
-.env
+*.env

@@ -123,6 +123,7 @@
 
             // add an event listener for the change event
             $('.qtagselect__select').on('change', function() {
+                // console.log("Selected value:", $(this).val()); // event logging in the console
                 // destroy and re-initialize the tag select
                 tagselect.tagselect('destroy');
                 tagselect = $('.qtagselect__select').tagselect({

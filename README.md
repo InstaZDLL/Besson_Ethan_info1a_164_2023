@@ -80,6 +80,8 @@ Change, **if needed**, the `besson_ethan_info_1a.sql` file in the `database` dir
 
 ```shell
 cd FlaskWebS/database
+```
+```shell
 notepad besson_ethan_info_1a.sql
 ```
 

@@ -10,7 +10,6 @@ updates:
     schedule:
       interval: "daily"
       timezone: "Europe/Zurich"
-
     reviewers:
       - "InstaZDLL"
     assignees:

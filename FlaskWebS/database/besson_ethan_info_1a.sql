@@ -30,13 +30,13 @@ CREATE TABLE IF NOT EXISTS `t_categorie` (
   PRIMARY KEY (`id_categorie`)
 ) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Dumping data for table besson_ethan_info_1a.t_categorie: ~7 rows (approximately)
+-- Dumping data for table besson_ethan_info_1a.t_categorie: ~8 rows (approximately)
 INSERT INTO `t_categorie` (`id_categorie`, `nom_cat`, `description_cat`, `derniere_actualisation`) VALUES
 	(1, 'Ordinateurs', NULL, '2023-03-16 14:08:55'),
-	(2, 'Claviers et souris', NULL, '2023-03-16 14:38:19'),
-	(4, 'Cartouche d\'encre', NULL, '2023-03-16 14:09:43'),
+	(2, 'Claviers_et_souris', NULL, '2023-05-22 12:31:46'),
+	(4, 'Cartouche_d\'encre', NULL, '2023-05-22 12:31:37'),
 	(5, 'Photoconducteurs', NULL, '2023-03-16 14:09:52'),
-	(6, 'Recupereteur de tonner', NULL, '2023-04-18 07:49:03'),
+	(6, 'Recupereteur_de_tonner', NULL, '2023-05-22 12:31:34'),
 	(7, 'Serveurs', NULL, '2023-04-18 07:55:19'),
 	(8, 'Moniteurs', NULL, '2023-04-18 07:56:23'),
 	(9, 'Autres', NULL, '2023-04-18 07:56:22');
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `t_fournisseur` (
 
 -- Dumping data for table besson_ethan_info_1a.t_fournisseur: ~5 rows (approximately)
 INSERT INTO `t_fournisseur` (`id_fournisseur`, `nom_four`, `adresse`, `num_tel`, `derniere_actualisation`) VALUES
-	(1, 'HP', 'Ueberlandstrasse 1, 8600 DÃƒÂ¼bendorf, Switzerland', '+41 58 444 ', '2023-04-18 07:52:00'),
+	(1, 'HP', 'Ueberlandstrasse 1, 8600 DÃƒÆ’Ã‚Â¼bendorf, Switzerland', '+41 58 444 ', '2023-04-18 07:52:00'),
 	(2, 'Benq', '16 Jihu Road Neihu, Taipei 114 Taiwan', '+886 2 2727', '2023-03-16 14:18:36'),
 	(3, 'Hewlett Packard Enterprise', '1701 E Mossy Oaks Rd, Spring, TX 77389, United States', '+1 888 342 ', '2023-03-16 14:16:18'),
 	(4, 'Synology', '9F., No.1, Yuandong Rd., Banqiao Dist., New Taipei City 220632, Taiwan', '+886 2 2955 1814', '2023-04-18 07:20:02'),

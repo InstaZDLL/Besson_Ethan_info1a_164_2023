@@ -25,7 +25,7 @@ The goal of this project is to show our skills and understanding of web developm
 6. [ ] Add functionality to the filter button in `materiel.html`.
 7. [x] Add a tag table to the editing panel. 🔄
 8. [x] Add functionality to the two remaining buttons in `categorie.html`.
-9. [ ] Restructuring of file names and paths. 🔜
+9. [x] Restructuring of file names and paths. 🔜
 10. [x] Re-structuring of the sources of the html files and optimization of the code.
 11. [x] Add protection against SQL injections.
 12. [x] Separate the different app routes in separate files for a better organization of the code.
@@ -33,10 +33,10 @@ The goal of this project is to show our skills and understanding of web developm
 14. [x] Add a `run-app.py` file and initialize the application package in it. 🔄
 15. [x] Removal of unused fonts in `/fonts` folder.
 16. [ ] Add functionality to the `/success` app route.
-17. [ ] Add a success of a failed popup when submitting to all forms linked to `categorie.html`.
+17. [ ] Add a success and a failed popup when submitting to all forms linked to `categorie.html`. 🔄
 18. [ ] Add the possibility to change the id of the marques in all linked forms in the `marques.html`.
 19. [x] Correct all resource paths.
-20. [ ] Fix the bug of the qtagselect from the page `modify_materiel.html`.
+20. [x] Fix the bug of the qtagselect from the page `modify_materiel.html`.
 21. [x] Move the database SQL and the `mysql_dump_import.py` to a python package.
 22. [x] Implement the functionality to import the database in the `run_app.py`.
 23. [ ] Add a switch en the `.env` file to display or not the connection test result table. 🔄

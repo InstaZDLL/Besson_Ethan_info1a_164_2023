@@ -12,6 +12,7 @@ pass_mysql = os.environ.get('PASS_MYSQL')
 port_mysql = os.environ.get('PORT_MYSQL')
 name_bd_mysql = os.environ.get('NAME_BD_MYSQL')
 name_file_dump_sql_bd = os.environ.get('NAME_FILE_DUMP_SQL_BD')
+select_query_enabled = os.environ.get('SELECT_QUERY_ENABLED') == 'true'
 
 
 def run():
@@ -47,21 +48,16 @@ def run():
     cursor = conn.cursor()
 
     # Execute a SELECT query
-    cursor.execute("SELECT * FROM t_categorie")
-
-    # Retrieve all rows from the result set
-    rows = cursor.fetchall()
-
-    # Create a pretty table object
-    table = PrettyTable()
-    table.field_names = [i[0] for i in cursor.description]
-
-    # Add rows to the table
-    for row in rows:
-        table.add_row(row)
-
-    # Print the table
-    print(table)
+    if select_query_enabled:
+        cursor.execute("SELECT * FROM t_categorie")
+        rows = cursor.fetchall()
+        table = PrettyTable()
+        table.field_names = [i[0] for i in cursor.description]
+        for row in rows:
+            table.add_row(row)
+        print(table)
+    else:
+        print('SELECT query is not enabled')
 
     # Close the database connection
     cursor.close()

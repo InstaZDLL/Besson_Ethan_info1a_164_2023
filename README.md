@@ -39,7 +39,7 @@ The goal of this project is to show our skills and understanding of web developm
 20. [x] Fix the bug of the qtagselect from the page `modify_materiel.html`.
 21. [x] Move the database SQL and the `mysql_dump_import.py` to a python package.
 22. [x] Implement the functionality to import the database in the `run_app.py`.
-23. [ ] Add a switch en the `.env` file to display or not the connection test result table. 🔄
+23. [x] Add a switch en the `.env` file to display or not the connection test result table. 🔄
 24. [x] Fix the error when the starting the run_app.py: `1049 (42000): Unknown database`. 🔄
 25. [ ] Handle all mysql exceptions in a separate file in the `/database` package with a specific custom message. 🔜
 
@@ -115,6 +115,8 @@ Change, if needed, the `besson_ethan_info_1a.sql` file in the `database` directo
 
 ```shell
 cd FlaskWebS/database
+```
+```shell
 nano besson_ethan_info_1a.sql
 ```
 
@@ -138,6 +140,9 @@ To run this project, you will need to modify the following environment variables
 
 `NAME_FILE_DUMP_SQL_BD`
 
+`SELECT_QUERY_ENABLED` - Optional, options : true or false ℹ️
+
+ℹ️ This variable is used to show a table from the database, to see if the SQL dump import was successful.
 
 ## Usage/Examples
 

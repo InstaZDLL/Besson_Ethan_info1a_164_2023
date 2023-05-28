@@ -26,19 +26,25 @@ try:
 except mysql.connector.Error as e:
     if e.errno == 1049:
         # Unknown database error
-        print(f"Database '{name_bd_mysql}' does not exist. Creating it...")
+        print(f'La base de données \'{name_bd_mysql}\' n\'existe pas. création...')
         # Create a new connection without specifying a database name
         cnx = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql)
         cursor = cnx.cursor()
         # Execute a CREATE DATABASE statement
-        cursor.execute(f"CREATE DATABASE {name_bd_mysql}")
+        cursor.execute(f'CREATE DATABASE {name_bd_mysql}')
         cursor.close()
         cnx.close()
         # Connect to the newly created database
         cnx = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
                                        database=name_bd_mysql)
+    elif e.errno == 2003:
+        print(f'\U0000274C Erreur lors de la connexion à la base de données : {str(e)}\n1. Vérifier que vous avez démarer '
+              f'votre base '
+              f'de données.\n2. Vérifier que les informations de connexion sont juste dans le fichier \033[1m.env\033['
+              f'0m')
+        exit(1)
     else:
-        print(f"Error connecting to MySQL: {e}")
+        print(f'Message d\'erreur: {str(e)}')
         exit(1)
 
 cursor = cnx.cursor()

@@ -40,8 +40,15 @@ def run():
             cursor.execute(statement)
             conn.commit()
         except mysql.connector.Error as e:
-            print(f'Error executing statement: {statement}')
-            print(f'Error message: {str(e)}')
+            if e.errno == 2003:
+                print(f"\U0000274C Erreur lors de la connexion à la base de données : {str(e)}\n1. Vérifier que vous avez démarer "
+                      f"votre base "
+                      f"de données.\n2. Vérifier que les informations de connexion sont juste dans le fichier \033[1m.env\033["
+                      f"0m")
+                exit(1)
+            else:
+                print(f'Erreur dans l\'exécution de l\'instruction : {statement}')
+                print(f'Message d\'erreur: {str(e)}')
 
     # Connect to the database
     conn = mysql.connector.connect(host=host_mysql, user=user_mysql, password=pass_mysql, port=port_mysql, database=name_bd_mysql)
@@ -57,12 +64,12 @@ def run():
             table.add_row(row)
         print(table)
     else:
-        print('SELECT query is not enabled')
+        print('Le test de connexion à la base de données / Affichage de la table est \033[1mdésactivé\033[0m')
 
     # Close the database connection
     cursor.close()
     conn.close()
-    print("Finished")
+    print("Terminé")
 
 
 if __name__ == '__main__':

@@ -5,5 +5,5 @@ bp = Blueprint('success', __name__)
 
 @bp.route('/success')
 def about():
-    # render the success.html template
-    return render_template('/intermediate-pages/success.html')
+    # render the success-categorie.html template
+    return render_template('/intermediate-pages/success-categorie.html')

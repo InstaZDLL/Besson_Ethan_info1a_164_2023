@@ -41,7 +41,7 @@ The goal of this project is to show our skills and understanding of web developm
 22. [x] Implement the functionality to import the database in the `run_app.py`.
 23. [x] Add a switch en the `.env` file to display or not the connection test result table. 🔄
 24. [x] Fix the error when the starting the run_app.py: `1049 (42000): Unknown database`. 🔄
-25. [ ] ~~Handle all mysql exceptions in a separate file in the `/database` package with a specific custom message.~~
+25. [ ] Update mysql exceptions in the `mysql_dump_import.py` with a specific custom message. 🔄
 
 
 ### Definitions :

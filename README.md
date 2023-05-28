@@ -32,7 +32,7 @@ The goal of this project is to show our skills and understanding of web developm
 13. [x] Import automatically the database when the server starts.
 14. [x] Add a `run-app.py` file and initialize the application package in it. 🔄
 15. [x] Removal of unused fonts in `/fonts` folder.
-16. [ ] Add functionality to the `/success` app route. 🔜
+16. [x] Add functionality to the `/success` app route.
 17. [ ] Add a failed popup when submitting to all forms linked to `categorie.html`. 🔄
 18. [ ] Add the possibility to change the id of the marques in all linked forms in the `marques.html`.🔜
 19. [x] Correct all resource paths.

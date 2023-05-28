@@ -22,21 +22,25 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.delete-b').click(function() {
         var row_id = $(this).data('row-id');
-        $.ajax({
-            url: '/delete_row_materiel',
-            type: 'POST',
-            data: {
-                id: row_id
-            },
-            success: function(response) {
-                console.log(response);
-                // reload the page to see the updated table
-                location.reload();
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
+        if (confirm("Are you sure you want to delete this row?")) {
+            $.ajax({
+                url: '/delete_row_materiel',
+                type: 'POST',
+                data: {
+                    id: row_id
+                },
+                success: function(response) {
+                    console.log(response);
+                    // redirect to success page
+                    window.location.href = '/success';
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        } else {
+            // do nothing
+        }
     });
 });
 

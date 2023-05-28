@@ -144,6 +144,10 @@ To run this project, you will need to modify the following environment variables
 
 ℹ️ This variable is used to show a table from the database, to see if the SQL dump import was successful.
 
+
+![Screenshot](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/working-channel/.github/Screenshot.png)
+
+
 ## Usage/Examples
 
 

@@ -113,13 +113,6 @@ def modify_materiel_form():
     return redirect(url_for("categorie.categorie"))
 
 
-# TODO make the succes page and the redirection to the /categorie
-@bp.route("/success")
-def success():
-    # render the success.html template
-    return render_template("success.html")
-
-
 @bp.route('/delete_row_materiel', methods=['POST'])
 def delete_row_materiel():
     """

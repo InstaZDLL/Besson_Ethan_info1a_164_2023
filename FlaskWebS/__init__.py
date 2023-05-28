@@ -58,6 +58,7 @@ from FlaskWebS.routes.categorie_route import bp as categorie_bp
 from FlaskWebS.routes.marque_route import bp as marque_bp
 from FlaskWebS.routes.personnes_route import bp as personnes_bp
 from FlaskWebS.routes.materiel_route import bp as materiel_bp
+from FlaskWebS.routes.success_route import bp as success_bp
 
 app.register_blueprint(materiel_bp)
 app.register_blueprint(personnes_bp)
@@ -65,6 +66,7 @@ app.register_blueprint(marque_bp)
 app.register_blueprint(categorie_bp)
 app.register_blueprint(index_bp)
 app.register_blueprint(about_bp)
+app.register_blueprint(success_bp)
 
 
 @app.errorhandler(404)

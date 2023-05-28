@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My App - Personnes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nunito-sans.css') }}">
+</head>
+<style>
+     body {
+         text-align: center;
+         padding: 40px 0;
+         background: #EBF0F5;
+    }
+     h1 {
+         color: #88B04B;
+         font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+         font-weight: 900;
+         font-size: 40px;
+         margin-bottom: 10px;
+    }
+     p {
+         color: #404F5E;
+         font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+         font-size:20px;
+         margin: 0;
+    }
+     i {
+         color: #9ABC66;
+         font-size: 100px;
+         line-height: 200px;
+         margin-left:-15px;
+    }
+     .card {
+         background: white;
+         padding: 60px;
+         border-radius: 4px;
+         box-shadow: 0 2px 3px #C8D0D8;
+         display: inline-block;
+         margin: 0 auto;
+    }
+</style>
+
+<body>
+    <script>
+      let secondsLeft = 3;
+      let redirectUrl = '#'; // Replace with your redirect URL
+
+      const countdown = setInterval(() => {
+        document.getElementById('countdown').textContent = `Vous serez redirigé dans ${secondsLeft} seconds`;
+        secondsLeft--;
+        if (secondsLeft < 0) {
+          clearInterval(countdown);
+          window.location.href = redirectUrl;
+        }
+      }, 1000);
+    </script>
+
+    <div class="card">
+      <div style="border-radius: 200px; height: 200px; width: 200px; background: #f8faf5; margin: 0 auto;">
+        <i class="checkmark">✓</i>
+      </div>
+      <h1>Succès</h1>
+      <p>Votre requête SQL a été exécutée avec succès;<br>vous devriez voir le résultat attendu dans votre base de données !</p><br />
+      <p id="countdown">You will be redirected in 3 seconds</p> <!-- The countdown text will be displayed here -->
+    </div>
+</body>
+
+</html>

@@ -15,20 +15,20 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <style>
         .portainer {
-               display: flex;
-               justify-content: center;
-               align-items: center;
-               z-index: 2;
-               width: auto;
-               margin: 0 auto 70px;
-            }
-
-            form {
-                background-color: #f2f2f2;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            }
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             z-index: 2;
+             width: auto;
+             margin: 0 auto;
+        }
+         form {
+             background-color: #f2f2f2;
+             padding: 20px;
+             border-radius: 10px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+             width: 120%;
+        }
     </style>
 </head>
 
@@ -49,11 +49,11 @@
     </div>
     <div class="portainer">
         <form action="/modify_marque" method="post">
-            <label for="id">ID de la marque:</label> <span id="current_id"></span><br>
+            <label for="id">ID de la marque :</label> <br>
             <input type="text" id="id" name="id" disabled><br><br>
-            <label for="nom_marque">Nom de la marque:</label> <span id="current_nom_marque"></span><br>
+            <label for="nom_marque">Nom de la marque :</label> <br>
             <input type="text" id="nom_marque" name="nom_marque"><br><br>
-            <label for="description_marque">Description de la marque:</label> <span id="current_description_marque"></span><br>
+            <label for="description_marque">Description de la marque :</label> <br>
             <input type="text" id="description_marque" name="description_marque"><br><br>
             <input type="hidden" id="id" name="id">
             <input type="submit" value="Finish">

@@ -18,11 +18,12 @@ $(document).ready(function() {
     });
 });
 
+
 // Delete Button
 $(document).ready(function() {
     $('.delete-b').click(function() {
         var row_id = $(this).data('row-id');
-        if (confirm("Are you sure you want to delete this row?")) {
+        if (confirmDelete(row_id)) {
             $.ajax({
                 url: '/delete_row_materiel',
                 type: 'POST',
@@ -30,19 +31,40 @@ $(document).ready(function() {
                     id: row_id
                 },
                 success: function(response) {
-                    console.log(response);
                     // redirect to success page
                     window.location.href = '/success';
                 },
                 error: function(error) {
                     console.log(error);
-                }
+                },
+                async: false // make request synchronous
             });
         } else {
-            // do nothing
+            // add code here to handle when the user clicks cancel
         }
     });
 });
+
+function confirmDelete(row_id) {
+    var referencing_tables;
+    $.ajax({
+        url: '/get_referencing_tables',
+        type: 'POST',
+        data: {
+            id: row_id
+        },
+        async: false,
+        success: function(response) {
+            referencing_tables = response;
+        },
+        error: function(error) {
+            console.log(error);
+            referencing_tables = [];
+        }
+    });
+    return confirm("Are you sure you want to delete the row?\nThe following tables will be affected:\n\n" + referencing_tables.join("\n"));
+}
+
 
 // Add button
 document.addEventListener("DOMContentLoaded", function() {

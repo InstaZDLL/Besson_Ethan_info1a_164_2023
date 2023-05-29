@@ -46,7 +46,7 @@ $(document).ready(function() {
 });
 
 function confirmDelete(row_id) {
-    var referencing_tables;
+    var referencing_tables = [];
     $.ajax({
         url: '/get_referencing_tables',
         type: 'POST',
@@ -59,12 +59,15 @@ function confirmDelete(row_id) {
         },
         error: function(error) {
             console.log(error);
-            referencing_tables = [];
         }
     });
-    return confirm("Are you sure you want to delete the row?\nThe following tables will be affected:\n\n" + referencing_tables.join("\n"));
-}
 
+    if (referencing_tables.length > 0) {
+        return confirm("Are you sure you want to delete the row?\nThe following tables will be affected:\n\n" + referencing_tables.join("\n"));
+    } else {
+        return true;
+    }
+}
 
 
 // Add button

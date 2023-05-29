@@ -171,6 +171,16 @@ def get_referencing_tables():
     if cursor.fetchall():
         referencing_tables.append('t_personnes_ajout_materiel')
 
+    # Check if the id is present in t_personnes_ajout_materiel
+    cursor.execute('SELECT * FROM t_personnes_avoir_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_personnes_avoir_materiel')
+
+    # Check if the id is present in t_personnes_ajout_materiel
+    cursor.execute('SELECT * FROM t_personnes_retrait_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_personnes_retrait_materiel')
+
     # Construct the response as a JSON object
     response = {'referencing_tables': referencing_tables}
 

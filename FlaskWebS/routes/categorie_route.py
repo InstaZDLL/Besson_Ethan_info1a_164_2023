@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, flash, jsonify, B
 from FlaskWebS import cnx, cursor
 from PyFormModify import ModifyMaterielForm
 from datetime import datetime
+import json
 
 bp = Blueprint('categorie', __name__)
 
@@ -143,24 +144,38 @@ def delete_row_materiel():
 @bp.route('/get_referencing_tables', methods=['POST'])
 def get_referencing_tables():
     id = request.form['id']
-    cursor = cnx.cursor(buffered=True)
+    referencing_tables = []
 
-    # Get a list of referencing tables
-    cursor.execute("""
-                 SELECT table_name
-                 FROM information_schema.key_column_usage
-                 WHERE referenced_table_name = 't_materiel'
-                 AND referenced_column_name = 'id_materiel'
-                 AND table_schema = DATABASE()
-                 AND column_name = 'fk_materiel'
-     """)
+    # Check if the id is present in t_categorie_avoir_materiel
+    cursor.execute('SELECT * FROM t_categorie_avoir_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_categorie_avoir_materiel')
 
-    referencing_tables = [result[0] for result in cursor.fetchall()]
-    cursor.close()
+    # Check if the id is present in t_departement_avoir_materiel
+    cursor.execute('SELECT * FROM t_departement_avoir_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_departement_avoir_materiel')
 
-    print(referencing_tables)  # add this line to log the value of referencing_tables
+    # Check if the id is present in t_fournisseur_avoir_materiel
+    cursor.execute('SELECT * FROM t_fournisseur_avoir_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_fournisseur_avoir_materiel')
 
-    return referencing_tables
+    # Check if the id is present in t_marque_avoir_materiel
+    cursor.execute('SELECT * FROM t_marque_avoir_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_marque_avoir_materiel')
+
+    # Check if the id is present in t_personnes_ajout_materiel
+    cursor.execute('SELECT * FROM t_personnes_ajout_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_personnes_ajout_materiel')
+
+    # Construct the response as a JSON object
+    response = {'referencing_tables': referencing_tables}
+
+    # Return the response as JSON
+    return json.dumps(response)
 
 
 @bp.route('/add_materiel', methods=['GET', 'POST'])

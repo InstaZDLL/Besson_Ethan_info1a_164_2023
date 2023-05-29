@@ -55,7 +55,7 @@ function confirmDelete(row_id) {
         },
         async: false,
         success: function(response) {
-            referencing_tables = response;
+            referencing_tables = JSON.parse(response).referencing_tables;
         },
         error: function(error) {
             console.log(error);
@@ -64,6 +64,7 @@ function confirmDelete(row_id) {
     });
     return confirm("Are you sure you want to delete the row?\nThe following tables will be affected:\n\n" + referencing_tables.join("\n"));
 }
+
 
 
 // Add button

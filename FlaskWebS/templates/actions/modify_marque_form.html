@@ -49,9 +49,11 @@
     </div>
     <div class="portainer">
         <form action="/modify_marque" method="post">
-            <label for="nom_marque">nom_marque:</label> <span id="current_nom_marque"></span><br>
+            <label for="id">ID de la marque:</label> <span id="current_id"></span><br>
+            <input type="text" id="id" name="id" disabled><br><br>
+            <label for="nom_marque">Nom de la marque:</label> <span id="current_nom_marque"></span><br>
             <input type="text" id="nom_marque" name="nom_marque"><br><br>
-            <label for="description_marque">description_marque:</label> <span id="current_description_marque"></span><br>
+            <label for="description_marque">Description de la marque:</label> <span id="current_description_marque"></span><br>
             <input type="text" id="description_marque" name="description_marque"><br><br>
             <input type="hidden" id="id" name="id">
             <input type="submit" value="Finish">
@@ -74,6 +76,7 @@
                 document.querySelector("#description_marque").value = data.description_marque;
                 document.querySelector("#id").value = data.id;
 
+                document.querySelector("#current_id").textContent = data.id;
                 document.querySelector("#current_nom_marque").textContent = data.nom_marque;
                 document.querySelector("#current_description_marque").textContent = data.description_marque;
             });

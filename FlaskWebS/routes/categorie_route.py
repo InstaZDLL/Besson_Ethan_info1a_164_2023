@@ -115,31 +115,29 @@ def modify_materiel_form():
 
 @bp.route('/delete_row_materiel', methods=['POST'])
 def delete_row_materiel():
+    """
+        This route allows for the deletion of a row in the t_materiel table and any referencing rows in other tables.
+        The id of the row to be deleted is obtained from a form submission. The function then uses this id to execute
+        a series of DELETE statements on the relevant tables. Finally, the function returns a message indicating that
+        the row has been deleted.
+    """
     id = request.form['id']
-    cursor = cnx.cursor(buffered=True)
-
-    # Get a list of referencing tables
-    cursor.execute("""
-    SELECT table_name
-    FROM information_schema.key_column_usage
-    WHERE referenced_table_name = 't_materiel'
-      AND referenced_column_name = 'id_materiel'
-      AND table_schema = DATABASE()
-      AND column_name = 'fk_materiel'
-  """)
-    referencing_tables = [result[0] for result in cursor.fetchall()]
-
-    # Delete referencing rows and the row itself
+    cursor = cnx.cursor()
+    # delete any referencing rows in the t_categorie_avoir_materiel table
     cursor.execute('DELETE FROM t_categorie_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_departement_avoir_materiel table
     cursor.execute('DELETE FROM t_departement_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_fournisseur_avoir_materiel table
     cursor.execute('DELETE FROM t_fournisseur_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_marque_avoir_materiel table
     cursor.execute('DELETE FROM t_marque_avoir_materiel WHERE fk_materiel=%s', (id,))
+    # delete any referencing rows in the t_personnes_ajout_materiel table
     cursor.execute('DELETE FROM t_personnes_ajout_materiel WHERE fk_materiel=%s', (id,))
+    # delete the row in the t_materiel table
     cursor.execute('DELETE FROM t_materiel WHERE id_materiel=%s', (id,))
     cnx.commit()
     cursor.close()
-
-    return referencing_tables
+    return 'Row deleted'
 
 
 @bp.route('/get_referencing_tables', methods=['POST'])
@@ -149,15 +147,18 @@ def get_referencing_tables():
 
     # Get a list of referencing tables
     cursor.execute("""
- SELECT table_name
- FROM information_schema.key_column_usage
- WHERE referenced_table_name = 't_materiel'
- AND referenced_column_name = 'id_materiel'
- AND table_schema = DATABASE()
- AND column_name = 'fk_materiel'
- """)
+                 SELECT table_name
+                 FROM information_schema.key_column_usage
+                 WHERE referenced_table_name = 't_materiel'
+                 AND referenced_column_name = 'id_materiel'
+                 AND table_schema = DATABASE()
+                 AND column_name = 'fk_materiel'
+     """)
+
     referencing_tables = [result[0] for result in cursor.fetchall()]
     cursor.close()
+
+    print(referencing_tables)  # add this line to log the value of referencing_tables
 
     return referencing_tables
 

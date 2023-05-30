@@ -32,7 +32,7 @@ The goal of this project is to show our skills and understanding of web developm
 13. [x] Import automatically the database when the server starts.
 14. [x] Add a `run-app.py` file and initialize the application package in it. 🔄
 15. [x] Removal of unused fonts in `/fonts` folder.
-16. [x] Add functionality to the `/success` app route.
+16. [x] Add functionality to the `/success_cat` app route. 🔄
 17. [ ] ~~Add a failed popup when submitting to all forms linked to `categorie.html`. 🔄~~
 18. [ ] ~~Add the possibility to change the id of the marques in all linked forms in the `marques.html`.~~
 19. [x] Correct all resource paths.
@@ -42,6 +42,7 @@ The goal of this project is to show our skills and understanding of web developm
 23. [x] Add a switch en the `.env` file to display or not the connection test result table. 🔄
 24. [x] Fix the error when the starting the run_app.py: `1049 (42000): Unknown database`. 🔄
 25. [x] Update mysql exceptions in the `mysql_dump_import.py` with a specific custom message. 🔄
+26. [ ] Fix the modify button in the `/marques`.
 
 
 ### Definitions :

@@ -32,7 +32,7 @@ $(document).ready(function() {
                 },
                 success: function(response) {
                     // redirect to success page
-                    window.location.href = '/success';
+                    window.location.href = '/success_cat';
                 },
                 error: function(error) {
                     console.log(error);

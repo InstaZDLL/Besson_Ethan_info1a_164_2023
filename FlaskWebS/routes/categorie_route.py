@@ -111,7 +111,7 @@ def modify_materiel_form():
         raise
 
     # redirect to the success page
-    return redirect(url_for("success.success"))
+    return redirect(url_for("success.success_cat"))
 
 
 @bp.route('/delete_row_materiel', methods=['POST'])
@@ -241,7 +241,7 @@ def add_materiel():
                   'danger')
             print(e)
 
-        return redirect(url_for('success.success'))
+        return redirect(url_for('success.success_cat'))
 
     else:
         return render_template('/actions/add_materiel_form.html', categories=categories)

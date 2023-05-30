@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // attach the click event listener to each .delete-btn element
     for (let i = 0; i < deleteBtns.length; i++) {
         deleteBtns[i].addEventListener("click", function() {
-            if (confirm("Are you sure you want to delete this row?")) {
+            if (confirm("Are you sure you want to delete this row?\nThe following table will be affected:\n\nt_marque_avoir_materiel")) {
                 // find the index of the id_marque column
                 let headers = document.querySelectorAll("th");
                 let idMarqueIndex;

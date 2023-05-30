@@ -18,27 +18,57 @@ $(document).ready(function() {
     });
 });
 
+
 // Delete Button
 $(document).ready(function() {
     $('.delete-b').click(function() {
         var row_id = $(this).data('row-id');
-        $.ajax({
-            url: '/delete_row_materiel',
-            type: 'POST',
-            data: {
-                id: row_id
-            },
-            success: function(response) {
-                console.log(response);
-                // reload the page to see the updated table
-                location.reload();
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
+        if (confirmDelete(row_id)) {
+            $.ajax({
+                url: '/delete_row_materiel',
+                type: 'POST',
+                data: {
+                    id: row_id
+                },
+                success: function(response) {
+                    // redirect to success page
+                    window.location.href = '/success';
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+                async: false // make request synchronous
+            });
+        } else {
+            // add code here to handle when the user clicks cancel
+        }
     });
 });
+
+function confirmDelete(row_id) {
+    var referencing_tables = [];
+    $.ajax({
+        url: '/get_referencing_tables',
+        type: 'POST',
+        data: {
+            id: row_id
+        },
+        async: false,
+        success: function(response) {
+            referencing_tables = JSON.parse(response).referencing_tables;
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+
+    if (referencing_tables.length > 0) {
+        return confirm("Are you sure you want to delete the row?\nThe following tables will be affected:\n\n" + referencing_tables.join("\n"));
+    } else {
+        return true;
+    }
+}
+
 
 // Add button
 document.addEventListener("DOMContentLoaded", function() {

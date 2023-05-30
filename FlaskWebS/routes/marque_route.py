@@ -75,7 +75,6 @@ def get_row_data_marque():
     }
 
 
-# TODO add the possibility to edit the id
 @bp.route('/add_marque', methods=['GET', 'POST'])
 def add_marque():
     """

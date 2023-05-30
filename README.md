@@ -21,27 +21,27 @@ The goal of this project is to show our skills and understanding of web developm
 2. [x] Add the option to add content to the table in the `marques.html`.
 3. [x] Correct the code of the delete button in the `marques.html` and modify the `main.py` for create the sql request.
 4. [ ] ~~Add the option to recover button for restoring the previous database.~~
-5. [ ] Add an image in the footer.
-6. [ ] Add functionality to the filter button in `materiel.html`.
+5. [ ] Add an image in the footer.🔜
+6. [ ] ~~Add functionality to the filter button in `materiel.html`.~~
 7. [x] Add a tag table to the editing panel. 🔄
 8. [x] Add functionality to the two remaining buttons in `categorie.html`.
-9. [x] Restructuring of file names and paths. 🔜
+9. [x] Restructuring of file names and paths. 
 10. [x] Re-structuring of the sources of the html files and optimization of the code.
 11. [x] Add protection against SQL injections.
 12. [x] Separate the different app routes in separate files for a better organization of the code.
 13. [x] Import automatically the database when the server starts.
 14. [x] Add a `run-app.py` file and initialize the application package in it. 🔄
 15. [x] Removal of unused fonts in `/fonts` folder.
-16. [ ] Add functionality to the `/success` app route.
-17. [ ] Add a success and a failed popup when submitting to all forms linked to `categorie.html`. 🔄
-18. [ ] Add the possibility to change the id of the marques in all linked forms in the `marques.html`.
+16. [x] Add functionality to the `/success` app route.
+17. [ ] ~~Add a failed popup when submitting to all forms linked to `categorie.html`. 🔄~~
+18. [ ] ~~Add the possibility to change the id of the marques in all linked forms in the `marques.html`.~~
 19. [x] Correct all resource paths.
 20. [x] Fix the bug of the qtagselect from the page `modify_materiel.html`.
 21. [x] Move the database SQL and the `mysql_dump_import.py` to a python package.
 22. [x] Implement the functionality to import the database in the `run_app.py`.
-23. [ ] Add a switch en the `.env` file to display or not the connection test result table. 🔄
+23. [x] Add a switch en the `.env` file to display or not the connection test result table. 🔄
 24. [x] Fix the error when the starting the run_app.py: `1049 (42000): Unknown database`. 🔄
-25. [ ] Handle all mysql exceptions in a separate file in the `/database` package with a specific custom message. 🔜
+25. [x] Update mysql exceptions in the `mysql_dump_import.py` with a specific custom message. 🔄
 
 
 ### Definitions :
@@ -115,6 +115,8 @@ Change, if needed, the `besson_ethan_info_1a.sql` file in the `database` directo
 
 ```shell
 cd FlaskWebS/database
+```
+```shell
 nano besson_ethan_info_1a.sql
 ```
 
@@ -137,6 +139,13 @@ To run this project, you will need to modify the following environment variables
 `NAME_BD_MYSQL`
 
 `NAME_FILE_DUMP_SQL_BD`
+
+`SELECT_QUERY_ENABLED` - Optional, options : true or false ℹ️
+
+ℹ️ This variable is used to show a table from the database, to see if the SQL dump import was successful.
+
+
+![Screenshot](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/working-channel/.github/Screenshot.png)
 
 
 ## Usage/Examples

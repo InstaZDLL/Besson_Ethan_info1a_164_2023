@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, flash, jsonify, B
 from FlaskWebS import cnx, cursor
 from PyFormModify import ModifyMaterielForm
 from datetime import datetime
+import json
 
 bp = Blueprint('categorie', __name__)
 
@@ -110,14 +111,7 @@ def modify_materiel_form():
         raise
 
     # redirect to the success page
-    return redirect(url_for("categorie.categorie"))
-
-
-# TODO make the succes page and the redirection to the /categorie
-@bp.route("/success")
-def success():
-    # render the success.html template
-    return render_template("success.html")
+    return redirect(url_for("success.success"))
 
 
 @bp.route('/delete_row_materiel', methods=['POST'])
@@ -145,6 +139,53 @@ def delete_row_materiel():
     cnx.commit()
     cursor.close()
     return 'Row deleted'
+
+
+@bp.route('/get_referencing_tables', methods=['POST'])
+def get_referencing_tables():
+    id = request.form['id']
+    referencing_tables = []
+
+    # Check if the id is present in t_categorie_avoir_materiel
+    cursor.execute('SELECT * FROM t_categorie_avoir_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_categorie_avoir_materiel')
+
+    # Check if the id is present in t_departement_avoir_materiel
+    cursor.execute('SELECT * FROM t_departement_avoir_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_departement_avoir_materiel')
+
+    # Check if the id is present in t_fournisseur_avoir_materiel
+    cursor.execute('SELECT * FROM t_fournisseur_avoir_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_fournisseur_avoir_materiel')
+
+    # Check if the id is present in t_marque_avoir_materiel
+    cursor.execute('SELECT * FROM t_marque_avoir_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_marque_avoir_materiel')
+
+    # Check if the id is present in t_personnes_ajout_materiel
+    cursor.execute('SELECT * FROM t_personnes_ajout_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_personnes_ajout_materiel')
+
+    # Check if the id is present in t_personnes_ajout_materiel
+    cursor.execute('SELECT * FROM t_personnes_avoir_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_personnes_avoir_materiel')
+
+    # Check if the id is present in t_personnes_ajout_materiel
+    cursor.execute('SELECT * FROM t_personnes_retrait_materiel WHERE fk_materiel=%s', (id,))
+    if cursor.fetchall():
+        referencing_tables.append('t_personnes_retrait_materiel')
+
+    # Construct the response as a JSON object
+    response = {'referencing_tables': referencing_tables}
+
+    # Return the response as JSON
+    return json.dumps(response)
 
 
 @bp.route('/add_materiel', methods=['GET', 'POST'])
@@ -200,7 +241,7 @@ def add_materiel():
                   'danger')
             print(e)
 
-        return redirect(url_for('categorie.categorie'))
+        return redirect(url_for('success.success'))
 
     else:
         return render_template('/actions/add_materiel_form.html', categories=categories)

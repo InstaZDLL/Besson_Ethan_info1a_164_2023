@@ -56,16 +56,6 @@
             <input type="text" id="description_marque" name="description_marque"><br><br>
             <input type="submit" value="Finish">
         </form>
-
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul class="flashes">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
     </div>
 
     {% include '/actions/background-boxes.html' %}

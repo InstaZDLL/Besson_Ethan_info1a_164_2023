@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 from FlaskWebS import cnx, cursor
+import json
 
 bp = Blueprint('marque', __name__)
 
@@ -91,7 +92,6 @@ def add_marque():
         cursor.execute(query, values)
         result = cursor.fetchone()
         if result is not None:
-            flash('La marque avec cet id existe déjà.', 'danger')
             return redirect(url_for('marque.add_marque'))
 
         # insert new record
@@ -104,10 +104,8 @@ def add_marque():
         try:
             cursor.execute(query, values)
             cnx.commit()
-            flash('La marque a été ajoutée avec succès.', 'success')
         except Exception as e:
             cnx.rollback()
-            flash('Une erreur est survenue lors de l\'ajout de la marque. Veuillez réessayer plus tard.', 'danger')
             print(e)
 
         # Redirects to the 'marques' endpoint within the 'marque' Blueprint.

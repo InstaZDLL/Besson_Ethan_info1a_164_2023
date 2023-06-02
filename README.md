@@ -95,6 +95,12 @@ Return to the root folder of the project and start the server. You can launch th
 
 ### Linux
 
+Install the following dependency (You must also have installed python3)
+
+```shell
+sudo apt install python3-pip
+```
+
 Clone the project.
 
 ```git
@@ -124,6 +130,9 @@ nano besson_ethan_info_1a.sql
 
 Return to the root folder of the project and start the server using the following command:
 
+```shell
+chmod u+x ./start.sh
+```
 ```shell
 ./start.sh
 ```

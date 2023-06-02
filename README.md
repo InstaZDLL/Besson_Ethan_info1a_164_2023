@@ -162,28 +162,24 @@ To run this project, you will need to modify the following environment variables
 ## Usage/Examples
 
 
-You can change the sql request to show an other table.
+You can change the SQL request to show an other table.
 
 ```python
-@bp.route('/marques')
-def marques():
+@bp.route('/materiel')
+def materiel():
     """
-    Retrieves the data from the t_brand table in the MySQL database and displays it on the "brands.html" page.
+    Retrieves the data from the table t_materiel in the MySQL database and displays it on the page "materiel.html".
     """
-    query = """
-        SELECT t_marque.id_marque, t_marque.nom_marque, description_marque
-        FROM t_marque
-        WHERE t_marque.id_marque;
-    """
+    query = "SELECT * FROM t_materiel" # Modify with your query here
     cursor.execute(query)
     data = cursor.fetchall()
 
-    headers = [column[0] for column in cursor.description]
-
-    return render_template('marques.html', data=data, headers=headers)
+    return render_template('materiel.html', data=data)
 ```
 
-If you change something here don't forget to modify the html code too in the `personnes.html`, or you can also opt for automatic headers such as `marques.html`.
+If you change something here don't forget to modify the html code too in the `materiel.html`, or you can also opt for automatic headers such as `marques.html`.
+
+Note : if you change a request in some case you need to change the js and the form to request so that the information is properly handeled.
 
 
 ## Lessons Learned

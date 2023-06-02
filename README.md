@@ -44,6 +44,7 @@ The goal of this project is to show our skills and understanding of web developm
 25. [x] Update mysql exceptions in the `mysql_dump_import.py` with a specific custom message. 🔄
 26. [x] Fix the modify button in the `/marques`.
 27. [x] Fix status messages in `add_marque_form.html`.
+28. [ ] Add a gif tutorial for the installation section.
 
 
 ### Definitions :

@@ -42,8 +42,8 @@ The goal of this project is to show our skills and understanding of web developm
 23. [x] Add a switch en the `.env` file to display or not the connection test result table. 🔄
 24. [x] Fix the error when the starting the run_app.py: `1049 (42000): Unknown database`. 🔄
 25. [x] Update mysql exceptions in the `mysql_dump_import.py` with a specific custom message. 🔄
-26. [ ] Fix the modify button in the `/marques`. 🔜
-27. [ ] Fix status messages in `add_marque_form.html`. 🔜
+26. [x] Fix the modify button in the `/marques`.
+27. [x] Fix status messages in `add_marque_form.html`.
 
 
 ### Definitions :

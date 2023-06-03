@@ -98,11 +98,11 @@ Return to the root folder of the project and start the server. You can launch th
 
 Standard install :
 
-
+![Standard install](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/Windows_standard_install_tutorial.gif)
 
 Idea install :
 
-
+![Idea install](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/Windows_idea_install_tutorial.gif)
 
 ### Linux
 

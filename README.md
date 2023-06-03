@@ -94,6 +94,16 @@ Return to the root folder of the project and start the server. You can launch th
 .\start.bat
 ```
 
+#### Installation tutorial for Windows :
+
+Standard install :
+
+
+
+Idea install :
+
+
+
 ### Linux
 
 Install the following dependency (You must also have installed python3)

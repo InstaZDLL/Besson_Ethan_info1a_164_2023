@@ -138,6 +138,9 @@ chmod u+x ./start.sh
 ./start.sh
 ```
 
+#### Installation tutorial for linux :
+![Linux install](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/965beba426ba79254121e839f498331c54fec2b9/.github/Linux_install_tutorial.gif)
+
 
 ## Environment Variables
 

@@ -45,6 +45,7 @@ The goal of this project is to show our skills and understanding of web developm
 26. [x] Fix the modify button in the `/marques`.
 27. [x] Fix status messages in `add_marque_form.html`.
 28. [x] Add a gif tutorial for the installation section.
+29. [ ] Fix bugs in the `/categorie` page. 🔜
 
 
 ### Definitions :

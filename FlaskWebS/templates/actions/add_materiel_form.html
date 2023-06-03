@@ -138,55 +138,62 @@
             <input type="submit" value="Finish"  class="end-btn">
         </form>
         <script>
-            // Input fields regexp
             function validateForm() {
-              // Define an array of objects representing each input field and its corresponding regex
-              const fields = [
-                { id: 'id_materiel', regex: /^\d+$/ },
-                { id: 'nom_mat', regex: /^.{1,255}$/ },
-                { id: 'model_mat', regex: /^.{1,255}$/ },
-                { id: 'serial_num', regex: /^.{1,255}$/ },
-                { id: 'date_achat', regex: /.+/ },
-                { id: 'date_expi', regex: /.+/ },
-                { id: 'prix_mat', regex: /^\d{1,12}$/ },
-                { id: 'nom_cat', regex: /.+/ }
-              ];
+                    // Define an array of objects representing each input field and its corresponding regex
+                    const fields = [
+                      { id: 'id_materiel', regex: /^\d+$/ },
+                      { id: 'nom_mat', regex: /^.{1,255}$/ },
+                      { id: 'model_mat', regex: /^.{1,255}$/ },
+                      { id: 'serial_num', regex: /^.{1,255}$/ },
+                      { id: 'date_achat', regex: /.+/ },
+                      { id: 'date_expi', regex: /.+/ },
+                      { id: 'prix_mat', regex: /^\d{1,12}$/ },
+                      { id: 'nom_cat', regex: /.+/ }
+                    ];
 
-              // Loop through each input field and validate it
-              for (const field of fields) {
-                const input = document.getElementById(field.id);
-                const value = input.value;
+                    // Loop through each input field and validate it
+                    for (const field of fields) {
+                      const input = document.getElementById(field.id);
+                      const value = input.value;
 
-                if (!field.regex.test(value)) {
-                  alert(`Invalid value for ${input.name}`);
-                  return false;
-                }
-              }
+                      if (!field.regex.test(value)) {
+                        alert(`Invalid value for ${input.name}`);
+                        return false;
+                      }
+                    }
 
-              // If all input values are valid, submit the form
-              return true;
-            }
+                    // Validation for date_expi
+                    const dateAchat = new Date(document.getElementById('date_achat').value);
+                    const dateExpi = new Date(document.getElementById('date_expi').value);
+                    if (dateExpi <= dateAchat) {
+                      alert("La date d'expiration doit être supérieure à la date d'achat.");
+                      return false;
+                    }
 
-            // Default local date and time set
-            // Get the current date and time
-            const now = new Date();
+                    // If all input values are valid, submit the form
+                    return true;
+                  }
 
-            // Format the date and time as a string in the format "YYYY-MM-DDThh:mm"
-            const dateTimeString = now.toISOString().slice(0, 16);
+                  // Default local date and time set
+                  // Get the current date and time
+                  const now = new Date();
 
-            // Set the value of the datetime-local input to the current date and time
-            const dateAchatInput = document.getElementById('date_achat');
-            dateAchatInput.value = dateTimeString;
+                  // Format the date and time as a string in the format "YYYY-MM-DDThh:mm"
+                  const dateTimeString = now.toISOString().slice(0, 16);
 
-            // Add four years to the current date
-            now.setFullYear(now.getFullYear() + 4);
+                  // Set the value of the datetime-local input to the current date and time
+                  const dateAchatInput = document.getElementById('date_achat');
+                  dateAchatInput.value = dateTimeString;
 
-            // Format the date and time as a string in the format "YYYY-MM-DDThh:mm"
-            const newDateTimeString = now.toISOString().slice(0, 16);
+                  // Add four years to the current date
+                  now.setFullYear(now.getFullYear() + 4);
 
-            // Set the value of the datetime-local input to the current date and time plus four years
-            const dateExpiInput = document.getElementById('date_expi');
-            dateExpiInput.value = newDateTimeString;
+                  // Format the date and time as a string in the format "YYYY-MM-DDThh:mm"
+                  const newDateTimeString = now.toISOString().slice(0, 16);
+
+                  // Set the value of the datetime-local input to the current date and time plus four years
+                  const dateExpiInput = document.getElementById('date_expi');
+                  dateExpiInput.value = newDateTimeString;
         </script>
     </div>
     {% include '/actions/background-boxes.html' %}

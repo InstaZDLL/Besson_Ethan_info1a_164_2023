@@ -5,9 +5,10 @@
 Use this section to tell people about which versions of your project are
 currently being supported with security updates.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| none    | :x:                |
+| Version | Supported          | Support period  |
+|---------|--------------------|:----------------|
+| 1.0.0   | :x:                | 230321 - 230522 |
+| 2.0.0   | :white_check_mark: | 23              |
 
 
 ## Reporting a Vulnerability

@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 let id = idMarqueCell.textContent;
 
                 // redirect to the modify page with the id as a query parameter
-                window.location.href = "/modify_marque?id=" + id;
+                window.location.href = "/modify_marque?id=" + encodeURIComponent(id);
             }
         });
     }

@@ -21,7 +21,7 @@ The goal of this project is to show our skills and understanding of web developm
 2. [x] Add the option to add content to the table in the `marques.html`.
 3. [x] Correct the code of the delete button in the `marques.html` and modify the `main.py` for create the sql request.
 4. [ ] ~~Add the option to recover button for restoring the previous database.~~
-5. [ ] Add an image in the footer and a font for the text. 🔄🔜
+5. [x] Add an image in the footer and a font for the text. 🔄
 6. [ ] ~~Add functionality to the filter button in `materiel.html`.~~
 7. [x] Add a tag table to the editing panel. 🔄
 8. [x] Add functionality to the two remaining buttons in `categorie.html`.
@@ -45,7 +45,7 @@ The goal of this project is to show our skills and understanding of web developm
 26. [x] Fix the modify button in the `/marques`.
 27. [x] Fix status messages in `add_marque_form.html`.
 28. [x] Add a gif tutorial for the installation section.
-29. [ ] Fix bugs in the `/categorie` page. 🔜
+29. [x] Fix bugs in the `/categorie` page.
 
 
 ### Definitions :

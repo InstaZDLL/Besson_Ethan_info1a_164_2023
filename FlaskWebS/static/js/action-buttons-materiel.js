@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 let id = this.getAttribute("data-row-id");
 
                 // redirect to the show_modify_materiel page with the id as a query parameter
-                window.location.href = "/show_modify_materiel?id=" + id;
+                window.location.href = "/show_modify_materiel?id=" + encodeURIComponent(id);
             }
         });
     }

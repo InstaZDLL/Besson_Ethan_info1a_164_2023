@@ -19,3 +19,9 @@ def success_marq():
 def error_cat():
     # render the success-categorie.html template
     return render_template('/intermediate-pages/error_categorie.html')
+
+
+@bp.route('/error_marq')
+def error_marq():
+    # render the success-categorie.html template
+    return render_template('/intermediate-pages/error_marques.html')

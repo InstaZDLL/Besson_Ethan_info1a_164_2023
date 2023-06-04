@@ -146,6 +146,11 @@
      background-color: #4CAF50;
 }
 /* Footer */
+
+ footer {
+     font-family: 'Noto Sans', sans-serif;
+}
+
  .content {
      flex: 1;
 }

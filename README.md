@@ -5,6 +5,8 @@ This is a simple web application created as part of the Modulus 164 project.
 
 The goal of this project is to show our skills and understanding of web development.
 
+**All database elements (MCD, MLD and dictionary) are in `.github/database`**
+
 
 [![Version](https://img.shields.io/github/v/release/InstaZDLL/Besson_Ethan_info1a_164_2023?style=for-the-badge)](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/releases)
 [![AFLv3 License](https://img.shields.io/github/license/InstaZDLL/Besson_Ethan_info1a_164_2023?logo=e&style=for-the-badge)](https://opensource.org/license/afl-3-0-php)

@@ -55,11 +55,25 @@ def show_modify_materiel():
     form = ModifyMaterielForm(data=data)
 
     # render the modify_materiel_form.html template and pass the data and categories to it
-    return render_template("/actions/modify_materiel_form.html", data=data, form=form, categories=categories)
+    return render_template("/actions/modify_materiel_form.html", data=data, form=form, categories=categories,
+                           id=id_materiel)
 
 
 @bp.route("/modify_materiel_form", methods=["POST"])
 def modify_materiel_form():
+    # get the form data
+    id_mat = request.form["id_mat"]
+    old_id_mat = request.form["old_id_mat"]
+
+    # check if the modified ID already exists
+    cursor = cnx.cursor()
+    cursor.execute("SELECT * FROM t_materiel WHERE id_materiel=%s", (id_mat,))
+    existing_row = cursor.fetchone()
+
+    if existing_row and id_mat != old_id_mat:
+        cursor.close()
+        return "ID already exists. Please choose a different ID."
+
     # get the form data
     id_mat = request.form["id_mat"]
     nom_mat = request.form["nom_mat"]
@@ -292,4 +306,20 @@ def categorie():
 
     return render_template('categorie.html', data=data, headers=headers)
 
+
 # End New code block
+
+@bp.route("/check_id")
+def check_id():
+    id_mat = request.args.get("id")
+
+    cursor = cnx.cursor()
+    cursor.execute("SELECT * FROM t_materiel WHERE id_materiel=%s", (id_mat,))
+    existing_row = cursor.fetchone()
+
+    if existing_row:
+        cursor.close()
+        return "exists"
+    else:
+        cursor.close()
+        return "not_exists"

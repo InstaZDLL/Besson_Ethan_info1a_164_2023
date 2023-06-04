@@ -6,9 +6,9 @@
 
 | Nom                    | Type         | Description          | Valeur de base |
 |------------------------|--------------|----------------------|----------------|
-| id_categorie           | int          | Primary key          |                |
-| nom_cat                | varchar(24)  | Category name        |                |
-| description_cat        | varchar(255) | Category description |                |
+| id_categorie           | int          | Primary key          | AUTO_INCREMENT |
+| nom_cat                | varchar(24)  | Category name        | NULL           |
+| description_cat        | varchar(255) | Category description | NULL           |
 | derniere_actualisation | timestamp    | Last update          |                |
 
 ### t_categorie_avoir_materiel

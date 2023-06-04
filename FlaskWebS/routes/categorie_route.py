@@ -72,7 +72,7 @@ def modify_materiel_form():
 
     if existing_row and id_mat != old_id_mat:
         cursor.close()
-        return "ID already exists. Please choose a different ID."
+        return redirect(url_for("success.error_cat"))
 
     # get the form data
     id_mat = request.form["id_mat"]

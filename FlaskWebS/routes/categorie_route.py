@@ -55,11 +55,25 @@ def show_modify_materiel():
     form = ModifyMaterielForm(data=data)
 
     # render the modify_materiel_form.html template and pass the data and categories to it
-    return render_template("/actions/modify_materiel_form.html", data=data, form=form, categories=categories)
+    return render_template("/actions/modify_materiel_form.html", data=data, form=form, categories=categories,
+                           id=id_materiel)
 
 
 @bp.route("/modify_materiel_form", methods=["POST"])
 def modify_materiel_form():
+    # get the form data
+    id_mat = request.form["id_mat"]
+    old_id_mat = request.form["old_id_mat"]
+
+    # check if the modified ID already exists
+    cursor = cnx.cursor()
+    cursor.execute("SELECT * FROM t_materiel WHERE id_materiel=%s", (id_mat,))
+    existing_row = cursor.fetchone()
+
+    if existing_row and id_mat != old_id_mat:
+        cursor.close()
+        return redirect(url_for("success.error_cat"))
+
     # get the form data
     id_mat = request.form["id_mat"]
     nom_mat = request.form["nom_mat"]
@@ -209,42 +223,51 @@ def add_materiel():
         prix_mat = request.form['prix_mat']
         nom_cat = request.form['nom_cat']
 
-        query = """
-            INSERT INTO t_materiel (id_materiel, nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
-        """
-        values = (id_materiel, nom_mat, model_mat, serial_num, date_achat_str, date_expi_str, prix_mat)
+        # Check if the id already exists in the database
+        query = "SELECT * FROM t_materiel WHERE id_materiel = %s"
+        cursor.execute(query, (id_materiel,))
+        if cursor.fetchone():
+            # The id already exists
+            return redirect(url_for('success.error_cat'))
+        else:
+            # The id does not exist, you can insert a new record
+            query = """
+                INSERT INTO t_materiel (id_materiel, nom_mat, model_mat, serial_num, date_achat, date_expi, prix_mat)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """
+            values = (id_materiel, nom_mat, model_mat, serial_num, date_achat_str, date_expi_str, prix_mat)
 
-        try:
-            cursor.execute(query, values)
-            cnx.commit()
-            flash('Le matériel a été ajouté avec succès.', 'success')
-        except Exception as e:
-            cnx.rollback()
-            flash('Une erreur est survenue lors de l\'ajout du matériel. Veuillez réessayer plus tard.', 'danger')
-            print(e)
+            try:
+                cursor.execute(query, values)
+                cnx.commit()
+                flash('Le matériel a été ajouté avec succès.', 'success')
+            except Exception as e:
+                cnx.rollback()
+                flash('Une erreur est survenue lors de l\'ajout du matériel. Veuillez réessayer plus tard.', 'danger')
+                print(e)
 
-        # Add the category of the material
-        query = """
-            INSERT INTO t_categorie_avoir_materiel (fk_materiel, fk_categorie)
-            VALUES (%s, (SELECT id_categorie FROM t_categorie WHERE nom_cat=%s))
-        """
-        values = (id_materiel, nom_cat)
+            # Add the category of the material
+            query = """
+                INSERT INTO t_categorie_avoir_materiel (fk_materiel, fk_categorie)
+                VALUES (%s, (SELECT id_categorie FROM t_categorie WHERE nom_cat=%s))
+            """
+            values = (id_materiel, nom_cat)
 
-        try:
-            cursor.execute(query, values)
-            cnx.commit()
-            flash('La catégorie du matériel a été ajoutée avec succès.', 'success')
-        except Exception as e:
-            cnx.rollback()
-            flash('Une erreur est survenue lors de l\'ajout de la catégorie du matériel. Veuillez réessayer plus tard.',
-                  'danger')
-            print(e)
+            try:
+                cursor.execute(query, values)
+                cnx.commit()
+                flash('La catégorie du matériel a été ajoutée avec succès.', 'success')
+            except Exception as e:
+                cnx.rollback()
+                flash('Une erreur est survenue lors de l\'ajout de la catégorie du matériel. Veuillez réessayer plus tard.',
+                      'danger')
+                print(e)
 
-        return redirect(url_for('success.success_cat'))
+            return redirect(url_for('success.success_cat'))
 
     else:
         return render_template('/actions/add_materiel_form.html', categories=categories)
+
 
 
 @bp.route('/add_materiel_form')
@@ -292,4 +315,20 @@ def categorie():
 
     return render_template('categorie.html', data=data, headers=headers)
 
+
 # End New code block
+
+@bp.route("/check_id")
+def check_id():
+    id_mat = request.args.get("id")
+
+    cursor = cnx.cursor()
+    cursor.execute("SELECT * FROM t_materiel WHERE id_materiel=%s", (id_mat,))
+    existing_row = cursor.fetchone()
+
+    if existing_row:
+        cursor.close()
+        return "exists"
+    else:
+        cursor.close()
+        return "not_exists"

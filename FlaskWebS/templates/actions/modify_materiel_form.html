@@ -51,6 +51,28 @@
              color:#fff;
              box-shadow:0px 10px 25px rgba(46,223,229,0.445);
         }
+         input[type="text"] {
+             display: block;
+             padding: 5px;
+             font-size: 16px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+             box-shadow: inset 0 1px 3px #ddd;
+             background-color: #fff;
+             width: 100%;
+             max-width: 500px; /* Increase this value */
+        }
+         input[type="datetime-local"] {
+             display: block;
+             padding: 5px;
+             font-size: 16px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+             box-shadow: inset 0 1px 3px #ddd;
+             background-color: #fff;
+             width: 100%;
+             max-width: 500px; /* Increase this value */
+        }
     </style>
 </head>
 
@@ -112,6 +134,43 @@
             <input type="submit" value="Modifier" class="end-btn">
         </form>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // get the form element
+            let form = document.getElementById("modify-form");
+
+            // attach the submit event listener to the form
+            form.addEventListener("submit", function(event) {
+                // get the new ID value
+                let newId = document.getElementById("id_mat").value;
+
+                // get the old ID value from a hidden input field
+                let oldId = document.getElementById("old_id_mat").value;
+
+                // check if the new ID is different from the old ID
+                if (newId !== oldId) {
+                    // make an AJAX request to check if the ID already exists
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("GET", "/check_id?id=" + newId, true);
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                            let response = xhr.responseText;
+                            if (response === "exists") {
+                                // display an alert message
+                                alert("ID already exists. Please choose a different ID.");
+                                event.preventDefault(); // prevent form submission
+                            } else {
+                                // continue with form submission
+                                form.submit();
+                            }
+                        }
+                    };
+                    xhr.send();
+                    event.preventDefault(); // prevent default form submission
+                }
+            });
+        });
+    </script>
     <script>
         $(function() {
             // initialize the tag select

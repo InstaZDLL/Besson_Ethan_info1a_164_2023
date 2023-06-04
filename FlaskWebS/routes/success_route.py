@@ -13,3 +13,15 @@ def success_cat():
 def success_marq():
     # render the success-categorie.html template
     return render_template('/intermediate-pages/success-marques.html')
+
+
+@bp.route('/error_cat')
+def error_cat():
+    # render the success-categorie.html template
+    return render_template('/intermediate-pages/error_categorie.html')
+
+
+@bp.route('/error_marq')
+def error_marq():
+    # render the success-categorie.html template
+    return render_template('/intermediate-pages/error_marques.html')

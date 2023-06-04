@@ -92,7 +92,7 @@ def add_marque():
         cursor.execute(query, values)
         result = cursor.fetchone()
         if result is not None:
-            return redirect(url_for('marque.add_marque'))
+            return redirect(url_for('success.error_marq'))
 
         # insert new record
         query = """

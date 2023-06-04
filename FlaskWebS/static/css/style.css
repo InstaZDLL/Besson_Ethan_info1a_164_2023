@@ -119,13 +119,12 @@
 }
  ul.horizontal {
      list-style-type: none;
-     margin: 0;
      padding: 0;
      overflow: hidden;
      background-color: #333;
      z-index: 1;
-     margin-bottom: 20px;
-    /* add bottom margin */
+     margin: 0 0 20px;
+     /* add bottom margin */
     /* border-radius: 40px;
      - nav bar rounded corner */
 }
@@ -146,6 +145,14 @@
      background-color: #4CAF50;
 }
 /* Footer */
+ img.brand-logo-light {
+     border-radius: 10px;
+}
+
+ footer {
+     font-family: 'Noto Sans', sans-serif;
+}
+
  .content {
      flex: 1;
 }
@@ -153,10 +160,10 @@
      color: rgba(255, 255, 255, 0.8);
 }
  .footer-classic {
-     padding: 50px 0 50px 0;
+     padding: 45px 0 50px 0;
      background: #343a40;
      color: rgba(255, 255, 255, 0.8);
-     margin-top: auto;
+     margin-top: 30px;
      z-index: 1;
     /* margin-top: 35px;
      19h06 */

@@ -22,7 +22,7 @@ The goal of this project is to show our skills and understanding of web developm
 
 ###### Windows :
 - [Laragon Full](https://laragon.org/download/#Edition) - v6.0 or newer
-- [Gitbash](https://git-scm.com/download/win) - v2.4 or newer
+- [Gitbash](https://git-scm.com/download/win) - v2.4.0 or newer
 
 ### Optional :
 

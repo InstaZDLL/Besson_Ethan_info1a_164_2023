@@ -20,7 +20,7 @@ The goal of this project is to show our skills and understanding of web developm
 
 ### Windows
 
-Clone the project.
+Clone the project by opening gitbash or the terminal.
 
 ```git
 git clone https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023.git
@@ -55,7 +55,7 @@ Return to the root folder of the project and start the server. You can launch th
 
 #### Installation tutorial for Windows :
 
-Standard install :
+Standard installation (Gitbash):
 
 ![Standard install](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/Windows_standard_install_tutorial.gif)
 

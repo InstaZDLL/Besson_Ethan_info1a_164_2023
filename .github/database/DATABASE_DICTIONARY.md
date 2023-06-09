@@ -1,5 +1,3 @@
-# besson_ethan_info_1a
-
 ## Dictionnaire de données
 
 ### t_categorie

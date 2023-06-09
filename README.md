@@ -32,7 +32,7 @@ The goal of this project is to show our skills and understanding of web developm
 
 ## Installing the Flask application
 
-### Windows
+### Windows (Gitbash)
 
 Clone the project by opening gitbash or the terminal.
 

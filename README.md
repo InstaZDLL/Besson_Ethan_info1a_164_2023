@@ -16,6 +16,18 @@ The goal of this project is to show our skills and understanding of web developm
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 
+## Software to download before installing
+
+### Required :
+
+- Laragon Full - v6.0 or newer
+- Gitbash - v2.4 or newer
+
+### Optional :
+
+- Pycharm - v2023.1 only if you want to use the other installation
+
+
 ## Installing the Flask application
 
 ### Windows

@@ -21,12 +21,13 @@ The goal of this project is to show our skills and understanding of web developm
 ### Required :
 
 ###### Windows :
-- [Laragon Full](https://laragon.org/download/#Edition) - v6.0 or newer
-- [Gitbash](https://git-scm.com/download/win) - v2.4.0 or newer
+- [Laragon Full](https://laragon.org/download/#Edition) - v6.0 or newer.
+- [Gitbash](https://git-scm.com/download/win) - v2.41.0 or newer.
+- [Python](https://www.python.org/downloads/) - v3.11.3 or newer.
 
 ### Optional :
 
-- Pycharm - v2023.1 only if you want to use the other installation
+- Pycharm - v2023.1 only if you want to use the other installation.
 
 
 ## Installing the Flask application

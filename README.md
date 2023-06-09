@@ -32,13 +32,14 @@ Go to the project directory.
 cd Besson_Ethan_info1a_164_2023
 ```
 
+[Optional] If you hava Laragon you don't have to edit something if your credentials are root with no password.
 Modify the [environment variables](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023#environment-variables) in the `.env` file. You can edit the file with Notepad or another text editing tool.
 
 ```shell
 notepad .env
 ```
 
-Change, **if needed**, the `besson_ethan_info_1a.sql` file in the `database` directory. You can edit the file with Notepad or another text editing tool.
+[Optional] If you don't want to change the dump and keep the original database you can skip this step, Change, **if needed**, the `besson_ethan_info_1a.sql` file in the `database` directory. You can edit the file with Notepad or another text editing tool.
 
 ```shell
 cd FlaskWebS/database

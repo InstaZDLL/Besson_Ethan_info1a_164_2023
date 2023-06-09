@@ -20,8 +20,9 @@ The goal of this project is to show our skills and understanding of web developm
 
 ### Required :
 
-- Laragon Full - v6.0 or newer
-- Gitbash - v2.4 or newer
+###### Windows :
+- [Laragon Full](https://laragon.org/download/#Edition) - v6.0 or newer
+- [Gitbash](https://git-scm.com/download/win) - v2.4 or newer
 
 ### Optional :
 

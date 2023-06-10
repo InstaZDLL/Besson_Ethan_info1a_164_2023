@@ -55,7 +55,7 @@ def show_modify_materiel():
     form = ModifyMaterielForm(data=data)
 
     # render the modify_materiel_form.html template and pass the data and categories to it
-    return render_template("/materiel/actions/modify_materiel_form.html", data=data, form=form, categories=categories,
+    return render_template("/materiel/miscellaneous/modify_materiel_form.html", data=data, form=form, categories=categories,
                            id=id_materiel)
 
 
@@ -267,7 +267,7 @@ def add_materiel():
             return redirect(url_for('success.success_cat'))
 
     else:
-        return render_template('/materiel/actions/add_materiel_form.html', categories=categories)
+        return render_template('/materiel/miscellaneous/add_materiel_form.html', categories=categories)
 
 
 @bp.route('/add_materiel_form')
@@ -275,7 +275,7 @@ def add_materiel_form():
     """
     Displays the add person form.
     """
-    return render_template('/materiel/actions/add_materiel_form.html')
+    return render_template('/materiel/miscellaneous/add_materiel_form.html')
 
 
 @bp.route('/filter', methods=['POST'])

@@ -313,7 +313,7 @@ def materiel():
             headers = [h for h in headers if h not in ['date_expi', 'date_achat']]
             data = [[row[i] for i, h in enumerate(headers)] for row in data]
 
-    return render_template('/materiel/categorie.html', data=data, headers=headers)
+    return render_template('/materiel/materiel.html', data=data, headers=headers)
 
 
 # End New code block

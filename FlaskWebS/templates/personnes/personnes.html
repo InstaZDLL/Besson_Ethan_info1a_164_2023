@@ -16,14 +16,45 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <style>
         table {
-            width: auto;
-            table-layout: auto;
-            border-collapse: collapse;
-            z-index: 1;
-      }
-      table td {
-          text-align: center;
-      }
+             width: auto;
+             table-layout: auto;
+             border-collapse: collapse;
+             z-index: 1;
+        }
+         table td {
+             text-align: center;
+        }
+         thead th {
+             text-align: center;
+        }
+         .btn-primary{
+             width: 192px;
+             z-index: 1;
+             background-color: #f650a0;
+             background-image: linear-gradient(45deg, #ff9897, #f650a0);
+             color: white;
+             border: none;
+             border-radius: 20px;
+             padding: 10px 40px;
+             margin: 20px 0 20px;
+             font-size: 16px;
+             cursor: pointer;
+             display: block;
+             position: relative;
+        }
+         .container {
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+        }
+         .edits {
+             display: flex;
+             justify-content: center;
+             align-items: flex-end;
+             gap: 10px;
+             margin-bottom: 20px;
+             max-width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -42,28 +73,35 @@
             <p>Ici sont listées toutes les personnes ayant du matériel.</p>
         </div>
     </div>
-    <table>
-        <thead>
-            <tr>
-                {% for header in headers %}
-                <th style="text-align: center">{{ header }}</th>
+    <div class="container">
+        <table>
+            <div class="edits">
+                <button class="btn-primary" style="z-index: 3; flex: 1">Editer les personnes</button>
+                <button class="btn-primary" style="z-index: 3; flex: 1">Editer les retrait</button>
+                <button class="btn-primary" style="z-index: 3; flex: 1;">Editer les ajout</button>
+            </div>
+            <thead>
+                <tr>
+                    {% for header in headers %}
+                    <th style="text-align: center">{{ header }}</th>
+                    {% endfor %}
+                    <th style="text-align: center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    {% for cell in row %}
+                    <td style="text-align: center">{{ cell }}</td>
+                    {% endfor %}
+                    <td style="text-align: center">
+                        <button type="button" class="btn btn-secondary" data-id="{{ row[0] }}">Delete</button>
+                    </td>
+                </tr>
                 {% endfor %}
-                <th style="text-align: center">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in data %}
-            <tr>
-                {% for cell in row %}
-                <td style="text-align: center">{{ cell }}</td>
-                {% endfor %}
-                <td style="text-align: center">
-                    <button type="button" class="btn btn-secondary" data-id="{{ row[0] }}">Delete</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     {% include '/personnes/actions/delete-button.html' %}

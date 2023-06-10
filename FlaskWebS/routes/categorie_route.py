@@ -55,7 +55,7 @@ def show_modify_materiel():
     form = ModifyMaterielForm(data=data)
 
     # render the modify_materiel_form.html template and pass the data and categories to it
-    return render_template("/actions/modify_materiel_form.html", data=data, form=form, categories=categories,
+    return render_template("/materiel/actions/modify_materiel_form.html", data=data, form=form, categories=categories,
                            id=id_materiel)
 
 
@@ -259,15 +259,15 @@ def add_materiel():
                 flash('La catégorie du matériel a été ajoutée avec succès.', 'success')
             except Exception as e:
                 cnx.rollback()
-                flash('Une erreur est survenue lors de l\'ajout de la catégorie du matériel. Veuillez réessayer plus tard.',
-                      'danger')
+                flash(
+                    'Une erreur est survenue lors de l\'ajout de la catégorie du matériel. Veuillez réessayer plus tard.',
+                    'danger')
                 print(e)
 
             return redirect(url_for('success.success_cat'))
 
     else:
-        return render_template('/actions/add_materiel_form.html', categories=categories)
-
+        return render_template('/materiel/actions/add_materiel_form.html', categories=categories)
 
 
 @bp.route('/add_materiel_form')
@@ -275,7 +275,7 @@ def add_materiel_form():
     """
     Displays the add person form.
     """
-    return render_template('/actions/add_materiel_form.html')
+    return render_template('/materiel/actions/add_materiel_form.html')
 
 
 @bp.route('/filter', methods=['POST'])
@@ -313,7 +313,7 @@ def categorie():
             headers = [h for h in headers if h not in ['date_expi', 'date_achat']]
             data = [[row[i] for i, h in enumerate(headers)] for row in data]
 
-    return render_template('categorie.html', data=data, headers=headers)
+    return render_template('/materiel/categorie.html', data=data, headers=headers)
 
 
 # End New code block

@@ -13,4 +13,4 @@ def stock():
     cursor.execute(query)
     data = cursor.fetchall()
 
-    return render_template('stock.html', data=data)
+    return render_template('stock/stock.html', data=data)

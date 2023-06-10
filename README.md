@@ -150,6 +150,19 @@ To run this project, you will need to modify the following environment variables
 ## Usage/Examples
 
 
+#### Qtagselect Usage
+
+To use qtagselect if you want to change the category of the item you've selected, you need to click on the x to remove the actuall, and then select another in the label box.
+
+
+**Animated tutorial :**
+
+![Qtagselect](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/Qtagselect_demo.gif)
+
+***
+
+#### SQL Request modifications :
+
 You can change the SQL request to show an other table.
 
 ```python

@@ -154,6 +154,22 @@ To run this project, you will need to modify the following environment variables
 
 To use qtagselect if you want to change the category of the item you've selected, you need to click on the x to remove the actuall, and then select another in the label box.
 
+**Step 1 :** click on the x to delete the category already selected.
+
+![Step1](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/qt_step_1.png)
+
+
+**Step 2:** select a new category from the tagbox.
+
+Note that you can only select 1 category in the box if you wish to modify it. To select more change the code [here](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/blob/8c800b810f9d4190107a40b3a81bb670a9680d85/FlaskWebS/templates/actions/modify_materiel_form.html#L189)
+
+![Step2](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/qt_step_2.png)
+
+
+**Step 3 :** once you've selected a category, close the label box menu by clicking on (Close) at the bottom of the box, or click on any item outside the box, which will automatically close it.
+
+![Step3](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/qt_step_3.png)
+
 
 **Animated tutorial :**
 

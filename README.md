@@ -182,16 +182,16 @@ Note that you can **only select 1 category** in the box if you wish to modify it
 You can change the SQL request to show an other table.
 
 ```python
-@bp.route('/materiel')
+@bp.route('/stock')
 def materiel():
     """
-    Retrieves the data from the table t_materiel in the MySQL database and displays it on the page "materiel.html".
+    Retrieves the data from the table t_materiel in the MySQL database and displays it on the page "stock.html".
     """
     query = "SELECT * FROM t_materiel" # Modify with your query here
     cursor.execute(query)
     data = cursor.fetchall()
 
-    return render_template('materiel.html', data=data)
+    return render_template('stock.html', data=data)
 ```
 
 If you change something here don't forget to modify the html code too in the `materiel.html`, or you can also opt for automatic headers such as `marques.html`.

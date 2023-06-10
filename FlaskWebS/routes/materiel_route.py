@@ -4,13 +4,13 @@ from FlaskWebS import cursor
 bp = Blueprint('materiel', __name__)
 
 
-@bp.route('/materiel')
-def materiel():
+@bp.route('/stock')
+def stock():
     """
-    Retrieves the data from the table t_materiel in the MySQL database and displays it on the page "materiel.html".
+    Retrieves the data from the table t_materiel in the MySQL database and displays it on the page "stock.html".
     """
     query = "SELECT * FROM t_materiel"
     cursor.execute(query)
     data = cursor.fetchall()
 
-    return render_template('materiel.html', data=data)
+    return render_template('stock.html', data=data)

@@ -3,7 +3,7 @@
 
 This is a simple web application created as part of the Modulus 164 project. 
 
-The goal of this project is to show our skills and understanding of web development.
+The goal of this project is to show our skills and understanding of web development (Roadmap [here](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/blob/main/.github/ROADMAP.md)).
 
 **All database elements (MCD, MLD and dictionary) are in `.github/database`**
 
@@ -21,17 +21,18 @@ The goal of this project is to show our skills and understanding of web developm
 ### Required :
 
 ###### Windows :
-- [Laragon Full](https://laragon.org/download/#Edition) - v6.0 or newer
-- [Gitbash](https://git-scm.com/download/win) - v2.4 or newer
+- [Laragon Full](https://laragon.org/download/#Edition) - v6.0.0 or newer.
+- [Gitbash](https://git-scm.com/download/win) - v2.41.0 or newer.
+- [Python](https://www.python.org/downloads/) - v3.11.3 or newer.
 
 ### Optional :
 
-- Pycharm - v2023.1 only if you want to use the other installation
+- Pycharm - v2023.1 only if you want to use the other installation.
 
 
 ## Installing the Flask application
 
-### Windows
+### Windows (Gitbash)
 
 Clone the project by opening gitbash or the terminal.
 
@@ -148,6 +149,35 @@ To run this project, you will need to modify the following environment variables
 
 ## Usage/Examples
 
+
+#### Qtagselect Usage
+
+To use qtagselect in the `modify_materiel_form.html`-`/show_modify_materiel` if you want to change the category of the item you've selected, you need to click on the x to remove the actuall, and then select another in the label box.
+
+**Step 1 :** click on the x to delete the category already selected.
+
+![Step1](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/qt_step_1.png)
+
+
+**Step 2:** select a new category from the tagbox.
+
+Note that you can **only select 1 category** in the box if you wish to modify it. To select more change the code [here](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/blob/8c800b810f9d4190107a40b3a81bb670a9680d85/FlaskWebS/templates/actions/modify_materiel_form.html#L189)
+
+![Step2](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/qt_step_2.png)
+
+
+**Step 3 :** once you've selected a category, close the label box menu by clicking on (Close) at the bottom of the box, or click on any item outside the box, which will automatically close it.
+
+![Step3](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/qt_step_3.png)
+
+
+**Animated tutorial :**
+
+![Qtagselect](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/Qtagselect_demo.gif)
+
+***
+
+#### SQL Request modifications :
 
 You can change the SQL request to show an other table.
 

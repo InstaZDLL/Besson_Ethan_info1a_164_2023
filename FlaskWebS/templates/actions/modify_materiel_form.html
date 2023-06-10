@@ -194,9 +194,10 @@
         // get a reference to the select element
         let selectElement = document.querySelector("#nom_cat");
 
-        // get the selected value
+        // get the selected value from the tagselect box
         let selectedValue = selectElement.value;
 
+        // The regexp that applied to all form fields
         document.querySelector("form").addEventListener("submit", function(event) {
             let idMatInput = document.querySelector("#id_mat");
             let idMatRegex = /^\d+$/;

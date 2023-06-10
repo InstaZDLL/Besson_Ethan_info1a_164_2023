@@ -29,7 +29,7 @@
         }
          .btn-primary{
              width: 192px;
-             z-index: 1;
+             z-index: 3;
              background-color: #f650a0;
              background-image: linear-gradient(45deg, #ff9897, #f650a0);
              color: white;
@@ -41,6 +41,7 @@
              cursor: pointer;
              display: block;
              position: relative;
+             flex: 1
         }
          .container {
              display: flex;
@@ -76,9 +77,9 @@
     <div class="container">
         <table>
             <div class="edits">
-                <button class="btn-primary" style="z-index: 3; flex: 1">Editer les personnes</button>
-                <button class="btn-primary" style="z-index: 3; flex: 1">Editer les retrait</button>
-                <button class="btn-primary" style="z-index: 3; flex: 1;">Editer les ajout</button>
+                <button class="btn-primary">Editer les personnes</button>
+                <button class="btn-primary">Editer les retrait</button>
+                <button class="btn-primary">Editer les ajout</button>
             </div>
             <thead>
                 <tr>

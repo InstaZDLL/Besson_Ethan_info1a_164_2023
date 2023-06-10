@@ -3,7 +3,7 @@
 
 This is a simple web application created as part of the Modulus 164 project. 
 
-The goal of this project is to show our skills and understanding of web development.
+The goal of this project is to show our skills and understanding of web development (Roadmap [here](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/blob/main/.github/ROADMAP.md)).
 
 **All database elements (MCD, MLD and dictionary) are in `.github/database`**
 

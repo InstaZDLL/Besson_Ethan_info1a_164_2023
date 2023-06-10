@@ -29,8 +29,9 @@
 26. [x] Fix the modify button in the `/marques`.
 27. [x] Fix status messages in `add_marque_form.html`.
 28. [x] Add a gif tutorial for the installation section.
-29. [x] Fix bugs in the `/categorie` page.
-30. [ ] Move all route sources to a separate folder with a corresponding name.🔜
+29. [x] Fix bugs in the `/materiel` page.
+30. [ ] Move all route sources to a separate folder with a corresponding name. 🔜
+31. [ ] Redesign of the entire `/personnes` section. 🔜
 
 
 ### Definitions :

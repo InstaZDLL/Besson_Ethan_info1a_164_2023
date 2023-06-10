@@ -12,7 +12,7 @@ def success_cat():
 @bp.route('/success_marq')
 def success_marq():
     # render the success-categorie.html template
-    return render_template('/intermediate-pages/success-marques.html')
+    return render_template('marque/intermediate-pages/success-marques.html')
 
 
 @bp.route('/error_cat')
@@ -24,4 +24,4 @@ def error_cat():
 @bp.route('/error_marq')
 def error_marq():
     # render the success-categorie.html template
-    return render_template('/intermediate-pages/error_marques.html')
+    return render_template('marque/intermediate-pages/error_marques.html')

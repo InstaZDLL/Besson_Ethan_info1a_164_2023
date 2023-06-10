@@ -1,7 +1,7 @@
 from flask import render_template, Blueprint
 from FlaskWebS import cursor
 
-bp = Blueprint('materiel', __name__)
+bp = Blueprint('stock', __name__)
 
 
 @bp.route('/stock')

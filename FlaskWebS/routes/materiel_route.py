@@ -4,7 +4,7 @@ from PyFormModify import ModifyMaterielForm
 from datetime import datetime
 import json
 
-bp = Blueprint('categorie', __name__)
+bp = Blueprint('materiel', __name__)
 
 
 @bp.route("/show_modify_materiel")

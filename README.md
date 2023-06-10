@@ -152,7 +152,7 @@ To run this project, you will need to modify the following environment variables
 
 #### Qtagselect Usage
 
-To use qtagselect if you want to change the category of the item you've selected, you need to click on the x to remove the actuall, and then select another in the label box.
+To use qtagselect in the `modify_materiel_form.html`-`/show_modify_materiel` if you want to change the category of the item you've selected, you need to click on the x to remove the actuall, and then select another in the label box.
 
 **Step 1 :** click on the x to delete the category already selected.
 

@@ -18,9 +18,9 @@ document.addEventListener("DOMContentLoaded", function() {
             let idMarqueCell = row.cells[idMarqueIndex];
             let id = idMarqueCell.textContent;
 
-            // send a GET request to the /get_data_to_delete route
+            // send a GET request to the /get_data_to_delete_personnes route
             let xhr = new XMLHttpRequest();
-            xhr.open("GET", "/get_data_to_delete?id=" + id);
+            xhr.open("GET", "/get_data_to_delete_personnes?id=" + id);
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     // handle successful retrieval of data
@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
                     }
                     if (confirm(message)) {
-                        // send a POST request to the /delete_row_categorie route
+                        // send a POST request to the /delete_row_personnes route
                         let xhr2 = new XMLHttpRequest();
-                        xhr2.open("POST", "/delete_row_categorie");
+                        xhr2.open("POST", "/delete_row_personnes");
                         xhr2.setRequestHeader(
                             "Content-Type",
                             "application/x-www-form-urlencoded"
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         xhr2.onload = function() {
                             if (xhr2.status === 200) {
                                 // handle successful deletion
-                                location.href = '/success_cat'; // redirect to another page
+                                location.reload();
                             } else {
                                 // handle error
                                 alert("Error: " + xhr2.status);
@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
 
 
 

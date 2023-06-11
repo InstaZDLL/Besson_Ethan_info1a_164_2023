@@ -62,3 +62,58 @@ def add_personnes_edit():
         return redirect(url_for('success.success_pers_edit'))
     else:
         return render_template('personnes/personnes-edit/actions/personnes_edit_add.html')
+
+
+@bp.route('/get_data_to_delete_personnes', methods=['GET'])
+def get_data_to_delete_personnes():
+    id = request.args.get('id')
+    cursor = cnx.cursor()
+    # query the database for the data that will be deleted
+    query = '''
+        SELECT t_materiel.id_materiel, t_materiel.nom_mat
+        FROM t_personnes_avoir_materiel
+        JOIN t_materiel ON t_personnes_avoir_materiel.fk_materiel = t_materiel.id_materiel
+        WHERE t_personnes_avoir_materiel.fk_personnes = %s
+        UNION
+        SELECT t_materiel.id_materiel, t_materiel.nom_mat
+        FROM t_personnes_retrait_materiel
+        JOIN t_materiel ON t_personnes_retrait_materiel.fk_materiel = t_materiel.id_materiel
+        WHERE t_personnes_retrait_materiel.fk_personnes = %s
+        UNION
+        SELECT t_materiel.id_materiel, t_materiel.nom_mat
+        FROM t_personnes_ajout_materiel
+        JOIN t_materiel ON t_personnes_ajout_materiel.fk_materiel = t_materiel.id_materiel
+        WHERE t_personnes_ajout_materiel.fk_personnes = %s
+    '''
+    cursor.execute(query, (id, id, id))
+    data = cursor.fetchall()
+    # determine which tables will be affected
+    affected_tables = ['t_personnes']
+    if len(data) > 0:
+        affected_tables.append('t_personnes_avoir_materiel')
+        affected_tables.append('t_personnes_retrait_materiel')
+        affected_tables.append('t_personnes_ajout_materiel')
+        affected_tables.append('t_materiel')
+    cursor.close()
+    # return the data and affected tables as a JSON object
+    return jsonify({'data': data, 'affected_tables': affected_tables})
+
+
+
+@bp.route('/delete_row_personnes', methods=['POST'])
+def delete_row_personnes():
+    id = request.form['id']
+    cursor = cnx.cursor()
+    # delete any referencing rows in the t_personnes_avoir_materiel table
+    cursor.execute('DELETE FROM t_personnes_avoir_materiel WHERE fk_personnes=%s', (id,))
+    # delete any referencing rows in the t_personnes_ajout_materiel table
+    cursor.execute('DELETE FROM t_personnes_ajout_materiel WHERE fk_personnes=%s', (id,))
+    # delete any referencing rows in the t_personnes_retrait_materiel table
+    cursor.execute('DELETE FROM t_personnes_retrait_materiel WHERE fk_personnes=%s', (id,))
+    # delete the row in the t_personnes table
+    cursor.execute('DELETE FROM t_personnes WHERE id_personnes=%s', (id,))
+    cnx.commit()
+    cursor.close()
+    return 'Row deleted'
+
+

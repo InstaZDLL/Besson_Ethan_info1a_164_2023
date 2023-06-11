@@ -32,6 +32,14 @@
 29. [x] Fix bugs in the `/materiel` page.
 30. [x] Move all route sources to a separate folder with a corresponding name.
 31. [ ] Redesign of the entire `/personnes` section. 🔜
+32. [x] Redirect the user to a success page after creating a category.
+33. [x] Implement input field listener and variable renaming for category route functionality.
+34. [x] Refactor category action buttons and route functionalities.
+35. [x] Clarify category selection limit in `README.md`. 🔄
+36. [x] Add steps and images for modifying the category of selected items in the README file.
+37. [x] Add Qtagselect usage and SQL request modifications, including an animated tutorial for Qtagselect.
+38. [x] Update README with the latest software version requirements.
+39. [x] Add a gif tutorial for the installation section in `README.md`. 🔄
 
 
 ### Definitions :

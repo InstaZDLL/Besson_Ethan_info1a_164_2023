@@ -65,7 +65,7 @@
     <div class="portainer">
         <form action="/add_personnes_edit" method="post">
             <label for="id_personnes">ID de la personne :</label><br>
-            <input type="text" id="id_personnes" name="id_personnes"><br><br>
+            <input type="text" id="id_personnes" name="id_personnes" pattern="^[0-9]+$"><span id="id_pers_error" style="color:red;"></span><br><br>
             <label for="prenom_pers">Prénom de la personne :</label><br>
             <input type="text" id="prenom_pers" name="prenom_pers"><br><br>
             <label for="nom_pers">Nom de la personne :</label><br>
@@ -76,6 +76,19 @@
         </form>
     </div>
     <script>
+        const idPersInput = document.querySelector("#id_personnes");
+        const idPersError = document.querySelector("#id_pers_error");
+
+        idPersInput.addEventListener("input", function() {
+            if (idPersInput.value === "") {
+                idPersError.textContent = "This field is required.";
+            } else if (!idPersInput.checkValidity()) {
+                idPersError.textContent = "Only numbers are accepted.";
+            } else {
+                idPersError.textContent = "";
+            }
+        });
+
         // Show error message if the input is other than a number between 1 and 999
         const depPersInput = document.querySelector("#dep_pers");
         const depPersError = document.querySelector("#dep_pers_error");

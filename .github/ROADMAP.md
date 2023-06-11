@@ -40,6 +40,8 @@
 37. [x] Add Qtagselect usage and SQL request modifications, including an animated tutorial for Qtagselect.
 38. [x] Update README with the latest software version requirements.
 39. [x] Add a gif tutorial for the installation section in `README.md`. 🔄
+40. [ ] Add missing pages corresponding to the database related to personnes.
+41. [ ] Update the [Linux](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023#linux) section of the `README.md`. 🔄
 
 
 ### Definitions :

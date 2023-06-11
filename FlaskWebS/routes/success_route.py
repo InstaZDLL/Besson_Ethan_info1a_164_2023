@@ -4,7 +4,7 @@ bp = Blueprint('success', __name__)
 
 
 @bp.route('/success_mat')
-def success_cmat():
+def success_mat():
     # render the success-materiel.html template
     return render_template('/materiel/intermediate-pages/success-materiel.html')
 

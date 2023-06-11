@@ -30,6 +30,17 @@
              border-radius: 10px;
              box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
+         input[type="text"] {
+             width: calc(100% - 20px); /* subtract 40px to account for the label width and spacing */
+             display: block;
+             padding: 5px;
+             font-size: 16px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+             box-shadow: inset 0 1px 3px #ddd;
+             background-color: #fff;
+             max-width: 500px; /* Increase this value */
+        }
     </style>
 </head>
 <body>
@@ -60,11 +71,23 @@
             <label for="nom_pers">Nom de la personne :</label><br>
             <input type="text" id="nom_pers" name="nom_pers"><br><br>
             <label for="dep_pers">Département de la personne :</label><br>
-            <input type="text" id="ndep_pers" name="dep_pers"><br><br>
+            <input type="text" id="dep_pers" name="dep_pers" pattern="^[1-9][0-9]{0,2}$"><span id="dep_pers_error" style="color:red;"></span><br /><br /> <!--pattern is the regexp of the field-->
             <input type="submit" value="Finish">
         </form>
     </div>
     <script>
+        // Show error message if the input is other than a number between 1 and 999
+        const depPersInput = document.querySelector("#dep_pers");
+        const depPersError = document.querySelector("#dep_pers_error");
+
+        depPersInput.addEventListener("input", function() {
+          if (!depPersInput.checkValidity()) {
+            depPersError.textContent = "Only numbers between 1 and 999 are accepted.";
+          } else {
+            depPersError.textContent = "";
+          }
+        });
+
         // add event listener to input field with id "prenom_pers"
         let nomCatInput = document.querySelector("#prenom_pers");
         nomCatInput.addEventListener("keyup", function(e) {

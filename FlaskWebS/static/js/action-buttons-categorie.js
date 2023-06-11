@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         xhr2.onload = function() {
                             if (xhr2.status === 200) {
                                 // handle successful deletion
-                                location.reload();
+                                location.href = '/success_cat'; // redirect to another page
                             } else {
                                 // handle error
                                 alert("Error: " + xhr2.status);

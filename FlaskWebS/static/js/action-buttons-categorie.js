@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     let response = JSON.parse(xhr.responseText);
                     let dataToDelete = response['data'];
                     let affectedTables = response['affected_tables'];
-                    let message = "Are you sure you want to delete this row?\n";
+                    let message = "Are you sure you want to delete this row?\n\n";
                     if (affectedTables.length > 0) {
                         message += "The following tables will be affected:\n";
                         for (let i = 0; i < affectedTables.length; i++) {
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
                         message += "\nThe following data will be affected:\n";
                         for (let i = 0; i < dataToDelete.length; i++) {
-                            message += "material id: " + dataToDelete[i][0] + ", material name: " + dataToDelete[i][1] + "\n";
+                            message += "ID: " + dataToDelete[i][0] + " / Nom: " + dataToDelete[i][1] + "\n";
                         }
                     }
                     if (confirm(message)) {

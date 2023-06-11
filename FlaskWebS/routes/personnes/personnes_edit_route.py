@@ -99,7 +99,6 @@ def get_data_to_delete_personnes():
     return jsonify({'data': data, 'affected_tables': affected_tables})
 
 
-
 @bp.route('/delete_row_personnes', methods=['POST'])
 def delete_row_personnes():
     id = request.form['id']
@@ -115,5 +114,3 @@ def delete_row_personnes():
     cnx.commit()
     cursor.close()
     return 'Row deleted'
-
-

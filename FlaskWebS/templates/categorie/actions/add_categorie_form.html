@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Add Categorie</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/roboto-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/js/jquery-3.7.0.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <style>
+        .footer-classic {
+             margin-top: auto;
+        }
+         .portainer {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             z-index: 2;
+             width: auto;
+             margin: 0 auto 70px;
+        }
+         form {
+             background-color: #f2f2f2;
+             padding: 20px;
+             border-radius: 10px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <ul class="horizontal">
+        <li><a href="/">Project Modulus 164</a></li>
+        <li><a href="/stock">Stock</a></li>
+        <li><a href="/personnes">Personnes</a></li>
+        <li><a href="/marques">Marques</a></li>
+        <li><a href="/materiel">Matériel</a></li>
+        <li><a class="active" href="/categorie">Catégories</a></li>
+        <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
+        <li class="rightli" style="float:right"><a href="/404">404</a></li>
+    </ul>
+
+    <div class="rounded-box">
+        <div style="padding-left: 30px;">
+            <h1>Add Categorie</h1>
+            <p>Page d'ajout de données.</p>
+        </div>
+    </div>
+
+    <div class="portainer">
+        <form action="/add_categorie" method="post">
+            <label for="id_categorie">ID de la catégorie :</label><br>
+            <input type="text" id="id_categorie" name="id_categorie"><br><br>
+            <label for="nom_cat">Nom de la catégorie :</label><br>
+            <input type="text" id="nom_cat" name="nom_cat"><br><br>
+            <label for="description_cat">Description de la catégorie :</label><br>
+            <input type="text" id="description_cat" name="description_cat"><br><br>
+            <input type="submit" value="Finish">
+        </form>
+    </div>
+    <script>
+        // add event listener to input field with id "nom_cat"
+        let nomCatInput = document.querySelector("#nom_cat");
+        nomCatInput.addEventListener("keyup", function(e) {
+            // get the current value of the input field
+            let value = e.target.value;
+
+            // replace all spaces with underscores
+            let newValue = value.replace(/\s+/g, '_');
+
+            // set the updated value of the input field
+            e.target.value = newValue;
+        });
+    </script>
+    {% include '/miscellaneous/background-boxes.html' %}
+    {% include '/miscellaneous/footer.html' %}
+</body>
+</html>

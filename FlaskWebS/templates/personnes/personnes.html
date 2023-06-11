@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My App - Personnes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/roboto-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/delete-button-personnes.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/js/jquery-3.7.0.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <style>
+        table {
+             width: auto;
+             table-layout: auto;
+             border-collapse: collapse;
+             z-index: 1;
+        }
+         table td {
+             text-align: center;
+        }
+         thead th {
+             text-align: center;
+        }
+         .btn-primary{
+             width: 100%;
+             z-index: 3;
+             background-color: #f650a0;
+             background-image: linear-gradient(45deg, #ff9897, #f650a0);
+             color: white;
+             border: none;
+             border-radius: 20px;
+             padding: 10px 40px;
+             margin: 20px 0 20px;
+             font-size: 16px;
+             cursor: pointer;
+             display: block;
+             position: relative;
+             flex: 1
+        }
+         .container {
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+        }
+         .edits {
+             width: 800px; /* adjust this value to match the width of your table */
+             display: flex;
+             justify-content: center;
+             align-items: flex-end;
+             gap: 10px;
+             margin-bottom: 20px;
+             max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <ul class="horizontal">
+        <li><a href="/">Project Modulus 164</a></li>
+        <li><a href="/stock">Stock</a></li>
+        <li><a class="active" href="/personnes">Personnes</a></li>
+        <li><a href="/marques">Marques</a></li>
+        <li><a href="/materiel">Matériel</a></li>
+        <li><a href="/categorie">Catégories</a></li>
+        <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
+        <li class="rightli" style="float:right"><a href="/404">404</a></li>
+    </ul>
+    <div class="rounded-box">
+        <div style="padding-left: 30px;">
+            <h1>Personnes</h1>
+            <p>Ici sont listées toutes les personnes ayant du matériel.</p>
+            <p><strong>Cette page n'est pas encore terminée</strong></p>
+        </div>
+    </div>
+    <div class="container">
+        <table>
+            <div class="edits">
+                <button class="btn-primary" onclick="window.location.href='/personnes_edit'">Editer les personnes</button>
+                <button class="btn-primary" onclick="window.location.href='/soon'">Editer les retrait</button>
+                <button class="btn-primary" onclick="window.location.href='/soon'">Editer les ajout</button>
+            </div>
+            <thead>
+                <tr>
+                    {% for header in headers %}
+                    <th style="text-align: center">{{ header }}</th>
+                    {% endfor %}
+                    <th style="text-align: center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    {% for cell in row %}
+                    <td style="text-align: center">{{ cell }}</td>
+                    {% endfor %}
+                    <td style="text-align: center">
+                        <button type="button" class="btn btn-secondary" data-id="{{ row[0] }}">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    {% include '/personnes/actions/delete-button.html' %}
+    {% include '/miscellaneous/background-boxes.html' %}
+    {% include '/miscellaneous/footer.html' %}
+</body>
+
+</html>

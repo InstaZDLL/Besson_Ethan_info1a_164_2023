@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <title>Modify Marque</title>
+    <title>Modify Personnes</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
@@ -38,26 +38,31 @@
 <body>
     <ul class="horizontal">
         <li><a href="/">Project Modulus 164</a></li>
+        <li><a href="/stock">Stock</a></li>
+        <li><a class="active" href="/personnes">Personnes</a></li>
+        <li><a href="/marques">Marques</a></li>
         <li><a href="/materiel">Matériel</a></li>
-        <li><a href="/personnes">Personnes</a></li>
-        <li><a class="active" href="/marques">Marques</a></li>
-        <li><a href="/categorie">Catégorie</a></li>
+        <li><a href="/categorie">Catégories</a></li>
         <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
+        <li class="rightli" style="float:right"><a href="/404">404</a></li>
     </ul>
     <div class="rounded-box">
         <div style="padding-left: 30px;">
-            <h1>Modify Marque</h1>
+            <h1>Modify Personnes</h1>
             <p>Page de modification de données.</p>
+            <p><strong>Cette page n'est pas encore terminée</strong></p>
         </div>
     </div>
     <div class="portainer">
-        <form action="/modify_marque" method="post">
-            <label for="id_show">ID de la marque :</label> <br>
+        <form action="/modify_personnes_edit" method="post">
+            <label for="id_show">ID de la personne :</label> <br>
             <input type="text" id="id_show" name="id_show" disabled><br><br>
-            <label for="nom_marque">Nom de la marque :</label> <br>
-            <input type="text" id="nom_marque" name="nom_marque"><br><br>
-            <label for="description_marque">Description de la marque :</label> <br>
-            <input type="text" id="description_marque" name="description_marque"><br><br>
+            <label for="prenom_pers">Prénom de la personne :</label> <br>
+            <input type="text" id="prenom_pers" name="prenom_pers"><br><br>
+            <label for="nom_pers">Nom de la personne :</label> <br>
+            <input type="text" id="nom_pers" name="nom_pers"><br><br>
+            <label for="dep_pers">Département de la personne :</label> <br>
+            <input type="text" id="dep_pers" name="dep_pers"><br><br>
             <input type="hidden" id="id" name="id">
             <input type="submit" value="Finish">
         </form>
@@ -71,22 +76,36 @@
         // pre-fill the form with the existing data for this row
         // you will need to write some server-side code to fetch the data for this row
         // and return it as a JSON object
-        fetch("/get_row_data_marque?id=" + id)
+        fetch("/get_row_data_personnes_edit?id=" + id)
             .then(response => response.json())
             .then(data => {
                 // Pre-filled in the input field
-                document.querySelector("#nom_marque").value = data.nom_marque;
-                document.querySelector("#description_marque").value = data.description_marque;
+                let nomCatInput = document.querySelector("#prenom_pers");
+                nomCatInput.value = data.prenom_pers;
+                nomCatInput.addEventListener("keyup", function(e) {
+                    // get the current value of the input field
+                    let value = e.target.value;
+
+                    // replace all spaces with underscores
+                    let newValue = value.replace(/\s+/g, '_');
+
+                    // set the updated value of the input field
+                    e.target.value = newValue;
+                });
+
+                document.querySelector("#nom_pers").value = data.nom_pers;
                 document.querySelector("#id").value = data.id;
                 document.querySelector("#id_show").value = data.id;
 
                 document.querySelector("#current_id").textContent = data.id;
-                document.querySelector("#current_nom_marque").textContent = data.nom_marque;
-                document.querySelector("#current_description_marque").textContent = data.description_marque;
+                document.querySelector("#current_prenom_pers").textContent = data.prenom_pers;
+                document.querySelector("#current_nom_pers").textContent = data.nom_pers;
+                document.querySelector("#current_dep_pers").value = data.dep_pers;
+
             });
     </script>
-    {% include '/actions/background-boxes.html' %}
-    {% include 'footer.html' %}
+    {% include '/miscellaneous/background-boxes.html' %}
+    {% include '/miscellaneous/footer.html' %}
 </body>
 
 </html>

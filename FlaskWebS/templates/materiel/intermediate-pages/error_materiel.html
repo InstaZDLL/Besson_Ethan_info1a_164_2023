@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My App - Categorie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/nunito-sans.css') }}">
+</head>
+<style>
+     body {
+         text-align: center;
+         padding: 40px 0;
+         background: #ebf0f5;
+    }
+     .card {
+         position: fixed;
+         top: 0;
+         left: 0;
+         bottom: 0;
+         right: 0;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         background: #fff;
+         padding: 60px;
+         border-radius: 4px;
+         box-shadow: 0 2px 3px #c8d0d8;
+    }
+     h1 {
+         color: #ff6666;
+        /* changed from #88b04b */
+         font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+         font-weight: 900;
+         font-size: 50px;
+         margin-bottom: 10px;
+    }
+     p {
+         color: #404f5e;
+         font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+         font-size: 25px;
+         margin: 0;
+    }
+     i {
+         color: #ff6666;
+        /* changed from #9abc66 */
+         font-size: 100px;
+         line-height: 200px;
+         margin-left: -15px;
+    }
+     #countdown {
+         color: #ff6666;
+        /* changed from #9abc66 */
+         font-size: 20px;
+    }
+</style>
+
+
+<body>
+    <script>
+      let secondsLeft = 3;
+      let redirectUrl = '/materiel'; // Replace with your redirect URL
+
+      const countdown = setInterval(() => {
+        document.getElementById('countdown').textContent = `Vous serez redirigé dans ${secondsLeft} seconds`;
+        secondsLeft--;
+        if (secondsLeft < 0) {
+          clearInterval(countdown);
+          window.location.href = redirectUrl;
+        }
+      }, 1000);
+    </script>
+
+    <div class="card">
+      <div style="border-radius: 200px; height: 200px; width: 200px; background: #ffe5e5; margin: 0 auto;">
+        <i class="checkmark">✗</i>
+      </div>
+      <h1>Erreur</h1>
+      <!--<p>Votre demande n'a pas pu être exécutée;<br>Car l'ID spécififée existe déja</p><br />-->
+      <p>Votre demande n'a pas pu être exécutée car l'ID existe déjà;<br>veuillez vérifier la base de données et réessayer !</p><br />
+      <p id="countdown">Vous serez redirigé dans 4 seconds</p> <!-- The countdown text will be displayed here -->
+    </div>
+</body>
+
+</html>

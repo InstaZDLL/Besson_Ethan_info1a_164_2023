@@ -3,42 +3,53 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>My App - Personnes</title>
+    <title>My App - Categories</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/roboto-font.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/delete-button-personnes.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/buttons/all-buttons-marques.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/js/personnes/action-buttons-personnes-edit.js"></script>
     <script src="/static/js/jquery-3.7.0.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <style>
-        table {
-            width: auto;
-            table-layout: auto;
-            border-collapse: collapse;
-            z-index: 1;
+       .footer-classic {
+             margin-top: auto;
+      }
+       table {
+           width: auto;
+           table-layout: auto;
+           border-collapse: collapse;
+           z-index: 1;
       }
       table td {
-          text-align: center;
+           text-align: center;
+      }
+      .hidden {
+          display: none;
       }
     </style>
 </head>
+
 <body>
     <ul class="horizontal">
         <li><a href="/">Project Modulus 164</a></li>
-        <li><a href="/materiel">Matériel</a></li>
+        <li><a href="/stock">Stock</a></li>
         <li><a class="active" href="/personnes">Personnes</a></li>
         <li><a href="/marques">Marques</a></li>
-        <li><a href="/categorie">Catégorie</a></li>
+        <li><a href="/materiel">Matériel</a></li>
+        <li><a href="/categorie">Catégories</a></li>
         <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
+        <li class="rightli" style="float:right"><a href="/404">404</a></li>
     </ul>
     <div class="rounded-box">
         <div style="padding-left: 30px;">
-            <h1>Personnes</h1>
-            <p>Ici sont listées toutes les personnes ayant du matériel.</p>
+            <h1>Personnes edit</h1>
+            <p>Ici sont listées toutes les personnes.</p>
+            <p><strong>Le bouton modify n'est pas disponible pour l'instant</strong></p>
         </div>
     </div>
     <table>
@@ -57,7 +68,9 @@
                 <td style="text-align: center">{{ cell }}</td>
                 {% endfor %}
                 <td style="text-align: center">
-                    <button type="button" class="btn btn-secondary" data-id="{{ row[0] }}">Delete</button>
+                    <button type="button" class="btn btn-primary add-btn" id="add-btn">Add</button>
+                    <button type="button" class="btn btn-secondary delete-btn">Delete</button>
+                    <!-- TODO IN BUILD <button type="button" class="btn btn-tertiary modify-btn ">Modify</button>-->
                 </td>
             </tr>
             {% endfor %}
@@ -65,9 +78,8 @@
     </table>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    {% include '/actions/delete-button.html' %}
-    {% include '/actions/background-boxes.html' %}
-    {% include 'footer.html' %}
+    {% include '/miscellaneous/background-boxes.html' %}
+    {% include '/miscellaneous/footer.html' %}
 </body>
 
 </html>

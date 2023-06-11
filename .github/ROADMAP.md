@@ -8,7 +8,7 @@
 5. [x] Add an image in the footer and a font for the text. 🔄
 6. [ ] ~~Add functionality to the filter button in `materiel.html`.~~
 7. [x] Add a tag table to the editing panel. 🔄
-8. [x] Add functionality to the two remaining buttons in `categorie.html`.
+8. [x] Add functionality to the two remaining buttons in `materiel.html`.
 9. [x] Restructuring of file names and paths. 
 10. [x] Re-structuring of the sources of the html files and optimization of the code.
 11. [x] Add protection against SQL injections.
@@ -17,7 +17,7 @@
 14. [x] Add a `run-app.py` file and initialize the application package in it. 🔄
 15. [x] Removal of unused fonts in `/fonts` folder.
 16. [x] Add functionality to the `/success_cat` app route. 🔄
-17. [ ] ~~Add a failed popup when submitting to all forms linked to `categorie.html`. 🔄~~
+17. [ ] ~~Add a failed popup when submitting to all forms linked to `materiel.html`. 🔄~~
 18. [ ] ~~Add the possibility to change the id of the marques in all linked forms in the `marques.html`.~~
 19. [x] Correct all resource paths.
 20. [x] Fix the bug of the qtagselect from the page `modify_materiel.html`.
@@ -29,7 +29,20 @@
 26. [x] Fix the modify button in the `/marques`.
 27. [x] Fix status messages in `add_marque_form.html`.
 28. [x] Add a gif tutorial for the installation section.
-29. [x] Fix bugs in the `/categorie` page.
+29. [x] Fix bugs in the `/materiel` page.
+30. [x] Move all route sources to a separate folder with a corresponding name.
+31. [ ] Redesign of the entire `/personnes` section. 🔜
+32. [x] Redirect the user to a success page after creating a category.
+33. [x] Implement input field listener and variable renaming for category route functionality.
+34. [x] Refactor category action buttons and route functionalities.
+35. [x] Clarify category selection limit in `README.md`. 🔄
+36. [x] Add steps and images for modifying the category of selected items in the README file.
+37. [x] Add Qtagselect usage and SQL request modifications, including an animated tutorial for Qtagselect.
+38. [x] Update README with the latest software version requirements.
+39. [x] Add a gif tutorial for the installation section in `README.md`. 🔄
+40. [ ] Add missing pages corresponding to the database related to personnes.
+41. [ ] Update the [Linux](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023#linux) section of the `README.md`. 🔄
+42. [ ] Fix the bug with the modify button in the `modify_categorie_form.html` 🔜
 
 
 ### Definitions :

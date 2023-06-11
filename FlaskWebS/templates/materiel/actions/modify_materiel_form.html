@@ -79,11 +79,13 @@
 <body>
     <ul class="horizontal">
         <li><a href="/">Project Modulus 164</a></li>
-        <li><a href="/materiel">Matériel</a></li>
+        <li><a href="/stock">Stock</a></li>
         <li><a href="/personnes">Personnes</a></li>
         <li><a href="/marques">Marques</a></li>
-        <li><a class="active" href="/categorie">Catégorie</a></li>
+        <li><a class="active" href="/materiel">Matériel</a></li>
+        <li><a href="/categorie">Catégories</a></li>
         <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
+        <li class="rightli" style="float:right"><a href="/404">404</a></li>
     </ul>
     <div class="rounded-box">
         <div style="padding-left: 30px;">
@@ -92,7 +94,7 @@
         </div>
     </div>
     <div class="portainer">
-        <form action="{{ url_for('categorie.modify_materiel_form') }}" method="post">
+        <form action="{{ url_for('materiel.modify_materiel_form') }}" method="post">
             {{ form.csrf_token }}
 
             <input type="hidden" name="old_id_mat" value="{{ request.args.get('id') }}">
@@ -292,8 +294,8 @@
             document.querySelector("#nom_cat").value = data.nom_cat;
         });
     </script>
-    {% include '/actions/background-boxes.html' %}
-    {% include 'footer.html' %}
+    {% include '/miscellaneous/background-boxes.html' %}
+    {% include '/miscellaneous/footer.html' %}
 </body>
 
 </html>

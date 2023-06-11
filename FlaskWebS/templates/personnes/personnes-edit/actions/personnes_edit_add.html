@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Add Personnes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts/roboto-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated_background.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/js/jquery-3.7.0.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <style>
+        .footer-classic {
+             margin-top: auto;
+        }
+         .portainer {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             z-index: 2;
+             width: auto;
+             margin: 0 auto 70px;
+        }
+         form {
+             background-color: #f2f2f2;
+             padding: 20px;
+             border-radius: 10px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+         input[type="text"] {
+             width: calc(100% - 20px); /* subtract 40px to account for the label width and spacing */
+             display: block;
+             padding: 5px;
+             font-size: 16px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+             box-shadow: inset 0 1px 3px #ddd;
+             background-color: #fff;
+             max-width: 500px; /* Increase this value */
+        }
+    </style>
+</head>
+<body>
+    <ul class="horizontal">
+        <li><a href="/">Project Modulus 164</a></li>
+        <li><a href="/stock">Stock</a></li>
+        <li><a class="active" href="/personnes">Personnes</a></li>
+        <li><a href="/marques">Marques</a></li>
+        <li><a href="/materiel">Matériel</a></li>
+        <li><a href="/categorie">Catégories</a></li>
+        <li class="rightli" style="float:right"><a href="/about">À propos</a></li>
+        <li class="rightli" style="float:right"><a href="/404">404</a></li>
+    </ul>
+
+    <div class="rounded-box">
+        <div style="padding-left: 30px;">
+            <h1>Add Personnes</h1>
+            <p>Page d'ajout de données.</p>
+            <p><strong>Cette page n'est pas encore terminée</strong></p>
+        </div>
+    </div>
+
+    <div class="portainer">
+        <form action="/add_personnes_edit" method="post">
+            <label for="id_personnes">ID de la personne :</label><br>
+            <input type="text" id="id_personnes" name="id_personnes" pattern="^[0-9]+$"><span id="id_pers_error" style="color:red;"></span><br><br>
+            <label for="prenom_pers">Prénom de la personne :</label><br>
+            <input type="text" id="prenom_pers" name="prenom_pers"><br><br>
+            <label for="nom_pers">Nom de la personne :</label><br>
+            <input type="text" id="nom_pers" name="nom_pers"><br><br>
+            <label for="dep_pers">Département de la personne :</label><br>
+            <input type="text" id="dep_pers" name="dep_pers" pattern="^[1-9][0-9]{0,2}$"><span id="dep_pers_error" style="color:red;"></span><br /><br /> <!--pattern is the regexp of the field-->
+            <input type="submit" value="Finish">
+        </form>
+    </div>
+    <script>
+        const idPersInput = document.querySelector("#id_personnes");
+        const idPersError = document.querySelector("#id_pers_error");
+
+        idPersInput.addEventListener("input", function() {
+            if (idPersInput.value === "") {
+                idPersError.textContent = "This field is required.";
+            } else if (!idPersInput.checkValidity()) {
+                idPersError.textContent = "Only numbers are accepted.";
+            } else {
+                idPersError.textContent = "";
+            }
+        });
+
+        // Show error message if the input is other than a number between 1 and 999
+        const depPersInput = document.querySelector("#dep_pers");
+        const depPersError = document.querySelector("#dep_pers_error");
+
+        depPersInput.addEventListener("input", function() {
+          if (!depPersInput.checkValidity()) {
+            depPersError.textContent = "Only numbers between 1 and 999 are accepted.";
+          } else {
+            depPersError.textContent = "";
+          }
+        });
+
+        // add event listener to input field with id "prenom_pers"
+        let nomCatInput = document.querySelector("#prenom_pers");
+        nomCatInput.addEventListener("keyup", function(e) {
+            // get the current value of the input field
+            let value = e.target.value;
+
+            // replace all spaces with underscores
+            let newValue = value.replace(/\s+/g, '_');
+
+            // set the updated value of the input field
+            e.target.value = newValue;
+        });
+    </script>
+    {% include '/miscellaneous/background-boxes.html' %}
+    {% include '/miscellaneous/footer.html' %}
+</body>
+</html>

@@ -25,7 +25,7 @@ def personnes():
 
     headers = [column[0] for column in cursor.description]
 
-    return render_template('personnes.html', data=data, headers=headers)
+    return render_template('personnes/personnes.html', data=data, headers=headers)
 
 
 @bp.route('/delete_row')

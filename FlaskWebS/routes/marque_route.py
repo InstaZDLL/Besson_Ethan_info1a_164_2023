@@ -23,7 +23,7 @@ def add_marque_form():
     """
     Displays the add person form.
     """
-    return render_template('/actions/add_marque_form.html')
+    return render_template('marque/actions/add_marque_form.html')
 
 
 @bp.route('/modify_marque', methods=['GET', 'POST'])
@@ -53,10 +53,10 @@ def modify_marque():
                   'danger')
             print(e)
 
-        return redirect(url_for('marque.marques'))
+        return redirect(url_for('success.success_marq'))
 
     else:
-        return render_template('/actions/modify_marque_form.html')
+        return render_template('marque/actions/modify_marque_form.html')
 
 
 @bp.route('/get_row_data_marque')
@@ -111,9 +111,9 @@ def add_marque():
         # Redirects to the 'marques' endpoint within the 'marque' Blueprint.
         # Using 'marque.marques' instead of just 'marques' specifies the endpoint within the Blueprint.
         # This ensures Flask can correctly build the URL for the 'marques' endpoint.
-        return redirect(url_for('marque.marques'))
+        return redirect(url_for('success.success_marq'))
     else:
-        return render_template('/actions/add_marque_form.html')
+        return render_template('marque/actions/add_marque_form.html')
 
 
 @bp.route('/marques')
@@ -131,4 +131,4 @@ def marques():
 
     headers = [column[0] for column in cursor.description]
 
-    return render_template('marques.html', data=data, headers=headers)
+    return render_template('marque/marques.html', data=data, headers=headers)

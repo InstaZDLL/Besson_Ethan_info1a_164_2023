@@ -22,7 +22,7 @@ app.secret_key = os.environ.get('SECRET_KEY_FLASK')
 # Connection to the MySQL database
 try:
     cnx = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
-                                   database=name_bd_mysql)
+                                  database=name_bd_mysql)
 except mysql.connector.Error as e:
     if e.errno == 1049:
         # Unknown database error
@@ -36,12 +36,13 @@ except mysql.connector.Error as e:
         cnx.close()
         # Connect to the newly created database
         cnx = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
-                                       database=name_bd_mysql)
+                                      database=name_bd_mysql)
     elif e.errno == 2003:
-        print(f'\U0000274C Erreur lors de la connexion à la base de données : {str(e)}\n1. Vérifier que vous avez démarer '
-              f'votre base '
-              f'de données.\n2. Vérifier que les informations de connexion sont juste dans le fichier \033[1m.env\033['
-              f'0m')
+        print(
+            f'\U0000274C Erreur lors de la connexion à la base de données : {str(e)}\n1. Vérifier que vous avez démarer '
+            f'votre base '
+            f'de données.\n2. Vérifier que les informations de connexion sont juste dans le fichier \033[1m.env\033['
+            f'0m')
         exit(1)
     else:
         print(f'Message d\'erreur: {str(e)}')
@@ -49,24 +50,26 @@ except mysql.connector.Error as e:
 
 cursor = cnx.cursor()
 
-
-
 # Import and register the route blueprint
 from FlaskWebS.routes.index_route import bp as index_bp
 from FlaskWebS.routes.about_route import bp as about_bp
-from FlaskWebS.routes.categorie_route import bp as categorie_bp
+from FlaskWebS.routes.materiel_route import bp as materiel_bp
 from FlaskWebS.routes.marque_route import bp as marque_bp
 from FlaskWebS.routes.personnes_route import bp as personnes_bp
-from FlaskWebS.routes.materiel_route import bp as materiel_bp
+from FlaskWebS.routes.stock_route import bp as stock_bp
 from FlaskWebS.routes.success_route import bp as success_bp
+from FlaskWebS.routes.categorie_route import bp as categorie_bp
+from FlaskWebS.routes.personnes.personnes_edit_route import bp as personnes_edit_bp
 
-app.register_blueprint(materiel_bp)
+app.register_blueprint(stock_bp)
 app.register_blueprint(personnes_bp)
 app.register_blueprint(marque_bp)
-app.register_blueprint(categorie_bp)
+app.register_blueprint(materiel_bp)
 app.register_blueprint(index_bp)
 app.register_blueprint(about_bp)
 app.register_blueprint(success_bp)
+app.register_blueprint(categorie_bp)
+app.register_blueprint(personnes_edit_bp)
 
 
 @app.errorhandler(404)

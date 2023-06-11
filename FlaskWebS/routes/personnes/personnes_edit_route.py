@@ -61,7 +61,7 @@ def add_personnes_edit():
         # This ensures Flask can correctly build the URL for the 'marques' endpoint.
         return redirect(url_for('success.success_pers_edit'))
     else:
-        return render_template('personnes/personnes-edit/actions/personnes_edit_add.html')
+        return render_template('/personnes/personnes-edit/actions/personnes_edit_add.html')
 
 
 @bp.route('/get_data_to_delete_personnes', methods=['GET'])
@@ -114,3 +114,55 @@ def delete_row_personnes():
     cnx.commit()
     cursor.close()
     return 'Row deleted'
+
+
+@bp.route('/modify_personnes_edit', methods=['GET', 'POST'])
+def modify_personnes_edit():
+    """
+    Processes the data from the mark modification form.
+    """
+    if request.method == 'POST':
+        id = request.form['id_personnes']
+        prenom_pers = request.form['prenom_pers']
+        nom_pers = request.form['nom_pers']
+        dep_pers = request.form['dep_pers']
+
+        query = """
+            UPDATE t_personnes
+            SET prenom_pers = %s, nom_pers = %s, dep_pers = %s
+            WHERE id_personnes = %s
+        """
+        values = (prenom_pers, nom_pers, dep_pers, id)
+
+        try:
+            cursor.execute(query, values)
+            cnx.commit()
+            flash('La marque a été modifiée avec succès.', 'success')
+        except Exception as e:
+            cnx.rollback()
+            flash('Une erreur est survenue lors de la modification de la marque. Veuillez réessayer plus tard.',
+                  'danger')
+            print(e)
+
+        return redirect(url_for('success.success_pers_edit'))
+
+    else:
+        return render_template('/personnes/personnes-edit/actions/modify_personnes_edit_form.html')
+
+
+@bp.route('/get_row_data_personnes_edit')
+def get_row_data_personnes_edit():
+    # Get the id from the request parameters
+    id = request.args.get('id')
+
+    # Execute the SQL query to fetch the data for the row with the given id
+    cursor.execute("SELECT * FROM t_personnes WHERE id_personnes=%s", (id,))
+    row = cursor.fetchone()
+
+    # Return the data as a JSON object
+    return {
+        "id": row[0],
+        "prenom_pers": row[1],
+        "nom_pers": row[2],
+        "dep_pers": row[3]
+    }

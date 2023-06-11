@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         xhr2.onload = function() {
                             if (xhr2.status === 200) {
                                 // handle successful deletion
-                                location.reload();
+                                location.href = '/success_cat'; // redirect to another page
                             } else {
                                 // handle error
                                 alert("Error: " + xhr2.status);
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 let id = idMarqueCell.textContent;
 
                 // redirect to the modify page with the id as a query parameter
-                window.location.href = "/modify_categorie?id=" + encodeURIComponent(id);
+                window.location.href = "/modify_personnes_edit?id=" + encodeURIComponent(id);
             }
         });
     }

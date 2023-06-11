@@ -3,7 +3,7 @@
 
 This is a simple web application created as part of the Modulus 164 project. 
 
-The goal of this project is to show our skills and understanding of web development (Roadmap [here](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/blob/davinci-edits/.github/readme_sources/ROADMAP.md)).
+The goal of this project is to show our skills and understanding of web development (Roadmap [here](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/blob/main/.github/readme_sources/ROADMAP.md)).
 
 **All database elements (MCD, MLD and dictionary) are in `.github/database`**
 
@@ -72,11 +72,11 @@ Return to the root folder of the project and start the server. You can launch th
 
 Standard installation (Gitbash):
 
-![Standard install](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/davinci-edits/.github/readme_sources/Windows_standard_install_tutorial.gif)
+![Standard install](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/readme_sources/Windows_standard_install_tutorial.gif)
 
 Other installation (PyCharm):
 
-![Idea install](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/davinci-edits/.github/readme_sources/Windows_idea_install_tutorial.gif)
+![Idea install](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/readme_sources/Windows_idea_install_tutorial.gif)
 
 ### Linux
 
@@ -144,7 +144,7 @@ To run this project, you will need to modify the following environment variables
 ℹ️ This variable is used to show a table from the database, to see if the SQL dump import was successful.
 
 
-![Screenshot](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/davinci-edits/.github/readme_sources/Screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/readme_sources/Screenshot.png)
 
 
 ## Usage/Examples
@@ -156,24 +156,24 @@ To use qtagselect in the `modify_materiel_form.html`-`/show_modify_materiel` if 
 
 **Step 1 :** click on the x to delete the category already selected.
 
-![Step1](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/davinci-edits/.github/readme_sources/qt_step_1.png)
+![Step1](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/readme_sources/qt_step_1.png)
 
 
 **Step 2:** select a new category from the tagbox.
 
 Note that you can **only select 1 category** in the box if you wish to modify it. To select more change the code [here](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/blob/8c800b810f9d4190107a40b3a81bb670a9680d85/FlaskWebS/templates/actions/modify_materiel_form.html#L189)
 
-![Step2](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/davinci-edits/.github/readme_sources/qt_step_2.png)
+![Step2](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/readme_sources/qt_step_2.png)
 
 
 **Step 3 :** once you've selected a category, close the label box menu by clicking on (Close) at the bottom of the box, or click on any item outside the box, which will automatically close it.
 
-![Step3](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/davinci-edits/.github/readme_sources/qt_step_3.png)
+![Step3](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/readme_sources/qt_step_3.png)
 
 
 **Animated tutorial :**
 
-![Qtagselect](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/davinci-edits/.github/readme_sources/Qtagselect_demo.gif)
+![Qtagselect](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/main/.github/readme_sources/Qtagselect_demo.gif)
 
 ***
 

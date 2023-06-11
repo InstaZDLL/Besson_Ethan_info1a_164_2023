@@ -1,6 +1,6 @@
 # Path index
 
-
+### Uncompleted
 | Path             | Type      | Description                                                                          | Linked in            | Package   |
 |------------------|-----------|--------------------------------------------------------------------------------------|----------------------|-----------|
 | `/miscellaneous` | Folder    | Contains all miscellaneous items                                                     | No link              | None      | 

@@ -42,6 +42,7 @@
 39. [x] Add a gif tutorial for the installation section in `README.md`. 🔄
 40. [ ] Add missing pages corresponding to the database related to personnes.
 41. [ ] Update the [Linux](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023#linux) section of the `README.md`. 🔄
+42. [ ] Fix the bug with the modify button in the `modify_categorie_form.html` 🔜
 
 
 ### Definitions :

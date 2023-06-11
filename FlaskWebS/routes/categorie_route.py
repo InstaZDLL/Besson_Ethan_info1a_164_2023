@@ -18,6 +18,25 @@ def delete_row_categorie():
     return 'Row deleted'
 
 
+@bp.route('/get_data_to_delete', methods=['GET'])
+def get_data_to_delete():
+    id = request.args.get('id')
+    cursor = cnx.cursor()
+    # query the database for the data that will be deleted
+    query = '''
+        SELECT t_materiel.id_materiel, t_materiel.nom_mat
+        FROM t_categorie_avoir_materiel
+        JOIN t_materiel ON t_categorie_avoir_materiel.fk_materiel = t_materiel.id_materiel
+        WHERE t_categorie_avoir_materiel.fk_categorie = %s
+    '''
+    cursor.execute(query, (id,))
+    data = cursor.fetchall()
+    cursor.close()
+    # return the data as a JSON object
+    return jsonify(data)
+
+
+
 @bp.route('/add_categorie_form')
 def add_categorie_form():
     """

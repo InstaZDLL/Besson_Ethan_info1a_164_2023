@@ -24,10 +24,19 @@ document.addEventListener("DOMContentLoaded", function() {
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     // handle successful retrieval of data
-                    let dataToDelete = JSON.parse(xhr.responseText);
-                    let message = "Are you sure you want to delete this row?\nThe following tables will be affected:\nt_categorie_avoir_materiel\nt_materiel\n\nThe following data will be affected:\n";
-                    for (let i = 0; i < dataToDelete.length; i++) {
-                        message += "ID: " + dataToDelete[i][0] + ", material name: " + dataToDelete[i][1] + "\n";
+                    let response = JSON.parse(xhr.responseText);
+                    let dataToDelete = response['data'];
+                    let affectedTables = response['affected_tables'];
+                    let message = "Are you sure you want to delete this row?\n";
+                    if (affectedTables.length > 0) {
+                        message += "The following tables will be affected:\n";
+                        for (let i = 0; i < affectedTables.length; i++) {
+                            message += affectedTables[i] + "\n";
+                        }
+                        message += "\nThe following data will be affected:\n";
+                        for (let i = 0; i < dataToDelete.length; i++) {
+                            message += "material id: " + dataToDelete[i][0] + ", material name: " + dataToDelete[i][1] + "\n";
+                        }
                     }
                     if (confirm(message)) {
                         // send a POST request to the /delete_row_categorie route
@@ -57,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
 
 
 

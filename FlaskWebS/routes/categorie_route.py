@@ -31,9 +31,15 @@ def get_data_to_delete():
     '''
     cursor.execute(query, (id,))
     data = cursor.fetchall()
+    # determine which tables will be affected
+    affected_tables = []
+    if len(data) > 0:
+        affected_tables.append('t_categorie_avoir_materiel')
+        affected_tables.append('t_materiel')
     cursor.close()
-    # return the data as a JSON object
-    return jsonify(data)
+    # return the data and affected tables as a JSON object
+    return jsonify({'data': data, 'affected_tables': affected_tables})
+
 
 
 

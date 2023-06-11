@@ -21,6 +21,12 @@ def success_cat():
     return render_template('/categorie/intermediate-pages/success-categorie.html')
 
 
+@bp.route('/success_pers_edit')
+def success_pers_edit():
+    # render the success-materiel.html template
+    return render_template('/personnes/personnes-edit/intermediate-pages/success-personnes_edit.html')
+
+
 @bp.route('/error_mat')
 def error_mat():
     # render the success-materiel.html template
@@ -37,3 +43,9 @@ def error_marq():
 def error_cat():
     # render the success-materiel.html template
     return render_template('/categorie/intermediate-pages/error_categorie.html')
+
+
+@bp.route('/error_pers_edit')
+def error_pers_edit():
+    # render the success-materiel.html template
+    return render_template('/personnes/personnes-edit/intermediate-pages/error_personnes_edit.html')

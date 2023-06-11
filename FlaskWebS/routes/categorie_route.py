@@ -41,8 +41,6 @@ def get_data_to_delete():
     return jsonify({'data': data, 'affected_tables': affected_tables})
 
 
-
-
 @bp.route('/add_categorie_form')
 def add_categorie_form():
     """

@@ -59,6 +59,7 @@ from FlaskWebS.routes.personnes_route import bp as personnes_bp
 from FlaskWebS.routes.stock_route import bp as stock_bp
 from FlaskWebS.routes.success_route import bp as success_bp
 from FlaskWebS.routes.categorie_route import bp as categorie_bp
+from FlaskWebS.routes.personnes.personnes_edit_route import bp as personnes_edit_bp
 
 app.register_blueprint(stock_bp)
 app.register_blueprint(personnes_bp)
@@ -68,6 +69,7 @@ app.register_blueprint(index_bp)
 app.register_blueprint(about_bp)
 app.register_blueprint(success_bp)
 app.register_blueprint(categorie_bp)
+app.register_blueprint(personnes_edit_bp)
 
 
 @app.errorhandler(404)

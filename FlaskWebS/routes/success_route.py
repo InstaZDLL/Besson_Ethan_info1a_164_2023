@@ -3,8 +3,8 @@ from flask import render_template, Blueprint
 bp = Blueprint('success', __name__)
 
 
-@bp.route('/success_cat')
-def success_cat():
+@bp.route('/success_mat')
+def success_cmat():
     # render the success-materiel.html template
     return render_template('/materiel/intermediate-pages/success-materiel.html')
 
@@ -15,8 +15,14 @@ def success_marq():
     return render_template('/marque/intermediate-pages/success-marques.html')
 
 
-@bp.route('/error_cat')
-def error_cat():
+@bp.route('/success_cat')
+def success_cat():
+    # render the success-materiel.html template
+    return render_template('/categorie/intermediate-pages/success-categorie.html')
+
+
+@bp.route('/error_mat')
+def error_mat():
     # render the success-materiel.html template
     return render_template('/materiel/intermediate-pages/error_materiel.html')
 
@@ -25,3 +31,9 @@ def error_cat():
 def error_marq():
     # render the success-materiel.html template
     return render_template('/marque/intermediate-pages/error_marques.html')
+
+
+@bp.route('/error_cat')
+def error_cat():
+    # render the success-materiel.html template
+    return render_template('/categorie/intermediate-pages/error_categorie.html')

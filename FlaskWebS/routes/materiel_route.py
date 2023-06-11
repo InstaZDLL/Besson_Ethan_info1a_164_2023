@@ -72,7 +72,7 @@ def modify_materiel_form():
 
     if existing_row and id_mat != old_id_mat:
         cursor.close()
-        return redirect(url_for("success.error_cat"))
+        return redirect(url_for("success.error_mat"))
 
     # get the form data
     id_mat = request.form["id_mat"]
@@ -125,7 +125,7 @@ def modify_materiel_form():
         raise
 
     # redirect to the success page
-    return redirect(url_for("success.success_cat"))
+    return redirect(url_for("success.success_mat"))
 
 
 @bp.route('/delete_row_materiel', methods=['POST'])
@@ -228,7 +228,7 @@ def add_materiel():
         cursor.execute(query, (id_materiel,))
         if cursor.fetchone():
             # The id already exists
-            return redirect(url_for('success.error_cat'))
+            return redirect(url_for('success.error_mat'))
         else:
             # The id does not exist, you can insert a new record
             query = """
@@ -264,7 +264,7 @@ def add_materiel():
                     'danger')
                 print(e)
 
-            return redirect(url_for('success.success_cat'))
+            return redirect(url_for('success.success_mat'))
 
     else:
         return render_template('/materiel/actions/add_materiel_form.html', categories=categories)

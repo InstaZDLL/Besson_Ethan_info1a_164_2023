@@ -10,20 +10,20 @@ def delete_row_categorie():
     id = request.form['id']
     cursor = cnx.cursor()
     # delete any referencing rows in the t_marque_avoir_materiel table
-    cursor.execute('DELETE FROM t_marque_avoir_materiel WHERE fk_marque=%s', (id,))
+    cursor.execute('DELETE FROM t_categorie_avoir_materiel WHERE fk_categorie=%s', (id,))
     # delete the row in the t_marque table
-    cursor.execute('DELETE FROM t_marque WHERE id_marque=%s', (id,))
+    cursor.execute('DELETE FROM t_categorie WHERE id_categorie=%s', (id,))
     cnx.commit()
     cursor.close()
     return 'Row deleted'
 
 
-@bp.route('/add_marque_form')
+@bp.route('/add_categorie_form')
 def add_categorie_form():
     """
     Displays the add person form.
     """
-    return render_template('categorie/actions/add_categorie_form.html')
+    return render_template('/categorie/actions/add_categorie_form.html')
 
 
 @bp.route('/modify_categorie', methods=['GET', 'POST'])
@@ -37,9 +37,9 @@ def modify_categorie():
         description_marque = request.form['description_marque']
 
         query = """
-            UPDATE t_marque
-            SET nom_marque = %s, description_marque = %s
-            WHERE id_marque = %s
+            UPDATE t_categorie
+            SET nom_cat = %s, description_cat = %s
+            WHERE id_categorie = %s
         """
         values = (nom_marque, description_marque, id)
 
@@ -53,10 +53,10 @@ def modify_categorie():
                   'danger')
             print(e)
 
-        return redirect(url_for('success.success_categorie'))
+        return redirect(url_for('success.success_cat'))
 
     else:
-        return render_template('categorie/actions/modify_categorie_form.html')
+        return render_template('/categorie/actions/modify_categorie_form.html')
 
 
 @bp.route('/get_row_data_categorie')
@@ -65,14 +65,14 @@ def get_row_data_categorie():
     id = request.args.get('id')
 
     # Execute the SQL query to fetch the data for the row with the given id
-    cursor.execute("SELECT * FROM t_marque WHERE id_marque=%s", (id,))
+    cursor.execute("SELECT * FROM t_categorie WHERE id_categorie=%s", (id,))
     row = cursor.fetchone()
 
     # Return the data as a JSON object
     return {
         "id": row[0],
-        "nom_marque": row[1],
-        "description_marque": row[2]
+        "nom_cat": row[1],
+        "description_cat": row[2]
     }
 
 
@@ -82,24 +82,24 @@ def add_categorie():
     Processes the data from the add mark form and adds it to the MySQL database.
     """
     if request.method == 'POST':
-        id_marque = request.form['id_marque']
-        nom_marque = request.form['nom_marque']
-        description_marque = request.form['description_marque']
+        id_categorie = request.form['id_categorie']
+        nom_cat = request.form['nom_cat']
+        description_cat = request.form['description_cat']
 
         # check if id_marque already exists
-        query = "SELECT id_marque FROM t_marque WHERE id_marque = %s"
-        values = (id_marque,)
+        query = "SELECT id_categorie FROM t_categorie WHERE id_categorie = %s"
+        values = (id_categorie,)
         cursor.execute(query, values)
         result = cursor.fetchone()
         if result is not None:
-            return redirect(url_for('success.error_categorie'))
+            return redirect(url_for('success.error_cat'))
 
         # insert new record
         query = """
-            INSERT INTO t_marque (id_marque, nom_marque, description_marque)
+            INSERT INTO t_categorie (id_categorie, nom_cat, description_cat)
             VALUES (%s, %s, %s)
         """
-        values = (id_marque, nom_marque, description_marque)
+        values = (id_categorie, nom_cat, description_cat)
 
         try:
             cursor.execute(query, values)
@@ -111,9 +111,9 @@ def add_categorie():
         # Redirects to the 'marques' endpoint within the 'marque' Blueprint.
         # Using 'marque.marques' instead of just 'marques' specifies the endpoint within the Blueprint.
         # This ensures Flask can correctly build the URL for the 'marques' endpoint.
-        return redirect(url_for('success.success_categorie'))
+        return redirect(url_for('success.success_cat'))
     else:
-        return render_template('categorie/actions/add_categorie_form.html')
+        return render_template('/categorie/actions/add_categorie_form.html')
 
 
 @bp.route('/categorie')
@@ -122,11 +122,11 @@ def categorie():
     Retrieves the data from the t_brand table in the MySQL database and displays it on the "brands.html" page.
     """
     query = """
-        SELECT * FROM t_categorie;
+        SELECT id_categorie, nom_cat, description_cat FROM t_categorie;
     """
     cursor.execute(query)
     data = cursor.fetchall()
 
     headers = [column[0] for column in cursor.description]
 
-    return render_template('categorie/categorie.html', data=data, headers=headers)
+    return render_template('/categorie/categorie.html', data=data, headers=headers)

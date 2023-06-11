@@ -62,7 +62,20 @@
             <input type="submit" value="Finish">
         </form>
     </div>
+    <script>
+        // add event listener to input field with id "nom_cat"
+        let nomCatInput = document.querySelector("#nom_cat");
+        nomCatInput.addEventListener("keyup", function(e) {
+            // get the current value of the input field
+            let value = e.target.value;
 
+            // replace all spaces with underscores
+            let newValue = value.replace(/\s+/g, '_');
+
+            // set the updated value of the input field
+            e.target.value = newValue;
+        });
+    </script>
     {% include '/miscellaneous/background-boxes.html' %}
     {% include '/miscellaneous/footer.html' %}
 </body>

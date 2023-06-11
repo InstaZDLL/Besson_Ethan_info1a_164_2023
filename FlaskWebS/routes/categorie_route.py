@@ -33,15 +33,15 @@ def modify_categorie():
     """
     if request.method == 'POST':
         id = request.form['id']
-        nom_marque = request.form['nom_marque']
-        description_marque = request.form['description_marque']
+        nom_cat = request.form['nom_cat']
+        description_cat = request.form['description_cat']
 
         query = """
             UPDATE t_categorie
             SET nom_cat = %s, description_cat = %s
             WHERE id_categorie = %s
         """
-        values = (nom_marque, description_marque, id)
+        values = (nom_cat, description_cat, id)
 
         try:
             cursor.execute(query, values)

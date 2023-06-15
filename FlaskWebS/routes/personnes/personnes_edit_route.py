@@ -122,7 +122,7 @@ def modify_personnes_edit():
     Processes the data from the mark modification form.
     """
     if request.method == 'POST':
-        id = request.form['id_personnes']
+        id = request.form['id']
         prenom_pers = request.form['prenom_pers']
         nom_pers = request.form['nom_pers']
         dep_pers = request.form['dep_pers']

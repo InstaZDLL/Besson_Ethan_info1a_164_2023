@@ -21,13 +21,13 @@ The goal of this project is to show our skills and understanding of web developm
 ### Required :
 
 ###### Windows :
-- [Laragon Full](https://laragon.org/download/#Edition) - v6.0.0 or newer.
-- [Gitbash](https://git-scm.com/download/win) - v2.41.0 or newer.
-- [Python](https://www.python.org/downloads/) - v3.11.3 or newer.
+- [Laragon Full](https://laragon.org/download/#Edition) - v6.0.0 or newer / or an other database system.
+- [Gitbash](https://git-scm.com/download/win) - v2.42.0 or newer.
+- [Python](https://www.python.org/downloads/) - v3.12.0 or newer.
 
 ### Optional :
 
-- Pycharm - v2023.1 only if you want to use the other installation.
+- Pycharm - v2023.2.3 only if you want to use the other installation.
 
 
 ## Installing the Flask application
@@ -98,13 +98,16 @@ Go to the project directory.
 cd Besson_Ethan_info1a_164_2023
 ```
 
+[Optional] If you hava Laragon you don't have to edit something if your credentials are root with no password.
 Modify the [environment variables](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023#environment-variables) in the `.env` file. You can use the following command to edit the file:
 
 ```shell
 nano .env
 ```
 
-Change, if needed, the `besson_ethan_info_1a.sql` file in the `database` directory. You can use the following command to edit the file:
+[Optional] If you don't want to change the dump and keep the original database you can skip this step, Change, **if needed**, the `besson_ethan_info_1a.sql` file in the `database` directory. 
+
+You can use the following command to edit the file:
 
 ```shell
 cd FlaskWebS/database
@@ -112,6 +115,7 @@ cd FlaskWebS/database
 ```shell
 nano besson_ethan_info_1a.sql
 ```
+[![Terminal](https://badgen.net/badge/Status/not%20tested/red?icon=terminal)](#)
 
 Return to the root folder of the project and start the server using the following command:
 
@@ -152,7 +156,7 @@ To run this project, you will need to modify the following environment variables
 
 #### Qtagselect Usage
 
-To use qtagselect in the `modify_materiel_form.html`-`/show_modify_materiel` if you want to change the category of the item you've selected, you need to click on the x to remove the actuall, and then select another in the label box.
+To use qtagselect in the `modify_materiel_form.html`-`/show_modify_materiel` if you want to change the category of the item you've selected, you need to click on the x to remove the current one, and then select another in the label box.
 
 **Step 1 :** click on the x to delete the category already selected.
 

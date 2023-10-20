@@ -5,7 +5,7 @@ from FlaskWebS.database import mysql_dump_import
 if __name__ == '__main__':
 
     """
-        If you want to enable the https, trust the crt file to Trusted Root Certificates and uncomment these two lines
+        If you want to enable the https, trust the crt file to Trusted Root Certificates and uncomment these two lines :
         context = ('ssl/cert.crt', 'ssl/cert.key')
         ssl_context=context
     """

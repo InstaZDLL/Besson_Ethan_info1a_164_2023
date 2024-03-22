@@ -28,7 +28,7 @@ The goal of this project is to show our skills and understanding of web developm
 
 ### Optional :
 
-- Pycharm - v2023.2.3 only if you want to use the other installation.
+- Pycharm - v2023.2.3 or newer, only if you want to use the other installation.
 
 
 ## Installing the Flask application

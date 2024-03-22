@@ -10,7 +10,7 @@ currently being supported with security updates.
 | 1.0.0      |        :x:         | 2023/03/21 - 2023/05/22 |
 | 2.0.0      |        :x:         | 2023/06/11 - 2023/09/09 |
 | 2.1.1-beta |        :x:         | 2023/10/20 - 2023/12/10 |
-| 2.1.2      | :white_check_mark: | 2023/10/20 - 2023/12/10 |
+| 2.1.2      | :white_check_mark: | 2024/03/22 - 2024/05/11 |
 
 ## Reporting a Vulnerability
 

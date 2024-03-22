@@ -22,8 +22,8 @@ The goal of this project is to show our skills and understanding of web developm
 
 ###### Windows :
 - [Laragon Full](https://laragon.org/download/#Edition) - v6.0.0 or newer / or an other database system.
-- [Gitbash](https://git-scm.com/download/win) - v2.42.0 or newer.
-- [Python](https://www.python.org/downloads/) - v3.12.0 or newer.
+- [Gitbash](https://git-scm.com/download/win) - v2.44.0 or newer.
+- [Python](https://www.python.org/downloads/) - v3.12.2 or newer.
 
 ### Optional :
 

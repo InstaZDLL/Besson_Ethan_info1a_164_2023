@@ -232,7 +232,7 @@ Note : if you change a request in some case you need to change the js and the fo
 
 
 ```text
-Copyright (C) 2023 Ethan Besson
+Copyright (C) 2023-2024 Ethan Besson
 
 Licensed under the Academic Free License version 3.0 (the "License");
 you may not use this file except in compliance with the License.

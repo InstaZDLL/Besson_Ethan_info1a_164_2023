@@ -6,7 +6,7 @@ if __name__ == '__main__':
 
     """
         If you want to enable the https, trust the crt file to Trusted Root Certificates and uncomment these two lines :
-        context = ('ssl/cert.crt', 'ssl/cert.key')
+        context = ('ssl/https/localhost.crt', 'ssl/https/localhost.key')
         ssl_context=context
     """
 

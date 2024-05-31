@@ -124,7 +124,7 @@ Return to the root folder of the project and start the server using the followin
 python3 run_app.py
 ```
 
-#### Installation tutorial for linux :
+#### Installation tutorial for linux (Deprecated):
 ![Linux install](https://raw.githubusercontent.com/InstaZDLL/Besson_Ethan_info1a_164_2023/965beba426ba79254121e839f498331c54fec2b9/.github/Linux_install_tutorial.gif)
 
 

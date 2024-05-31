@@ -121,10 +121,11 @@ nano besson_ethan_info_1a.sql
 Return to the root folder of the project and start the server using the following command:
 
 ```shell
-chmod u+x ./start.sh
+sudo apt install pip -y
+
 ```
 ```shell
-./start.sh
+python3 run_app.py
 ```
 
 #### Installation tutorial for linux :

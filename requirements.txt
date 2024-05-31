@@ -13,7 +13,7 @@ mysql-connector-python==8.4.0
 prettytable==3.10.0
 protobuf==5.27.0
 python-dotenv==1.0.1
-requests==2.32.2
+requests==2.32.3
 urllib3==2.2.1
 wcwidth==0.2.13
 Werkzeug==3.0.3

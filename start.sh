@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt install python3-pip -y
 echo "Démarrage en cours ..."
 echo "Installations des dépendances ..."
 python3 -m pip install --upgrade pip

@@ -84,7 +84,7 @@ Other installation (PyCharm):
 Install the following dependency (You must also have installed python3)
 
 ```shell
-sudo apt install python3-pip
+sudo apt install pip -y
 ```
 
 Clone the project.
@@ -120,10 +120,6 @@ nano besson_ethan_info_1a.sql
 
 Return to the root folder of the project and start the server using the following command:
 
-```shell
-sudo apt install pip -y
-
-```
 ```shell
 python3 run_app.py
 ```

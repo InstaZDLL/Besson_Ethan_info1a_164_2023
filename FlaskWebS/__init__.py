@@ -25,7 +25,7 @@ app.secret_key = os.environ.get('SECRET_KEY_FLASK')
 
 # Connection to the MySQL database
 try:
-    if use_tls.upper() != 'TRUE':
+    if use_tls != 'true':
         cnx = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
                                       database=name_bd_mysql)
     else:

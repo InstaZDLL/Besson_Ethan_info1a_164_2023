@@ -23,15 +23,28 @@ debug_flask = os.environ.get('DEBUG_FLASK') == 'true'
 port_flask = int(os.environ.get('PORT_FLASK'))
 app.secret_key = os.environ.get('SECRET_KEY_FLASK')
 
-# Connection to the MySQL database
+# Define the connection pool
+dbconfig = {
+  "database": name_bd_mysql,
+  "user":     user_mysql,
+  "password": pass_mysql,
+  "host":     host_mysql
+}
+
+if use_tls.lower() == 'true':
+    dbconfig["ssl_ca"] = ca_cert_path
+    dbconfig["ssl_cert"] = client_cert_path
+    dbconfig["ssl_key"] = client_key_path
+
 try:
-    if use_tls.lower() != 'true':
-        cnx = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
-                                      database=name_bd_mysql)
-    else:
-        cnx = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
-                                      database=name_bd_mysql, ssl_ca=ca_cert_path, ssl_cert=client_cert_path,
-                                      ssl_key=client_key_path)
+    cnxpool = mysql.connector.pooling.MySQLConnectionPool(pool_name = "mypool",
+                                                          pool_size = 3,
+                                                          pool_reset_session = True,
+                                                          **dbconfig)
+
+    # Use the connection from the pool
+    cnx = cnxpool.get_connection()
+
 except mysql.connector.Error as e:
     if e.errno == 1049:
         # Unknown database error

@@ -11,6 +11,10 @@ user_mysql = os.environ.get('USER_MYSQL')
 pass_mysql = os.environ.get('PASS_MYSQL')
 port_mysql = os.environ.get('PORT_MYSQL')
 name_bd_mysql = os.environ.get('NAME_BD_MYSQL')
+ca_cert_path = os.environ.get('CA_CERT_PATH')
+client_cert_path = os.environ.get('CLIENT_CERT_PATH')
+client_key_path = os.environ.get('CLIENT_KEY_PATH')
+use_tls = os.environ.get('USE_TLS')
 name_file_dump_sql_bd = os.environ.get('NAME_FILE_DUMP_SQL_BD')
 select_query_enabled = os.environ.get('SELECT_QUERY_ENABLED') == 'true'
 
@@ -21,7 +25,12 @@ def run():
     dump_file = name_file_dump_sql_bd #'besson_ethan_info_1a.sql'
 
     # Connect to the database
-    conn = mysql.connector.connect(host=host_mysql, user=user_mysql, password=pass_mysql, port=port_mysql)
+    if use_tls.lower() != 'true':
+        conn = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql)
+    else:
+        conn = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
+                                      ssl_ca=ca_cert_path, ssl_cert=client_cert_path,
+                                      ssl_key=client_key_path)
     cursor = conn.cursor()
 
     # Read the SQL dump file
@@ -51,7 +60,13 @@ def run():
                 print(f'Message d\'erreur: {str(e)}')
 
     # Connect to the database
-    conn = mysql.connector.connect(host=host_mysql, user=user_mysql, password=pass_mysql, port=port_mysql, database=name_bd_mysql)
+    if use_tls.lower() != 'true':
+        conn = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
+                                      database=name_bd_mysql)
+    else:
+        conn = mysql.connector.connect(user=user_mysql, password=pass_mysql, host=host_mysql, port=port_mysql,
+                                      database=name_bd_mysql, ssl_ca=ca_cert_path, ssl_cert=client_cert_path,
+                                      ssl_key=client_key_path)
     cursor = conn.cursor()
 
     # Execute a SELECT query

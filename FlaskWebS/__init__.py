@@ -17,11 +17,8 @@ ca_cert_path = os.environ.get('CA_CERT_PATH')
 client_cert_path = os.environ.get('CLIENT_CERT_PATH')
 client_key_path = os.environ.get('CLIENT_KEY_PATH')
 use_tls = os.environ.get('USE_TLS')
-ca_cert_path = os.environ.get('CA_CERT_PATH')
-client_cert_path = os.environ.get('CLIENT_CERT_PATH')
-client_key_path = os.environ.get('CLIENT_KEY_PATH')
 
-adresse_srv_flask = os.environ.get('ADRESSE_SRV_FLASK')
+address_srv_flask = os.environ.get('ADDRESS_SRV_FLASK')
 debug_flask = os.environ.get('DEBUG_FLASK') == 'true'
 port_flask = int(os.environ.get('PORT_FLASK'))
 app.secret_key = os.environ.get('SECRET_KEY_FLASK')

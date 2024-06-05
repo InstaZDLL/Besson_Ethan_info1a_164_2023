@@ -11,6 +11,7 @@ currently being supported with security updates.
 | 2.0.0      |    :x:    | 2023/06/11 - 2023/09/09 |
 | 2.1.1-beta |    :x:    | 2023/10/20 - 2023/12/10 |
 | 2.1.2      |    :x:    | 2024/03/22 - 2024/05/11 |
+| 2.1.3      |  :soon:   | 2024/06/XX - 2024/XX/XX |
 
 ## Reporting a Vulnerability
 

@@ -1,4 +1,4 @@
-from FlaskWebS import app, adresse_srv_flask, port_flask, debug_flask
+from FlaskWebS import app, address_srv_flask, port_flask, debug_flask
 from FlaskWebS.database import mysql_dump_import
 
 
@@ -13,4 +13,4 @@ if __name__ == '__main__':
     # Run the file mysql_dump_import.py
     mysql_dump_import.run()
     # Remove the debug=debug_flask to avoid the double execution of the mysql_dump_import
-    app.run(host=adresse_srv_flask, port=port_flask, debug=debug_flask)
+    app.run(host=address_srv_flask, port=port_flask, debug=debug_flask)

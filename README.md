@@ -131,17 +131,21 @@ python3 run_app.py
 ## Environment Variables
 
 
-To run this project, you will need to modify the following environment variables to your `.env` file
+To run this project, you will need to modify the following environment variables to your `.env` file. (Except TLS vars, if set to false)
 
-`USER_MYSQL` 
-
-`PASS_MYSQL`
-
-`NAME_BD_MYSQL`
-
-`NAME_FILE_DUMP_SQL_BD`
-
-`SELECT_QUERY_ENABLED` - Optional, options : true or false ℹ️
+| ENV                   | Default value                                                                                                                         | Example              | Description                                                                           |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------|----------------------|---------------------------------------------------------------------------------------|
+| HOST_MYSQL            | 127.0.0.1                                                                                                                             | 192.168.2.25         | The ip address of the Flask database, can be private, public or you can use a domain. |
+| USER_MYSQL            | root                                                                                                                                  | some\_user           | The username for the Flask database.                                                  |
+| PASS_MYSQL            |                                                                                                                                       | some\_password       | The password for the Flask database.                                                  |
+| PORT_MYSQL            | 3306                                                                                                                                  | 27849                | The port for the Flask Database.                                                      |
+| NAME_BD_MYSQL         | Besson_ethan_info_1a                                                                                                                  | some\_database\_name | The name of the database for the Flask.                                               |
+| NAME_FILE_DUMP_SQL_BD | see the [.env](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/blob/9a0d019edbd4a7f2a2c96d40a7bdeee03b747074/.env#L7) file  | ../some\_path        | The path of the SQL Dump file.                                                        |
+| USE_TLS               | false                                                                                                                                 | true                 | Enable the TLS connection.                                                            |
+| CA_CERT_PATH          | see the [.env](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/blob/9a0d019edbd4a7f2a2c96d40a7bdeee03b747074/.env#L9) file  | ../some\_path        | The path of the TLS CA certificate.                                                   |
+| CLIENT_CERT_PATH      | see the [.env](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/blob/9a0d019edbd4a7f2a2c96d40a7bdeee03b747074/.env#L10) file | ../some\_path        | The path of the TLS Client certificate.                                               |
+| CLIENT_KEY_PATH       | see the [.env](https://github.com/InstaZDLL/Besson_Ethan_info1a_164_2023/blob/9a0d019edbd4a7f2a2c96d40a7bdeee03b747074/.env#L11) file | ../some\_path        | The path of the TLS Client Cert Key.                                                  |
+| SELECT_QUERY_ENABLED  | true                                                                                                                                  | false                | Show a database table `t_categorie` on the console when starting. ℹ️                  |
 
 ℹ️ This variable is used to show a table from the database, to see if the SQL dump import was successful.
 

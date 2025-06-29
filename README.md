@@ -1,4 +1,4 @@
-# FlaskWebS
+# FlaskWebS - Deprecated
 
 
 This is a simple web application created as part of the Modulus 164 project. 
